@@ -1,0 +1,27 @@
+//background
+.background(@url; @x:0; @y:0; @repeat:no-repeat; @color:transparent;){
+	background:url(@url) @x @y @repeat @color;
+}
+//  将图片转换为 base64 字符串格式嵌到页面或样式中，建议图片100px以下使用 data:image/png;base64,*****
+.bg-uri(@url; @x:0; @y:0; @repeat:no-repeat; @color:transparent;){
+	background:data-uri("../../../@{url}") @x @y @repeat @color;
+}
+.bg-image(@url){
+	background-image:url(@url);
+}
+.bg-urimg(@url){
+	background-image:data-uri("../../../@{url}");
+}
+// name || #xxxxxx || #xxx || rgba(x,x,x,opacity)
+.bg-color(@color:transparent){
+	background-color:@color;
+}
+// px || direction
+.bg-position(@x:0; @y:0;){
+	background-position:@x @y;
+}
+// @para:cover || contain || 100% || px
+.bg-size(@para){
+	background-size: @para;
+}
+

@@ -1,0 +1,71 @@
+// 登录
+@import "common/mixins";
+@import "common/plugins/icon";
+.loginbg{
+    .background("../images/indexbg.jpg";center;center);
+    .elesize(100%;390px);
+}
+.loginbox{
+    padding:90px 75px;
+    dd{
+        border-bottom: 1px solid #dadada;
+        border-left: 1px solid #f5f5f5;
+        line-height: 74px;
+        margin-bottom: 55px;
+        position: relative;
+        input{
+            display: block;
+            border: none;
+            padding: 0 0 0 75px;
+            line-height: 75px;
+            font-size: 25px;
+            min-width: 500px;
+        }
+        &.account:before{
+            .icon("../images/icon/ico-login-user.png"; center; center; 41px; 75px); 
+            .pos-alt(5px;0);
+            content: "";
+        }
+        &.password:before{
+            .icon("../images/icon/ico-login-pw.png"; center; center; 40px; 75px); 
+            .pos-alt(5px;0);
+            content: "";
+        }
+    }
+    dt{
+        line-height: 43px;
+        .c-70;
+        a{
+            .c-blue;
+        }
+        .autologin{
+            i{
+                border: 1px solid #60a0f2;
+                .square(41px);
+                .inline-block;
+                .circle(50%);
+                margin-right: 6px;
+                &.on{
+                    .icon("../images/icon/ico-login-auto.png"; center; center; 41px; 41px); 
+                }
+            }
+            
+        }
+    }
+    .btnbox{
+        padding-top: 75px;
+        button{
+            width: 100%;
+            box-shadow: 0 7px 18px rgba(45,127,231,.7);
+        }
+    }
+}
+.copyright{
+    .c-90;
+    .tc;
+    width: 100%;
+    position: fixed;
+    left: 0; 
+    bottom: 40px;
+}
+

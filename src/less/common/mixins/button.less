@@ -1,0 +1,26 @@
+//button 根据不同项目需分别定义
+
+// 基本定义
+.button( @background; @bordercolor; @width; @height; @fontsize; @color; @hoverbackground; @hovercolor){
+	font-family:"微软雅黑","microsoft yahei";
+	background:@background;
+	width:@width;
+	height:@height;
+	line-height:@height;
+	border-radius:@height / 2;
+	border:1px solid @bordercolor;
+	color:@color;
+	font-size:@fontsize;
+	display:inline-block;
+	position:relative;
+	zoom:1;
+	text-align:center;
+	padding:0;
+	cursor:pointer;
+	&:hover{
+		background:@hoverbackground;
+		color:@hovercolor;
+		border:1px solid @hoverbackground;
+	}
+}
+

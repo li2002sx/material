@@ -1,0 +1,35 @@
+// 劳务工人信息
+@import "common/mixins";
+// 切换签
+@import "common/plugins/tab";
+// table
+@import "common/plugins/table";
+body{
+    .bg-color(#eef1f5);
+}
+.infolist{
+    dt{
+        .lh(80px);
+        padding-left:20px;
+        font-size: 23px;
+        color: #6f6f6f;
+    }
+    dd{
+        .bg-color(#fff);
+        border-bottom:1px solid #e0e3e7;
+        position: relative;
+        padding-left: 195px;
+        padding-right: 20px;
+        b{
+            .pos-alt(20px;0);
+            line-height: 80px;
+            font-size: 24px;
+        }
+        p{
+            .lh(1.3);
+            font-size: 23px;
+            padding:24px 0;
+            color: #666;
+        }
+    }
+}

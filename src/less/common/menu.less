@@ -1,0 +1,44 @@
+// 底部导航
+@import './mixins';//mixins
+.menu{
+    .bg-color(#f8f6f7);
+    .elesize(100%;90px);
+    border-top: 1px solid #d5dce0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    dd{
+        width:33.3%;
+        .tc;
+        color: #929292;
+        padding-top: 10px;
+        &.on{
+            //filter: none;
+            //filter: none;
+            .c-blue;
+        }
+    }
+    p{
+        font-size: 17px;
+    }
+    .ico-home,.ico-site,.ico-analy{
+        .icon("../../images/icon/ico-menu-manage.png";center;center;50px;50px);
+        background-size: 50px 34px;
+        filter: grayscale(100%);
+        filter: gray;
+    }
+    .ico-home{
+        background-image: url("../../images/icon/ico-menu-home.png");
+        background-size: 43px 36px;
+    }
+    .ico-analy{
+        background-image: url("../../images/icon/ico-menu-any.png");
+        background-size: 40px 40px;
+    }
+    dd.on{
+        .ico-home,.ico-site,.ico-analy{
+            filter: none;
+            filter: none;
+        }
+    }
+}

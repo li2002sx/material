@@ -1,0 +1,18 @@
+//截字
+// 一行
+.ellipsis{
+	white-space: nowrap; 
+	text-overflow: ellipsis; 
+	overflow: hidden; 
+	-webkit-line-clamp: 1; 
+	-webkit-box-orient: vertical;
+	line-height: 1.2;
+}
+// 多行
+.ellipsis-mtext(@number){
+	text-overflow: ellipsis; 
+ 	overflow: hidden;
+	display: -webkit-box; 
+	-webkit-line-clamp: @number; 
+ 	-webkit-box-orient: vertical;
+}

@@ -1,0 +1,86 @@
+// 统计分析
+@import "common/mixins";
+@import "common/plugins/icon";
+// 切换签
+@import "common/plugins/tab";
+// table
+@import "common/plugins/table";
+
+
+.indexmenu{
+    padding: 25px 0 30px;
+    border-bottom: 1px solid #f1f1f1;
+    .td{
+        .tc;
+        width: 33.3%;
+    }
+    p{
+        padding-top: 10px;
+    }
+    i.ico-per{
+        .icon("../images/icon/ico-analy-per.png";center;center; 68px;68px);
+        background-size: contain;
+    }
+    i.ico-item{
+        .icon("../images/icon/ico-analy-item.png";center;center; 68px;68px);
+        background-size: contain;
+    }
+    i.ico-user{
+        .icon("../images/icon/ico-analy-user.png";center;center; 68px;68px);
+        background-size: contain;
+    }
+}
+
+// chart
+.chartmod,.chartmod2{
+    padding: 20px;
+    h4{
+        .font(28px);
+        .c-blue;
+        .tc;
+        padding: 7px 0 35px;
+    }
+}
+.chartmod2{
+    padding-top: 40px;
+    h4{
+        padding-bottom: 0;
+    }
+}
+
+.chartbox{
+    .elesize(60%;375px);
+}
+.chartlist{
+    dd{
+        padding-left: 35px;
+        position: relative;
+        padding-bottom: 30px;
+        p{
+
+            .font(24px);
+            padding-bottom: 6px;
+        }
+        &:before{
+            .bg-color(#4e5e73);
+            .pos-alt(0;5px);
+            .square(14px);
+            .circle(50%);
+            content: "";
+        }
+
+        &:nth-child(1):before{
+            .bg-color(#ff5a36);
+        }
+
+        &:nth-child(2):before{
+            .bg-color(#ffb12a);
+        }
+        &:nth-child(3):before{
+            .bg-color(#1587cd);
+        }
+    }
+
+
+}
+

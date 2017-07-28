@@ -1,0 +1,35 @@
+@import "./reset";//基本样式表
+@import "./mixins";//mixins
+@import "./layout"; //布局
+@import "plugins/button";//按钮
+@import "plugins/icon"; //icon
+@import "nav";//nav
+@import "menu";//底部导航
+section{
+  min-height: 100%;
+}
+.child_page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 203;
+  overflow-y: auto;
+  /*background-color: #ebebeb;*/
+}
+
+.redpoint{
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  background: #FF403C;
+  border: 1px solid #FFFFFF;
+  border-radius: 100%;
+  margin: 0 0 0 -15px;
+  font-size: 18px;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 26px;
+}

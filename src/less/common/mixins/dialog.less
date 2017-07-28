@@ -1,0 +1,33 @@
+//弹出框 需根据项目分别定义
+
+// 半透明层
+.dialogbg{
+	background: rgba(0,0,0,.5);
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top:0;
+	right: 0;
+	bottom: 0;
+	z-index: 100;
+}
+//弹出框
+.dialog(@width;@height;){
+	background:#fff;
+	width:@width;
+	height:@height;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-(@width / 2);
+	margin-top:-(@height / 2);
+	z-index: 101;
+	.close{
+		background: white;
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		right: -10px;
+		top:-10px;
+	}
+}

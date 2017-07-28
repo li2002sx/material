@@ -1,0 +1,15 @@
+//icon
+.icon(@url; @x; @y; @width; @height;){
+	background:url(@url) no-repeat @x @y;
+	width:@width;
+	height:@height;
+	display:inline-block;
+	position:relative;
+	vertical-align:middle;
+}
+/*******适配******/
+@media (max-width: 768px){
+	.icon{
+		background-size: contain;
+	}
+}

@@ -1,0 +1,15 @@
+//宽度
+.struct(@width){
+	width:@width;
+	margin:0 auto;
+	position:relative;
+}
+
+.elesize(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size){
+  .elesize(@size;@size)
+}

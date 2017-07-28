@@ -1,0 +1,54 @@
+//分公司
+@import "common/mixins";
+// 切换签
+@import "common/plugins/tab";
+// table
+@import "common/plugins/table";
+
+.chartmod{
+    h4{
+        .c-blue;
+        .font(18px);
+        .tc;
+        padding-top: 25px;
+        b{
+            font-size: 48px;
+            margin: 0 5px;
+        }
+    }
+}
+.an-table{
+    th:first-child{
+        .tl;
+        width: 30%;
+        padding-left: 20px;
+    }
+    th:nth-child(2){
+        .tc;
+        width: auto;
+        padding-left: 0;
+    }
+    tr td:first-child{
+        .tl;
+        padding-left: 20px;
+    }
+    tr td:nth-child(2){
+        .tc;
+        padding-left: 0;
+    }
+    tr:first-child td:first-child:before{
+        .icon("../images/icon/ico-top1.png"; center; center; 31px; 23px);
+        content: "";
+        margin-right: 3px;
+    }
+    tr:nth-child(2) td:first-child:before{
+        .icon("../images/icon/ico-top2.png"; center; center; 31px; 23px);
+        content: "";
+        margin-right: 3px;
+    }
+    tr:nth-child(3) td:first-child:before{
+        .icon("../images/icon/ico-top3.png"; center; center; 31px; 23px);
+        content: "";
+        margin-right: 3px;
+    }
+}

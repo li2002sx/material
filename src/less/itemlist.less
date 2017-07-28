@@ -1,0 +1,33 @@
+//项目列表
+@import "common/mixins";
+// 切换签
+@import "common/plugins/tab";
+// table
+@import "common/plugins/table";
+
+.an-table{
+    th:first-child{
+        width: 15%;
+    }
+    th:nth-child(2){
+        width: 30%;
+        padding-left: 20px;
+    }
+    tr td:nth-child(2){
+        padding:20px;
+    }
+    em.normal,em.belate,em.beleave{
+        .inline-block;
+        .bg-color(#6bd41e);
+        .c-white;
+        .font(18px;32px);
+        .elesize(68px;32px);
+        .circle(16px);
+    }
+    em.belate{
+        .bg-color(#ff4e00);
+    }
+    em.beleave{
+        .bg-color(#60a0f2);
+    }
+}

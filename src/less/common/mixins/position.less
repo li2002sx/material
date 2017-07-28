@@ -1,0 +1,31 @@
+//position
+.pos-cus(@para;@dira:@valuea;@dirb:@valueb;){
+	position: @para;
+	@dira:@valuea;
+	@dirb:@valueb;
+}
+.position( @inherit; @left:0; @top:0; ){
+	position:@inherit;
+	left:@left;
+	top:@top;
+}
+.pos-alt(@left:0; @top:0;){
+	position:absolute;
+	left:@left;
+	top:@top;
+}
+.pos-atr(@top:0; @right:0;){
+	position:absolute;
+	top:@top;
+	right:@right;
+}
+.pos-arb(@right:0; @bottom:0;){
+	position:absolute;
+	right:@right;
+	bottom:@bottom;
+}
+.pos-alb(@left:0; @bottom:0;){
+	position:absolute;
+	left:@left;
+	bottom:@bottom;
+}

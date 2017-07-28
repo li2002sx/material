@@ -1,0 +1,46 @@
+// 现场管理头图
+@import '../mixins'; //icon
+.slider{
+    width: 100%;
+    overflow: hidden;
+    position:relative;
+    .totalbox{
+        .lh(60px);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        i{
+            .bg-color( #c4c4c8);
+            .inline-block;
+            .square(6px);
+            .circle(50%);
+            margin-right: 10px;
+            font-size: 0;
+            &.on{
+                .bg-color(#fff);
+                .square(10px);
+            }
+        }
+    }
+    dl{
+        .fix;
+    }
+    dd{
+        position: relative;
+        img{
+            max-width: 100%;
+            max-height: 370px;
+        }
+        .textbox{
+            background: rgba(0,0,0,.4);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            line-height: 60px;
+            width: 100%;
+            color: #fff;
+            font-size: 28px;
+            padding:  0 20px;
+        }
+    }
+}

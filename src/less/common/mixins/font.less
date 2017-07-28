@@ -1,0 +1,39 @@
+
+//font-size
+.font-size(@size:12px){
+	font-size:@size;
+}
+
+//line-height
+.line-height(@size:1){
+	line-height:@size;
+}
+.lh(@size:1){
+	line-height: @size;
+}
+
+//缩进
+.text-indent(@size:2em){
+	text-indent:@size;
+}
+.fontline(@size;@lineheight:1){
+	font-size: @size;
+	line-height: @lineheight;
+}
+
+.font(@size:12px; @lineheight:1;@style:normal; @weight:normal;){
+	font-size:@size;
+	line-height:@lineheight;
+	font-weight:@weight;
+	font-style:@style;
+}
+.italic{
+	font-style:italic;
+}
+.bold{
+	font-weight:bold;
+}
+.normal{
+	font-style:none;
+	font-weight:normal;
+}

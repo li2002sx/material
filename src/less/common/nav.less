@@ -1,0 +1,38 @@
+@import './mixins';//mixins
+
+header{
+    .bg-color(#60a0f2);
+    .elesize(100%;88px);
+    color: #fff;
+    h3{
+        .font(30px;88px);
+        .tc;
+        padding: 0 100px;
+    }
+    // 返回
+    .goback{
+        .square(88px);
+        .pos-alt;
+        &:before{
+            .square(26px);
+            .pos-alt(50%;50%);
+            border-left: 1px solid #fff;
+            border-top: 1px solid #fff;
+            transform: rotate(-45deg);
+            margin: -13px 0 0 -13px;
+            content: "";
+        }
+    }
+    // tool
+    .tool{
+        .pos-atr;
+        .text{
+            .font(24px;88px);
+            margin-right: 30px;
+        }
+    }
+    .filter{
+        .icon("../../images/icon/ico-filter.png"; center; center; 88px; 88px);
+        background-size:40px 42px;
+    }
+}

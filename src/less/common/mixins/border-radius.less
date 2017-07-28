@@ -1,0 +1,9 @@
+//圆角
+// 分别定义四个角 顺序：左上右下
+.border-radius(@leftup;@rightup;@rightbot;@leftbot){
+	border-radius:@leftup @rightup @rightbot @leftbot;
+}
+// 四个角一样 @value: px || %
+.circle(@vaule){
+	.border-radius(@vaule;@vaule;@vaule;@vaule);
+}

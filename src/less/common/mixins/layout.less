@@ -1,0 +1,44 @@
+
+.layout, .layout_v, .layout_v_c, .layout_h_c, .layout_vh_c { 
+	display: table;
+	width: 100%; 
+	box-sizing: border-box;
+	.td { 
+		display: table-cell;
+		box-sizing: border-box;
+		vertical-align:top;
+	}
+}
+
+//纵向布局
+.layout_v { 
+	box-orient: vertical; 
+}
+//垂直上下居中
+.layout_v_c { 
+	box-align: center; 
+}
+//水平左右居中
+.layout_h_c { 
+	box-pack: center; 
+}
+//上下左右居中
+.layout_vh_c { 
+	box-align: center; 
+	box-pack: center;
+}
+
+.grid{
+    display: table;
+	width: 100%; 
+	box-sizing: border-box;
+	.td { 
+		display: table-cell;
+		box-sizing: border-box;
+		vertical-align:top;
+	}
+    .td+.td{
+		width:100%;
+		*width:auto;
+	}
+}

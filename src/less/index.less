@@ -1,0 +1,112 @@
+// 首页
+@import "common/mixins";
+// 切换签
+@import "common/plugins/tab";
+
+body{
+    .bg-color(#eef1f5);
+}
+// top
+.indexuser{
+   background: url("../images/indexbg2.jpg") no-repeat center bottom;
+   background-size: 100% auto;
+   height: 305px;
+   position: relative;  
+   .tc;
+   .datebox{
+       .inline-block;
+       .c-white;
+       .circle(20px);
+       height: 40px;
+       margin: 0 auto;
+       border: 1px solid #fff;
+       line-height: 40px;
+       padding: 0 25px;
+       
+   }
+   .totalbox{
+       .bg-color(#fff);
+       .circle(6px);
+       height: 250px;
+       margin:51px 40px auto;
+       box-shadow: 0 0 7px rgba(0,0,0,.1);
+       position: relative;
+   }
+   .userimg{
+       span{
+           .bg-color(#fff);
+           .inline-block;
+           .square(108px);
+           .circle(50%);
+           border: 1px solid #60a0f2;
+           box-shadow:  0 0 10px #fff;
+           margin-top: -45px;
+           i{
+               .icon("../images/icon/ico-index-user.png";center;center;68px;86px);
+               background-size: contain;
+               margin-top: 11px;
+           }
+           em{
+               .bg-color(#60a0f2);
+               .elesize(100px;28px);
+               .font(18px;28px);
+               .c-white;
+               .pos-alb(50%;-20px);
+               border-radius: 15px;
+               margin-left: -50px;
+           }
+       }
+       h3{
+           .font(48px);
+           .c-blue;
+           padding-top: 30px;
+
+       }
+   }
+   .totallist{
+        display: flex;
+        padding-top: 15px;
+        .td{
+            flex: 1;
+        }
+        span,b{
+            .c-92;
+            display: block;
+        }
+        b{
+            .c-blue;
+            .font(32px);
+            padding: 10px;
+        }
+   }
+}
+
+// chart
+.indexchart{
+    .bg-color(#fff);
+    margin-top: 50px;
+}
+
+// 分公司列表
+.indexcitylist{
+    dl{
+        padding-top: 35px;
+    }
+    .td{
+        flex: 1;
+        width: 25%;
+    }
+    dd{
+        .tc;
+        i{
+            .inline-block;
+            .square(100px);
+            .circle(50%);
+            background: no-repeat center;
+            background-size:contain;
+        }
+        p{
+            padding-top: 20px;
+        }
+    }
+}

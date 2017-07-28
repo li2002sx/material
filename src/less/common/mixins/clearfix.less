@@ -1,0 +1,12 @@
+//清除浮动
+.fix{
+	display:block;
+	zoom:1;
+	&:after{
+		content:"."; 
+		height:0;
+		visibility:hidden; 
+		display:block; 
+		clear:both; 
+	} 
+}

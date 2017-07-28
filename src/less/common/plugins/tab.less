@@ -1,0 +1,73 @@
+// 切换签
+@import '../mixins';
+
+.tabchange{
+    border-bottom: 1px solid #ededed;
+    ul{
+        display: flex;
+    }
+    li{
+        .tc;
+        .font(24px;88px);
+        flex: 1;
+        &.on{
+            border-bottom: 2px solid #61a0f2;
+            color: #61a0f2;
+        }
+    }
+}
+
+.datechange{
+    border-bottom: 1px solid #ededed;
+    color: #6f6f6f;
+    ul{
+        display: flex;
+    }
+    li{
+        .font(22px;80px);
+        .tc;    
+        flex: 2;
+        em{
+            .font(24px);
+            &:after{
+                .square(12px);
+                .inline-block;
+                transform: rotate(-135deg);
+                content: "";
+                border-left: 1px solid #6f6f6f;
+                border-top: 1px solid #6f6f6f;
+                margin:-9px 0 0 10px;
+            }
+        }
+        &:first-child{
+            .tl;
+            flex: 1;
+            padding-left: 20px;
+            &:before{
+                .square(16px);
+                .inline-block;
+                border-left: 2px solid #bdbdbd;
+                border-top: 2px solid #bdbdbd;
+                transform: rotate(-45deg);
+                content: "";
+                margin-right: 3px;
+            }
+        }
+        &:last-child{
+            .tr;
+            padding-right: 20px;
+            flex: 1;
+            &:after{
+                .square(16px);
+                .inline-block;
+                border-left: 2px solid #bdbdbd;
+                border-top: 2px solid #bdbdbd;
+                transform: rotate(135deg);
+                content: "";
+                margin-left: 3px;
+            }
+        }
+    }
+}   
+
+
