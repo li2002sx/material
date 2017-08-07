@@ -1,100 +1,79 @@
 <template>
-    <section>
-        <div class="loginbg">
-            <div class="logopic"><img src="../../images/loginLogo@3x.png"></div>
-            <div class="logincenter">
-                <div class="logintip">请选择登陆方式</div>
-                <div class="loginicon">
-                    <ul>
-                        <li><a href=""><img src="../../images/dengluye_weixin@3x.png"/></a></li>
-                        <li><a href=""><img src="../../images/dengluye_weibo@3x.png"/></a></li>
-                        <li><a href=""><img src="../../images/dengluye_qq@3x.png"/></a></li>
-                        <li>
-                            <router-link to="/login-mobile"><img src="../../images/dengluye_shouji@3x.png"/>
-                            </router-link>
-                        </li>
-                    </ul>
-                </div>
-                <div class="loginxieyi">登陆即表示同意<a href="" class="xieyiword">《全聚星用户协议》</a></div>
-            </div>
-        </div>
-        <!--<transition name="router-show">-->
-            <!--<router-view></router-view>-->
-        <!--</transition>-->
-    </section>
+  <section>
+    <div v-title data-title="登录"></div>
+    <div class="loginbox">
+      <dl>
+        <dd>
+          <label>手机号</label>
+          <input class="inputxt" type="text" placeholder="请输入手机号" v-model="mobile" />
+        </dd>
+        <dd>
+          <label>密码</label>
+          <input class="inputxt" type="password" placeholder="请输入密码" v-model="password" />
+        </dd>
+        <dt>
+          <button class="btnred" @click="login">登录</button>
+        </dt>
+      </dl>
+      <ul class="layout note">
+        <li class="tl td">
+          <router-link to='/findpass'>忘记密码？</router-link>
+        </li>
+        <li class="tr td">
+          <router-link to='/reg'>新用户，立即注册</router-link>
+        </li>
+      </ul>
+    </div>
+  </section>
 </template>
 
 <script>
-  export default {}
+import { cookie } from 'vux'
+
+export default {
+  components: {
+    cookie
+  },
+  data () {
+    return {
+      mobile: '',
+      password: ''
+    }
+  },
+  created () {
+
+  },
+  computed: {},
+  mounted: function () {
+  },
+  methods: {
+    login: function () {
+      let param = {
+        mobile: this.mobile.trim(),
+        password: this.password.trim()
+      }
+      if (param.mobile.length === 0 || !this.isMobile(param.mobile)) {
+        this.toastShow('text', '手机号码格式不正确')
+        return
+      }
+      if (param.password.length === 0) {
+        this.toastShow('text', '密码不能为空')
+        return
+      }
+      this.post('/rest/user/login', param, function (result) {
+        if (result.status === 1) {
+          this.toastShow('success', '登陆成功')
+          this.setStore('token', result.user.token)
+          this.loginToUrl()
+        } else {
+          this.toastShow('text', result.message)
+        }
+      }.bind(this))
+    }
+  }
+}
 </script>
 
 <style>
-    .loginbg {
-        background: url("../../images/loginbeijing@3x.png") top center;
-        width: 750px;
-        height: 100%;
-        background-size: 100%;
-        position: absolute;
-        margin: 0 auto;
-    }
-
-    .loginbg .logopic {
-        margin-top: 255px;
-        text-align: center;
-    }
-
-    .loginbg .logopic img {
-        width: 200px;
-        height: 316px;
-    }
-
-    .logincenter {
-        width: 100%;
-        position: absolute;
-        bottom: 90px;
-    }
-
-    .logintip {
-        text-align: center;
-        font-size: 31px;
-        color: #999999;
-        margin-bottom: 60px;
-    }
-
-    .loginicon {
-        text-align: center;
-        height: 68px;
-        width: 100%;
-        margin-bottom: 60px;
-    }
-
-    .loginicon li {
-        display: inline;
-        text-align: center;
-        padding: 0 30px;
-    }
-
-    .loginicon a img {
-        width: 68px;
-        height: 68px;
-    }
-
-    .loginxieyi {
-        text-align: center;
-        font-size: 24px;
-        color: #999999;
-        opacity: 0.6;
-    }
-
-    .loginxieyi .xieyiword {
-        font-size: 24px;
-        color: #666666;
-    }
-
-    /*.router-show-enter-active,.router-show-leave-active{*/
-        /*transition: all .4s;*/
-    /*}*/
-    /*.router-show-enter,.router-show-leave-active{*/
-        /*transform:translateX(100%)*/
-    /*}*/
+@import "../../style-router/login.css";
 </style>

@@ -76,16 +76,37 @@ exports.install = function (Vue, options) {
     var day = date.getDate()
     return date.getFullYear() + '-' + month + '-' + day
   }
-}
 
-// global.show = (type, text) => {
-//   this.$vux.toast.show({
-//     type: type,
-//     text: text,
-//     position: 'middle'
-//   })
-// }
-//
-// module.exports = {
-//   global
-// }
+  Vue.prototype.getPicUrl = function (picUrl) {
+    if (picUrl === undefined || picUrl.length === 0) {
+      return '/static/images/user2-160x160.jpg'
+    }
+    return picUrl
+  }
+
+  Vue.prototype.isLogin = function () {
+    if (window.localStorage.getItem('token') === null) {
+      return false
+    } else {
+      return true
+    }
+  }
+
+  Vue.prototype.openInWx = function () {
+    var ua = navigator.userAgent.toLowerCase()
+    if (ua.indexOf('micromessenger') > -1) {
+      return true
+    }
+    return false
+  }
+
+  Vue.prototype.getOpenId = function () {
+    return this.getStore('openId') || ''
+  }
+
+  Vue.prototype.wxAuth = function () {
+    if (this.openInWx() === true && this.getOpenId().length === 0) {
+      location.href = global.wxAuthorizeUrl
+    }
+  }
+}

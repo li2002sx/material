@@ -1,0 +1,43 @@
+@import '../style/common/mixins';//mixins
+@import '../style/common/plugins/sharelist';
+
+.searchtop{
+    height: 88px;
+    .searchmod{
+        .bg-color(#f8f8f8);
+        .padding(15px 20px);
+        .position(fixed);
+        .elesize(100%;88px);
+        .circle(0);
+        box-sizing: border-box;
+        z-index: 18;
+
+        input{
+            .input-text(#e6e6e8;92%;30px;0;14px 22px);
+            border: none;
+            .circle(10px);
+            font-size: 30px;
+        }
+        button{
+            .elesize(100%;58px);
+            .tc;
+            .font(30px);
+            background: none;
+            border: none;
+
+        }
+    }
+
+}
+
+//keywordlist
+.kwlist{
+    dd{
+        .font(30px;88px);
+        .padding(0 45px);
+        border-bottom: 1px solid #ededed;
+    }
+}
+.sharelist{
+    padding-top: 30px;
+}

@@ -1,0 +1,37 @@
+// 底部导航
+@import './mixins';//mixins
+.menu{
+    .bg-color(#fff);
+    .elesize(750px;98px);
+    border-top: 1px solid #ededed;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: table;
+    box-align: center; 
+    box-pack: center;
+    z-index: 15;
+    &:after{
+        .pos-alt(50%;21px);
+        .elesize(0;56px);
+        border-right: 1px solid #ededed;
+        content: "";
+    }
+    dd{
+        width:50%;
+        .tc;
+        .p_r;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .ico-home,.ico-my{
+        filter: grayscale(100%);
+	    filter: gray;
+    }
+    dd.on{
+        .ico-home,.ico-my{
+            filter: none;
+            filter: none; 
+        }
+    }
+}

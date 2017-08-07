@@ -1,71 +1,93 @@
 // 懒加载
-const Login = r => require.ensure([], () => r(require('../frames/Login')), 'Login')
-const LaborIndex = r => require.ensure([], () => r(require('../frames/Index')), 'LaborIndex')
-const CompanyDetail = r => require.ensure([], () => r(require('../frames/company/Detail')), 'CompanyDetail')
-const CompanyProject = r => require.ensure([], () => r(require('../frames/company/Project')), 'CompanyProject')
-const CompanyTeam = r => require.ensure([], () => r(require('../frames/company/Team')), 'CompanyTeam')
-const CompanyInfo = r => require.ensure([], () => r(require('../frames/company/Info')), 'CompanyInfo')
-
-const SceneIndex = r => require.ensure([], () => r(require('../frames/scene/Index')), 'SceneIndex')
-const SceneTask = r => require.ensure([], () => r(require('../frames/scene/Task')), 'SceneTask')
-const ScenePhoto = r => require.ensure([], () => r(require('../frames/scene/Photo')), 'ScenePhoto')
-const SceneReport = r => require.ensure([], () => r(require('../frames/scene/Report')), 'SceneReport')
-const SceneComplaint = r => require.ensure([], () => r(require('../frames/scene/Complaint')), 'SceneComplaint')
-
-// const LoginMobile = r => require.ensure([], () => r(require('../frames/user/Login-Mobile')), 'login')
-const StatIndex = r => require.ensure([], () => r(require('../frames/stat/Index')), 'StatIndex')
-const StatProject = r => require.ensure([], () => r(require('../frames/stat/Project')), 'StatProject')
-const StatWorker = r => require.ensure([], () => r(require('../frames/stat/Worker')), 'StatWorker')
-const StatStaff = r => require.ensure([], () => r(require('../frames/stat/staff')), 'StatStaff')
-
+const Index = r => require.ensure([], () => r(require('../frames/Index.vue')), 'Index')
+const Reg = r => require.ensure([], () => r(require('../frames/user/Reg.vue')), 'Reg')
+const RegSucc = r => require.ensure([], () => r(require('../frames/user/RegSucc.vue')), 'RegSucc')
+const FindPass = r => require.ensure([], () => r(require('../frames/user/FindPass')), 'FindPass')
+const Login = r => require.ensure([], () => r(require('../frames/user/Login')), 'Login')
+const NoLogin = r => require.ensure([], () => r(require('../frames/my/NoLogin')), 'NoLogin')
+const MyIndex = r => require.ensure([], () => r(require('../frames/my/Index')), 'MyIndex')
+const Vip = r => require.ensure([], () => r(require('../frames/my/Vip')), 'Vip')
+const VipSucc = r => require.ensure([], () => r(require('../frames/my/VipSucc')), 'VipSucc')
+const MyInfo = r => require.ensure([], () => r(require('../frames/my/Info')), 'MyInfo')
+const Search = r => require.ensure([], () => r(require('../frames/car/Search')), 'Search')
+const SearchList = r => require.ensure([], () => r(require('../frames/car/SearchList')), 'SearchList')
+const CarList = r => require.ensure([], () => r(require('../frames/my/CarList')), 'CarList')
+const CarTemplateList = r => require.ensure([], () => r(require('../frames/my/CarTemplateList')), 'CarTemplateList')
+const EditUserCar = r => require.ensure([], () => r(require('../frames/my/EditUserCar')), 'EditUserCar')
+const PhotoList = r => require.ensure([], () => r(require('../frames/my/PhotoList')), 'PhotoList')
+const CarInfo = r => require.ensure([], () => r(require('../frames/my/CarInfo')), 'CarInfo')
+const Template = r => require.ensure([], () => r(require('../frames/car/Template')), 'Template')
+const AuthNotify = r => require.ensure([], () => r(require('../frames/wx/AuthNotify.vue')), 'AuthNotify')
 export default [{
   path: '',
-  redirect: '/login'
+  redirect: '/index'
+}, {
+  path: '/index',
+  component: Index
 }, {
   path: '/login',
   component: Login
 }, {
-  path: '/index',
-  component: LaborIndex
+  path: '/reg',
+  component: Reg
 }, {
-  path: '/company/:id',
-  component: CompanyDetail
+  path: '/regsucc',
+  component: RegSucc
 }, {
-  path: '/company/project/:id/:name',
-  component: CompanyProject
+  path: '/findpass',
+  component: FindPass
 }, {
-  path: '/company/team/:projectId/:teamId/:teamName',
-  component: CompanyTeam,
-  children: [{
-    path: '/company/info/:cardno',
-    component: CompanyInfo
-  }]
+  path: '/my',
+  component: MyIndex
 }, {
-  path: '/scene/index',
-  component: SceneIndex,
-  children: [{
-    path: '/scene/task',
-    component: SceneTask
-  }, {
-    path: '/scene/photo',
-    component: ScenePhoto
-  }, {
-    path: '/scene/report',
-    component: SceneReport
-  }, {
-    path: '/scene/complaint',
-    component: SceneComplaint
-  }]
+  path: '/my/nologin',
+  component: NoLogin
 }, {
-  path: '/stat/index',
-  component: StatIndex
+  path: '/my/vip',
+  component: Vip
 }, {
-  path: '/stat/project',
-  component: StatProject
+  path: '/my/vipsucc',
+  component: VipSucc
 }, {
-  path: '/stat/worker',
-  component: StatWorker
+  path: '/my/info',
+  component: MyInfo
 }, {
-  path: '/stat/staff',
-  component: StatStaff
+  path: '/my/car',
+  component: CarList
+}, {
+  path: '/my/car/:edit',
+  component: CarList
+}, {
+  path: '/my/templist',
+  component: CarTemplateList
+}, {
+  path: '/my/editcar/:carModelId/:infoId',
+  component: EditUserCar
+}, {
+  path: '/my/carinfo/:carModelId/:infoId',
+  component: CarInfo
+}, {
+  path: '/my/photo',
+  component: PhotoList
+}, {
+  path: '/my/photo/:userId',
+  component: PhotoList
+}, {
+  path: '/car/search',
+  component: Search
+}, {
+  path: '/car/searchlist/:modelsId/:modelsName',
+  component: SearchList
+}, {
+  path: '/car/searchlist/:modelsId',
+  component: SearchList
+}, {
+  path: '/car/template/:carModelId',
+  component: Template
+}, {
+  path: '/car/template/:carModelId/:infoId',
+  component: Template
+}, {
+  path: '/wx/authnotify',
+  component: AuthNotify
 }]

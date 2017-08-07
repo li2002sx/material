@@ -1,0 +1,30 @@
+@import '../mixins/button';//mixins
+
+// .button( @background; @bordercolor; @width; @height; @fontsize; @color; @hoverbackground; @hovercolor)
+// 无色
+.btnpure{
+    .button(transparent; transparent; auto; 75px; 30px; #cbcbcb; transparent; #cbcbcb);
+    min-width:120px;
+}
+// 橙色
+.btnred{
+    .button(#cd3467; #cd3467; auto; 78px; 30px; #fff; #c82749; #fff);
+    min-width:120px;
+    background-image:-webkit-linear-gradient(0deg, #c62340,#cd3569);
+}
+// darkgray
+.btndarkgray{
+    .button(#404040; #404040; auto; 78px; 30px; #fff; #404040; #fff);
+    min-width:120px;
+}
+// tintgray
+.btntintgray{
+    .button(#fbfbfb; #fbfbfb; auto; 78px; 30px; #666; #fbfbfb; #666);
+    min-width:120px;
+}
+// disabled
+.btndisabled{
+    .button(#cbcbcb; #cbcbcb; auto; 78px; 30px; #fff; #cbcbcb; #fff);
+    cursor:default;
+    min-width:120px;
+}

@@ -1,90 +1,110 @@
 <template>
-    <div id="app">
-        <!--<loading v-model="isLoading"></loading>-->
-        <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
-            <router-view></router-view>
-        </transition>
+  <div id="app">
+    <div id="content">
+      <!--<loading v-model="isLoading"></loading>-->
+      <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
+        <router-view></router-view>
+      </transition>
     </div>
+  </div>
 </template>
 
 <script>
-  import {Loading, TransferDom} from 'vux'
-  import {mapState} from 'vuex'
-  export default {
-    name: 'app',
-    directives: {
-      TransferDom
-    },
-    components: {
-      Loading
-    },
-    computed: {
-      ...mapState({
-        route: state => state.route,
-        path: state => state.route.path,
-        isLoading: state => state.isLoading,
-        direction: state => state.direction
-      })
-    }
-    // 接着在父组件内
-    // watch $route 决定使用哪种过渡
-//    watch: {
-//      '$route' (to, from) {
-//        const toDepth = to.path.split('/').length
-//        const fromDepth = from.path.split('/').length
-//        this.transitionName = toDepth < fromDepth ? 'vux-pop-out' : 'vux-pop-in'
-//      }
-//    }
+import { Loading, TransferDom } from 'vux'
+import { mapState } from 'vuex'
+export default {
+  name: 'app',
+  directives: {
+    TransferDom
+  },
+  components: {
+    Loading
+  },
+  computed: {
+    ...mapState({
+      route: state => state.route,
+      path: state => state.route.path,
+      isLoading: state => state.isLoading,
+      direction: state => state.direction
+    })
   }
+  // 接着在父组件内
+  // watch $route 决定使用哪种过渡
+  //    watch: {
+  //      '$route' (to, from) {
+  //        const toDepth = to.path.split('/').length
+  //        const fromDepth = from.path.split('/').length
+  //        this.transitionName = toDepth < fromDepth ? 'vux-pop-out' : 'vux-pop-in'
+  //      }
+  //    }
+}
 
 </script>
 
 <style lang="less">
-    /*@import '~vux/src/styles/reset.less';*/
-    @import './less/common/public.css';
-    /*@import './style/style.css';*/
-    /*body {*/
-    /*background-color: #fbf9fe;*/
-    /*}*/
+@import '~vux/src/styles/reset.less';
+@import './style-router/public.css';
 
-    .vux-pop-out-enter-active,
-    .vux-pop-out-leave-active,
-    .vux-pop-in-enter-active,
-    .vux-pop-in-leave-active {
-        will-change: transform;
-        transition: all 500ms;
-        height: 100%;
-        top: 0px;
-        width: 100%;
-        position: absolute;
-        backface-visibility: hidden;
-        perspective: 1000;
-    }
+/*@import './style/style.css';*/
 
-    .vux-pop-out-enter {
-        opacity: 0;
-        transform: translate3d(-100%, 0, 0);
-    }
 
-    .vux-pop-out-leave-active {
-        opacity: 0;
-        transform: translate3d(100%, 0, 0);
-    }
+/*body {*/
 
-    .vux-pop-in-enter {
-        opacity: 0;
-        transform: translate3d(100%, 0, 0);
-    }
 
-    .vux-pop-in-leave-active {
-        opacity: 0;
-        transform: translate3d(-100%, 0, 0);
-    }
+/*background-color: #fbf9fe;*/
 
-    /*.router-fade-enter-active, .router-fade-leave-active {*/
-    /*transition: opacity .2s;*/
-    /*}*/
-    /*.router-fade-enter, .router-fade-leave-active {*/
-    /*opacity: 0;*/
-    /*}*/
+
+/*}*/
+
+.vux-pop-out-enter-active,
+.vux-pop-out-leave-active,
+.vux-pop-in-enter-active,
+.vux-pop-in-leave-active {
+  will-change: transform;
+  transition: all 500ms;
+  height: 100%;
+  top: 0px;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+.vux-pop-out-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+
+.vux-pop-out-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+
+.vux-pop-in-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+
+.vux-pop-in-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+
+
+/*.router-fade-enter-active, .router-fade-leave-active {*/
+
+
+/*transition: opacity .2s;*/
+
+
+/*}*/
+
+
+/*.router-fade-enter, .router-fade-leave-active {*/
+
+
+/*opacity: 0;*/
+
+
+/*}*/
 </style>

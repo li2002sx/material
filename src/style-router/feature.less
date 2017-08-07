@@ -1,0 +1,118 @@
+@import '../style/common/mixins';//mixins
+
+.featuremod{
+    .pos-alt;
+    width: 100%;
+    z-index: 1;
+    > div{
+        background: no-repeat center 0;
+        background-size: auto 1334px;
+        height: 1334px;
+        max-width: 750px;
+        .margin(0 auto);
+    }
+}
+.colormod{
+    .padding(985px 30px 0);
+    .p_r;
+    height: 349px;
+    z-index: 2;
+    .colorlist{
+        background: rgba(0,0,0,.75);
+        .padding(10px 0 10px 10px);
+        dd{
+            .pr(10px);
+            color: #fff;
+            i{
+                .inline-block;
+                .square(25px);
+                .mr(6px);
+                top: -2px;
+            }
+            p{
+                .pt(10px);
+            }
+        }
+
+    }
+    .btnbox{
+        .tr;
+        .pt(55px);
+        button{
+            width: 210px;
+        }
+    }
+}
+.imgmod{
+    .p_r;
+    z-index: 3;
+    h4{
+        .pt(58px);
+        .tc;
+        .font(30px);
+        color: #fff;
+    }
+    .imgslider{
+        .margin(30px);
+    }
+    .imgdot{
+        .pt(25px);
+        .tc;
+        i{
+            .inline-block;
+            .bg-color(#1e2a30);
+            .square(10px);
+            .circle(50%);
+            .margin(0 10px);
+            border: 1px solid #b0b9be;
+            &.on{
+                .bg-color(#cb305e);
+            }
+        }
+    }
+    .imglist{
+        .bg-color(#5d1616);
+        .margin(30px 79px);
+        .padding(20px 0 20px 20px);
+        img{
+            .block;
+            width: 100%;
+        }
+        dt{
+            .pr(20px);
+            .pb(4px);
+        }
+        dd{
+            .pr(16px);
+            .pb(4px);
+            .fix;
+            span{
+                .fl;
+                width: 50%;
+                .pr(4px);
+                box-sizing: border-box;
+            }
+
+        }
+    }
+}
+.linkmod{
+    .p_r;
+    z-index: 4;
+    h4{
+        .pt(58px);
+        .tc;
+        .font(30px);
+        color: #fff;
+    }
+    .linkbox{
+        .pt(30px);
+    }
+    p{
+        .pb(4px);
+        img{
+            .block;
+            max-width: 100%;
+        }
+    }
+}
