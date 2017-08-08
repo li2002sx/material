@@ -80,7 +80,7 @@ export default {
     },
     logout () {
       this.removeStore('token')
-      this.$router.push('/login')
+      this.toUrl('/index')
     }
   }
 }

@@ -1,11 +1,9 @@
 <template>
   <div id="app">
-    <div id="content">
       <!--<loading v-model="isLoading"></loading>-->
       <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
         <router-view></router-view>
       </transition>
-    </div>
   </div>
 </template>
 

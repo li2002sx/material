@@ -261,6 +261,9 @@
   background: none;
   border: none;
 }
+.searchtop .searchmod:before {
+  display: none;
+}
 .kwlist dd {
   font-size: 30px;
   line-height: 88px;

@@ -1,7 +1,7 @@
 <template>
   <section>
     <div v-title data-title="个人信息"></div>
-    <footerMenu tab="1"></footerMenu>
+    <!-- <footerMenu tab="1"></footerMenu> -->
     <!--userimg  -->
     <div class=" usermod">
       <dl class="layout_vh_c">
@@ -131,20 +131,24 @@
     <div class=" usermod">
       <div class="btnbox">
         <button class="btnred" @click="save">保存</button>
+        <button class="btnred btncropper" @click="saveCropper" id="btn_cropper" style="display:none">保存</button>
       </div>
     </div>
+    <vueCropper ref="cropper" :img="userPic" :outputSize="1" outputType="jpeg" autoCrop="true" :fixed="true" canScale="true"></vueCropper>
   </section>
 </template>
 
 <script>
 import { cookie, Group, PopupPicker } from 'vux'
 import footerMenu from '../../components/Footer.vue'
+import vueCropper from 'vue-cropper'
 export default {
   components: {
     cookie,
     Group,
     PopupPicker,
-    footerMenu
+    footerMenu,
+    vueCropper
   },
   data () {
     return {
@@ -170,6 +174,7 @@ export default {
   },
   computed: {},
   mounted: function () {
+    document.querySelector('.vue-cropper').style.display = 'none'
   },
   methods: {
     getUserInfo () {
@@ -327,8 +332,19 @@ export default {
         reader.readAsDataURL(file[i])
         reader.onload = function (e) {
           that.userPic = e.target.result
+          document.querySelector('.vue-cropper').style.display = ''
+          that.$refs.cropper.startCrop()
+          document.getElementById('btn_cropper').style.display = ''
         }
       }
+    },
+    saveCropper () {
+      document.querySelector('.vue-cropper').style.display = 'none'
+      document.getElementById('btn_cropper').style.display = 'none'
+      let that = this
+      this.$refs.cropper.getCropData((data) => {
+        that.userPic = data
+      })
     }
   }
 }
@@ -336,4 +352,10 @@ export default {
 
 <style>
 @import "../../style-router/userinfo.css";
+ .btncropper {
+  position: fixed;
+  left: 20%;
+  bottom: 1%;
+  z-index: 1;
+}
 </style>
