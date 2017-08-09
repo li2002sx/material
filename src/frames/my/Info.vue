@@ -131,10 +131,10 @@
     <div class=" usermod">
       <div class="btnbox">
         <button class="btnred" @click="save">保存</button>
-        <button class="btnred btncropper" @click="saveCropper" id="btn_cropper" style="display:none">保存</button>
+        <button class="btnred btncropper" @click="saveCropper" id="btn_cropper" style="display:none">确定</button>
       </div>
     </div>
-    <vueCropper ref="cropper" :img="userPic" :outputSize="1" outputType="jpeg" autoCrop="true" :fixed="true" canScale="true"></vueCropper>
+    <vueCropper ref="cropper" :img="userPic" :outputSize="1" outputType="jpeg" :autoCrop="true" :fixed="true" :canScale="true"></vueCropper>
   </section>
 </template>
 

@@ -122,7 +122,7 @@ export default {
         mobile: this.mobile,
         code: this.code
       }
-      this.$emit('getSmsSendData', data)
+      this.$emit('smsSendData', data)
     }
   }
 }
