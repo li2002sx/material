@@ -132,9 +132,11 @@ export default {
       this.get('/rest/usercar/list', param, function (result) {
         if (result.status === 1) {
           if (result.userCarInfos.length === 0) {
-            this.$nextTick(() => {
-              this.$refs.scroller.disablePullup()
-            })
+            if (this.pageIndex > 1) {
+              this.$nextTick(() => {
+                this.$refs.scroller.disablePullup()
+              })
+            }
           } else {
             this.pageIndex++
             for (let item of result.userCarInfos) {
@@ -142,7 +144,7 @@ export default {
             }
             this.$nextTick(() => {
               this.$refs.scroller.reset()
-              // this.$refs.scroller.donePullup()
+              this.$refs.scroller.donePullup()
             })
           }
         } else {

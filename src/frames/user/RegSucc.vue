@@ -10,7 +10,7 @@
       <p class="note">完善个人信息，能帮助您提升个人信誉</p>
       <p class="btnbox">
         <button class="btntintgray" @click="toUrl('/index')">去首页看看</button>
-        <button class="btnred" @click="toUrl('/my')">去完善信息</button>
+        <button class="btnred" @click="toUrl('/my/info')">去完善信息</button>
       </p>
     </div>
     <!--register end  -->

@@ -2,11 +2,11 @@
   <section>
     <dd>
       <label>手机号</label>
-      <input class='inputxt' type='text' placeholder='请输入手机号' v-model='mobile' @keyup="checkMobile" />
+      <input class='inputxt' type='number' placeholder='手机号码' v-model='mobile' @keyup="checkMobile" />
     </dd>
     <dd>
       <label>验证码</label>
-      <input class='inputxt' type='text' placeholder='请输入验证码' @blur='codeBlur' v-model='code' />
+      <input class='inputxt' type='number' placeholder='请输入验证码' @blur='codeBlur' v-model='code' />
       <button class='btnpure' disabled="disabled" id='btn_code'>{{codeTip}}</button>
     </dd>
   </section>
@@ -15,6 +15,7 @@
 <script>
 import gt from '../config/gt'
 export default {
+  props: ['smsType'],
   components: {
     gt
   },
@@ -99,7 +100,7 @@ export default {
               let result = captchaObj.getValidate()
               let param = {
                 mobile: this.mobile.trim(),
-                smsType: 10001,
+                smsType: this.smsType,
                 geetest_challenge: result.geetest_challenge,
                 geetest_validate: result.geetest_validate,
                 geetest_seccode: result.geetest_seccode

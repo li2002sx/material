@@ -9,7 +9,7 @@ global.webUrl = 'http://www.gongxiangcheyuan.com/'
 // global.apiUrl = 'http://172.168.1.26:8071/'
 global.apiUrl = 'http://chechehulian.cn/'
 
-global.wxAppId = 'wxf02d7f90b363f5ba'
+global.wxAppId = 'wx04a755df9d6d77fb'
 
 global.wxAuthNotifyUrl = global.webUrl + '?#/wx/authnotify'
 

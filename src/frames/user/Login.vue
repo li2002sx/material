@@ -5,7 +5,7 @@
       <dl>
         <dd>
           <label>手机号</label>
-          <input class="inputxt" type="text" placeholder="请输入手机号" v-model="mobile" />
+          <input class="inputxt" type="number" placeholder="手机号码" v-model="mobile" />
         </dd>
         <dd>
           <label>密码</label>
@@ -62,9 +62,11 @@ export default {
       }
       this.post('/rest/user/login', param, function (result) {
         if (result.status === 1) {
-          this.toastShow('success', '登陆成功')
           this.setStore('token', result.user.token)
-          this.loginToUrl()
+          window.setTimeout(() => {
+            this.toastShow('success', '登陆成功')
+            this.loginToUrl()
+          }, 500)
         } else {
           this.toastShow('text', result.message)
         }

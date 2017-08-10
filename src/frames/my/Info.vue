@@ -310,6 +310,7 @@ export default {
       this.post('/rest/user/save', param, function (result) {
         if (result.status === 1) {
           this.toastShow('success', '修改成功')
+          this.toUrl('/my')
         } else {
           this.toastShow('text', result.message)
         }

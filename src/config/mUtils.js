@@ -79,7 +79,8 @@ exports.install = function (Vue, options) {
 
   Vue.prototype.getPicUrl = function (picUrl) {
     if (picUrl === undefined || picUrl.length === 0) {
-      return '/static/images/user2-160x160.jpg'
+      // return '/static/images/ico-user.png'
+      return ''
     }
     return picUrl
   }

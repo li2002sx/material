@@ -1,10 +1,10 @@
 <template>
   <section>
-     <div v-title data-title="注册"></div>
+    <div v-title data-title="注册"></div>
     <!--register  -->
     <div class='registerbox'>
       <dl>
-        <smsSend @smsSendData="getSmsSendData"></smsSend>
+        <smsSend smsType="10001" @smsSendData="getSmsSendData"></smsSend>
         <dd>
           <label>密码</label>
           <input class='inputxt' type='password' placeholder='请输入密码' v-model='password' />
@@ -62,9 +62,11 @@ export default {
       }
       this.post('/rest/user/regist', param, function (result) {
         if (result.status === 1) {
-          this.toastShow('success', '注册成功')
           this.setStore('token', result.user.token)
-          this.toUrl('/regsucc')
+          window.setTimeout(() => {
+            this.toastShow('success', '注册成功')
+            this.toUrl('/regsucc')
+          }, 500)
         } else {
           this.toastShow('text', result.msg)
         }

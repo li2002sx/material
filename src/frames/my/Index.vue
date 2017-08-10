@@ -12,6 +12,7 @@
         <h4>{{realName}}
           <i class="ico-gold" v-if="vip"></i>
           <i class="ico-silver" v-else></i>
+          <i class="ico-modify"></i>
         </h4>
         <p>{{mobile}}</p>
       </div>

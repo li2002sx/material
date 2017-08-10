@@ -89,7 +89,6 @@ router.afterEach(function (to) {
 
 // Vue.prototype.axios = axios
 const baseURL = global.apiUrl
-const token = window.localStorage.getItem('token')
 // axiosGet请求
 Vue.prototype.get = function (url, params, callback) {
   // 显示
@@ -101,7 +100,7 @@ Vue.prototype.get = function (url, params, callback) {
     method: 'get',
     baseURL: baseURL,
     headers: {
-      'token': token
+      'token': window.localStorage.getItem('token')
     },
     params: params,
     withCredentials: true, // default
@@ -110,7 +109,7 @@ Vue.prototype.get = function (url, params, callback) {
   }).then(response => {
     let data = response.data
     if (data === null || data.status === -1) {
-      this.$router.push('/login')
+      this.toUrl('/login')
     } else {
       callback(data)
     }
@@ -134,7 +133,7 @@ Vue.prototype.post = function (url, data, callback) {
     method: 'post',
     baseURL: baseURL,
     headers: {
-      'token': token,
+      'token': window.localStorage.getItem('token'),
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     transformRequest: [function (data) {
@@ -160,7 +159,7 @@ Vue.prototype.post = function (url, data, callback) {
   }).then(response => {
     let data = response.data
     if (data === null || data.status === -1) {
-      this.$router.push('/login')
+      this.toUrl('/login')
     } else {
       callback(data)
     }
@@ -184,7 +183,7 @@ Vue.prototype.postForm = function (url, data, callback) {
     method: 'post',
     baseURL: baseURL,
     headers: {
-      'token': token,
+      'token': window.localStorage.getItem('token'),
       'Content-Type': 'multipart/form-data'
     },
     transformRequest: [function (data) {
@@ -210,7 +209,7 @@ Vue.prototype.postForm = function (url, data, callback) {
   }).then(response => {
     let data = response.data
     if (data === null || data.status === -1) {
-      this.$router.push('/login')
+      this.toUrl('/login')
     } else {
       callback(data)
     }
@@ -226,8 +225,10 @@ Vue.prototype.postForm = function (url, data, callback) {
 Vue.prototype.toUrl = function (url) {
   if (url === '/login') {
     var referrer = document.URL
-    if (referrer.indexOf('/user/') === -1 && referrer.indexOf('/my/') === -1) {
-      this.setStore('referrer', referrer)
+    if (referrer.indexOf('/user/') === -1 && referrer.indexOf('/my') === -1) {
+      this.setStore('referrer', referrer.split('#')[1])
+    } else {
+      this.removeStore('referrer')
     }
   }
   if (url === '/my/vip') {
@@ -246,8 +247,8 @@ Vue.prototype.loginToUrl = function () {
   if (referrer === null) {
     referrer = '/index'
   }
-  location.href = referrer
-  // this.$router.push(referrer)
+  // location.href = referrer
+  this.$router.push(referrer)
 }
 
 Vue.directive('title', {

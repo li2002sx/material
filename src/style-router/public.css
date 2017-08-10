@@ -604,3 +604,14 @@ header .filter {
   position: relative;
   vertical-align: middle;
 }
+.ico-modify {
+  background: url("../images/icon/ico-modify.png") no-repeat center center;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  background-size: 24px 27px;
+  margin-left: 15px;
+  top: -1px;
+}

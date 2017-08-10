@@ -4,7 +4,7 @@
     <!--register  -->
     <div class='registerbox'>
       <dl>
-        <smsSend @smsSendData="getSmsSendData"></smsSend>
+        <smsSend smsType="10002" @smsSendData="getSmsSendData"></smsSend>
         <dd>
           <label>密码</label>
           <input class='inputxt' type='password' placeholder='请输入密码' v-model='password' />
