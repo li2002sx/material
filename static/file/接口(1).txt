@@ -1,0 +1,63 @@
+半成品验收提交  newCheckHalf
+
+checkDate 验收日期
+materialClass 02
+project.id 项目id
+gcontrol.id 总控id
+compact.id 合同id
+supplier.id 供应商id
+nowAmount  本期结算不含税金额
+taxRate  增值税税率
+nowTaxAmount 本期结算含税金额
+checkPerson.id 验收人id
+remarks  备注
+
+
+半成品验收材料 
+halfMaterial[0].material.id
+
+material.materialName  材料名称
+material.id 材料id
+arrivalCount  结算数量
+priceExtax 无税单价
+amtExtax  无税金额
+taxRate 税率 
+priceTax  含税单价
+amtIntax  含税金额
+compact.id  合同id
+
+attachPics  附件
+
+
+
+
+
+提交出库单  newOutBill
+
+gcontrol.id 总控id
+materialIn.id  验收单id
+project.id 项目id
+outDate 出库日期
+receiveOrg 领料单位
+receivePerson 领料人
+materialClass 材料类别
+amt 金额
+
+材料  outMaterialList[0]
+material.materialName 材料名称
+material.id 材料id
+inventoryCount 库存数量
+outCount 出库数量
+priceExtax 无税单价
+amtExtax 无税金额
+taxRate 税率
+priceIntax 含税单价
+amtIntax 含税金额
+
+attachPics 附件
+
+任务处理 complete
+taskId 任务ID
+procInsId 流程实例ID
+comment 任务提交意见的内容
+flag  yes同意  no驳回

@@ -74,119 +74,55 @@
           </dl>
         </div>
         <div v-else-if="step == 2">
-            <div class="materiallist">
-              <h4 class="stocktit" @click="showMaterial($event)">1.CLZLJH-201612-0004 螺纹钢</h4>
-              <dl class="stockstep1 hide">
-                  <dd>
-                      <label>材料类别</label>
-                      <p class="txt">主材料</p>
-                  </dd>
-                  <dd>
-                      <label>生产厂家</label>
-                      <input type="text" class="input" placeholder="请填写生产厂家" />
-                  </dd>
-                  <dd>
-                      <label>交库量</label>
-                      <input type="text" class="input" placeholder="请填写交库量" />
-                  </dd>
-                  <dd>
-                      <label>无税单价</label>
-                      <p class="txt">18.00</p>
-                  </dd>
-                  <dd>
-                      <label>无税金额</label>
-                      <p class="txt">1800.00</p>
-                  </dd>
-                  <dd>
-                      <label>税率</label>
-                      <p class="txt">17%</p>
-                  </dd>
-                  <dd>
-                      <label>含税单价</label>
-                      <p class="txt">20.00</p>
-                  </dd>
-                  <dd>
-                      <label>含税金额</label>
-                      <p class="txt">2000.00</p>
-                  </dd>
-                  <dd>
-                      <label>税额</label>
-                      <p class="txt">200.00</p>
-                  </dd>
-                  <dd>
-                      <label>不可抵扣</label>
-                      <p class="txt">是</p>
-                  </dd>
-                  <dd>
-                      <label>抵扣税额</label>
-                      <p class="txt">0.00</p>
-                  </dd>
-                  <dd>
-                      <label>计成本单价</label>
-                      <p class="txt">15.00</p>
-                  </dd>
-                  <dd>
-                      <label>计成本金额</label>
-                      <p class="txt">1500.00</p>
-                  </dd>
-                  <dd>
-                      <label>备注</label>
-                      <textarea rows="3" placeholder="请填写备注"></textarea>
-                  </dd>
-              </dl>
-            </div>
-            <div class="materiallist">
-              <h4 class="stocktit" @click="showMaterial($event)">2.CLZLJH-201612-0004 螺纹钢</h4>
-              <dl class="stockstep1 hide">
-                  <dd>
-                      <label>材料类别</label>
-                      <p class="txt">主材料</p>
-                  </dd>
-                  <dd>
-                      <label>生产厂家</label>
-                      <p class="txt">甲级供应商</p>
-                  </dd>
-              </dl>
-            </div>
-            <div class="materiallist">
-              <h4 class="stocktit" @click="showMaterial($event)">3.CLZLJH-201612-0004 螺纹钢</h4>
-              <dl class="stockstep1 hide">
-                  <dd>
-                      <label>材料类别</label>
-                      <p class="txt">主材料</p>
-                  </dd>
-                  <dd>
-                      <label>生产厂家</label>
-                      <p class="txt">甲级供应商</p>
-                  </dd>
-              </dl>
-            </div>
-            <div class="materiallist">
-              <h4 class="stocktit" @click="showMaterial($event)">4.CLZLJH-201612-0004 螺纹钢</h4>
-              <dl class="stockstep1 hide">
-                  <dd>
-                      <label>材料类别</label>
-                      <p class="txt">主材料</p>
-                  </dd>
-                  <dd>
-                      <label>生产厂家</label>
-                      <p class="txt">甲级供应商</p>
-                  </dd>
-              </dl>
-            </div>
-            <div class="materiallist">
-              <h4 class="stocktit" @click="showMaterial($event)">5.CLZLJH-201612-0004 螺纹钢</h4>
-              <dl class="stockstep1 hide">
-                  <dd>
-                      <label>材料类别</label>
-                      <p class="txt">主材料</p>
-                  </dd>
-                  <dd>
-                      <label>生产厂家</label>
-                      <p class="txt">甲级供应商</p>
-                  </dd>
-              </dl>
-            </div>
+          <div class="materiallist" @click="showMaterial($event)" v-for="(item, index) in compactMaterialFull.list">
+            <h4 class="stocktit">{{index + 1}}.{{item.material.materialName}}  需用剩余:{{item.need.leftNeednum}} 本次入库:</h4>
+            <dl class="stockstep1 hide">
+                <dd>
+                    <label>材料类别</label>
+                    <p class="txt">{{materialMap.get(item.matrialClass)}}</p>
+                </dd>
+                <dd>
+                    <label>数量</label>
+                    <p class="txt">{{item.quantity}}</p>
+                </dd>
+                <dd>
+                    <label>无税单价</label>
+                    <p class="txt">{{item.priceExtax}}</p>
+                </dd>
+                <dd>
+                    <label>无税金额</label>
+                    <p class="txt">{{item.amtExtax}}</p>
+                </dd>
+                <dd>
+                    <label>含税单价</label>
+                    <p class="txt">{{item.priceIntax}}</p>
+                </dd>
+                <dd>
+                    <label>含税金额</label>
+                    <p class="txt">{{item.amtIntax}}</p>
+                </dd>
+                <dd>
+                    <label>成本单价</label>
+                    <p class="txt">{{item.costUnivalent}}</p>
+                </dd>
+                <dd>
+                    <label>剩余数量</label>
+                    <p class="txt">{{item.leftCptnum}}</p>
+                </dd>
+                <dd>
+                    <label>剩余金额</label>
+                    <p class="txt">{{item.leftCptamt}}</p>
+                </dd>
+                <dd>
+                    <label>本次验收</label>
+                    <input type="text"  class="input" />
+                </dd>
+                <dd>
+                    <label>备注</label>
+                    <p class="text">搞保护主义如同把自己关入黑屋子，看似躲过了风吹雨打，但也隔绝了阳光和空气。打贸易战的结果只能是两败俱伤</p>
+                </dd>
+            </dl>
+          </div>
         </div>
         <div v-else-if="step == 3">
           <div class="tablelist">
@@ -294,10 +230,17 @@ export default {
       need: {},
       supplier: {},
       contract: {},
-      contractFull: {}
+      contractFull: {},
+      compactMaterial: {},
+      needMaterial: {},
+      compactMaterialFull: {},
+      materialMap: new Map(),
+      statusMap: new Map()
     }
   },
   created () {
+    this.materialMap = this.getDict('materialClass')
+    this.statusMap = this.getDict('status')
   },
   filters: {
   },
@@ -319,43 +262,48 @@ export default {
       this.date = data.value
     },
     stepTo (index) {
-      if (this.project.value === undefined) {
-        this.toastShow('text', '请选择一个项目')
-        return
-      }
-      if (this.control.value === undefined) {
-        this.toastShow('text', '请选择一个总控计划')
-        return
-      }
-      if (this.need.value === undefined) {
-        this.toastShow('text', '请选择一个需用计划')
-        return
-      }
-      if (this.supplier.value === undefined) {
-        this.toastShow('text', '请选择一个供应商')
-        return
-      }
-      if (this.contract.value === undefined) {
-        this.toastShow('text', '请选择一个合同')
-        return
-      }
+      // if (this.project.value === undefined) {
+      //   this.toastShow('text', '请选择一个项目')
+      //   return
+      // }
+      // if (this.control.value === undefined) {
+      //   this.toastShow('text', '请选择一个总控计划')
+      //   return
+      // }
+      // if (this.need.value === undefined) {
+      //   this.toastShow('text', '请选择一个需用计划')
+      //   return
+      // }
+      // if (this.supplier.value === undefined) {
+      //   this.toastShow('text', '请选择一个供应商')
+      //   return
+      // }
+      // if (this.contract.value === undefined) {
+      //   this.toastShow('text', '请选择一个合同')
+      //   return
+      // }
       this.step += index
       if (this.step === 2) {
         this.getContractMaterials()
-        this.getNeedMaterials()
+        // this.getNeedMaterials()
       }
     },
     getContractMaterials () {
       var param = {
         compact: {
-          id: this.contract.value
+          // id: this.contract.value
+          id: 'a3a9ca9fc95842ccb34b54340eed5013'
         }
       }
       let requestUrl = 'appData/app/getCompactMaterial'
       let that = this
       this.post(requestUrl, param, function (result) {
         if (result.status === '1') {
-          // that.data = result.map
+          that.compactMaterial = result.map
+          that.compactMaterial.list.forEach(function (info) {
+            info.need = {}
+          })
+          that.getNeedMaterials()
         } else {
           that.toastShow('text', result.message)
         }
@@ -364,14 +312,23 @@ export default {
     getNeedMaterials () {
       var param = {
         compact: {
-          id: this.need.value
+          // id: this.need.value
+          id: '6001bfe9a98d4d02ba011477fef38009'
         }
       }
       let requestUrl = 'appData/app/getNeedplanMaterial'
       let that = this
       this.post(requestUrl, param, function (result) {
         if (result.status === '1') {
-          that.data = result.map
+          // that.needMaterial = result.map
+          let map = new Map()
+          result.map.list.forEach(function (info) {
+            map.set(info.material.id, info)
+          })
+          that.compactMaterial.list.forEach(function (info) {
+            info.need = map.get(info.material.id)
+          })
+          that.compactMaterialFull = that.compactMaterial
         } else {
           that.toastShow('text', result.message)
         }
@@ -379,7 +336,7 @@ export default {
     },
     showMaterial (event) {
       let target = event.target
-      $(target).next('dl').slideToggle('normal')
+      $(target).closest('.materiallist').find('dl').slideToggle('100')
     }
   }
 }
