@@ -1,0 +1,286 @@
+我的申请：
+{
+	"status": "1",
+	"map": {
+		"totalPage": 1,
+		"list": [{
+			"procInsId": "76c13434b17f47898393c744f1f6b47e",
+			"procDefId": "gcontrolplan:2:fb0850f689624885b199d03092e9d86d",
+			"procDefKey": "gcontrolplan",
+			"businessTable": "t_gcontrol_plan",
+			"businessId": "ebbd9aa5d6d744a4896b4a46fbd70dbf",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"billMarkNo": "南京-CLZKJH-201803-0001",
+					"startTimeStr": "2018-03-19 11:39:32",
+					"startTime": 1521430772101,
+					"projectName": "中国人保财险华东中心（一期）工程幕墙工程",
+					"applyName": "超级管理员",
+					"title": "南京-CLZKJH-201803-0001",
+					"projectId": "c93530bcbbee4491a3ced46dcb0ab39b"
+				}
+			},
+			"procDefVersion": 2,
+			"procDefName": "总控计划",
+			"procStartDate": "2018-03-19 11:39:32",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "590bdf0b31c7440da69c6f3da8b10b84",
+			"procDefId": "in_main:1:e2fd70cb713440bc9bf4fdea2f3fb3bb",
+			"procDefKey": "in_main",
+			"businessTable": "t_in",
+			"businessId": "f1f6aa1c50d2402eb924f500960f74e4",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"billMarkNo": "总部-CLYS-201803-0002",
+					"startTimeStr": "2018-03-19 11:13:02",
+					"startTime": 1521429182570,
+					"projectName": "东方测试项目V3",
+					"title": "总部-CLYS-201803-0002",
+					"applyName": "超级管理员",
+					"projectId": "e90b9147623d4f9988e32d587969dbf6"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "验收入库",
+			"procStartDate": "2018-03-19 11:13:02",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "1e4d815ee2d4401380f16c0b2f810fcb",
+			"procDefId": "in_main:1:e2fd70cb713440bc9bf4fdea2f3fb3bb",
+			"procDefKey": "in_main",
+			"businessTable": "t_in",
+			"businessId": "9d0647524f054a5480e461b5b0059343",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"billMarkNo": "上海-CLYS-201803-0002",
+					"startTimeStr": "2018-03-19 10:56:47",
+					"startTime": 1521428207349,
+					"projectName": "东方测试项目V3",
+					"title": "上海-CLYS-201803-0002",
+					"applyName": "超级管理员",
+					"projectId": "e90b9147623d4f9988e32d587969dbf6"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "验收入库",
+			"procStartDate": "2018-03-19 10:56:47",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "4f683e5c3de04eb799688486c441ee9b",
+			"procDefId": "material_out:1:9ac804a5967a450889ebe922c2c11e42",
+			"procDefKey": "material_out",
+			"businessTable": "t_out",
+			"businessId": "3d6abef58e394040b28ffd452023f702",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"billMarkNo": "总部-CLCK-201803-0003",
+					"startTimeStr": "2018-03-19 10:37:01",
+					"startTime": 1521427021345,
+					"applyName": "超级管理员",
+					"title": "总部-CLCK-201803-0003",
+					"projectName": "东方测试项目V3",
+					"projectId": "e90b9147623d4f9988e32d587969dbf6"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "材料出库",
+			"procStartDate": "2018-03-19 10:37:02",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "67d3b144517d4e639a36fe29fe4f45ca",
+			"procDefId": "goal_set:1:17465508e9e541bfa5a741c1cc231c87",
+			"procDefKey": "goal_set",
+			"businessTable": "t_project_account",
+			"businessId": "299074a1b4234b59bc901af40d835169",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"billMarkNo": "总部-CBCS-201803--0002",
+					"startTimeStr": "2018-03-18 19:58:29",
+					"startTime": 1521374309480,
+					"projectName": "TC测试项目TC",
+					"applyName": "超级管理员",
+					"title": "总部-CBCS-201803--0002",
+					"projectId": "9e8323710fd14dfb99f7f4a9751bd99d"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "目标成本设定",
+			"procStartDate": "2018-03-18 19:58:29",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "4c7e4429ed104c12ba9b01dab2e43ff6",
+			"procDefId": "material_out:1:9ac804a5967a450889ebe922c2c11e42",
+			"procDefKey": "material_out",
+			"businessTable": "t_out",
+			"businessId": "17f7b97c53d6412b9c3436cf5dbf8ad8",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"billMarkNo": "总部-CLCK-201803-0002",
+					"startTimeStr": "2018-03-18 16:47:54",
+					"startTime": 1521362874351,
+					"title": "总部-CLCK-201803-0002",
+					"applyName": "超级管理员",
+					"projectName": "东方测试项目V3",
+					"projectId": "e90b9147623d4f9988e32d587969dbf6"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "材料出库",
+			"procStartDate": "2018-03-18 16:47:56",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "94a08941224c415da359d46c14a7bd6d",
+			"procDefId": "compact:1:15ea2d39b7c74d59b358c872cd875595",
+			"procDefKey": "compact",
+			"businessTable": "t_compact",
+			"businessId": "8b549e7de8c54c1eb9845576171aef57",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"pass": "1",
+					"billMarkNo": "总部-CLCGHT-201803-0001",
+					"startTimeStr": "2018-03-18 14:00:11",
+					"startTime": 1521352811591,
+					"projectName": "TC测试项目TC",
+					"applyName": "超级管理员",
+					"title": "总部-CLCGHT-201803-0001",
+					"projectId": "9e8323710fd14dfb99f7f4a9751bd99d"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "采购合同",
+			"procStartDate": "2018-03-18 14:00:12",
+			"procEndDate": "2018-03-18 14:08:34",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "e75a268c59fd42c59e2cdbad8f607061",
+			"procDefId": "material_out:1:9ac804a5967a450889ebe922c2c11e42",
+			"procDefKey": "material_out",
+			"businessTable": "t_out",
+			"businessId": "3f4bce7be560447c953f1ce53ea463fc",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"pass": "1",
+					"billMarkNo": "总部-CLCK-201803-0001",
+					"startTimeStr": "2018-03-16 11:04:52",
+					"startTime": 1521169492472,
+					"title": "总部-CLCK-201803-0001",
+					"projectName": "东方测试项目部V2",
+					"applyName": "超级管理员",
+					"projectId": "db4515fbf9e44d088f5d28888bacd90e"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "材料出库",
+			"procStartDate": "2018-03-16 11:04:52",
+			"procEndDate": "2018-03-16 11:51:43",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "80eedc4121964d6292f0c5820b82fdee",
+			"procDefId": "needplan:1:d13af4d7b88f46d5b717cd6cc5fddafd",
+			"procDefKey": "needplan",
+			"businessTable": "t_need_plan",
+			"businessId": "54ec4ff14a96412da5dceefc0e65fecd",
+			"vars": {
+				"map": {
+					"apply": "admin",
+					"billMarkNo": "总部-CLXYJH-201803-0001",
+					"startTimeStr": "2018-03-15 16:35:01",
+					"startTime": 1521102901381,
+					"projectName": "TC测试项目TC",
+					"applyName": "超级管理员",
+					"title": "总部-CLXYJH-201803-0001",
+					"projectId": "9e8323710fd14dfb99f7f4a9751bd99d"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "需用计划",
+			"procStartDate": "2018-03-15 16:35:01",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}]
+	}
+}
+
+{
+	"status": "1",
+	"map": {
+		"totalPage": 1,
+		"list": [{
+			"procInsId": "50a58645f7ee4125a6c5ff0ed3303c0d",
+			"procDefId": "gcontrolplan:2:fb0850f689624885b199d03092e9d86d",
+			"procDefKey": "gcontrolplan",
+			"status": "finish",
+			"vars": {
+				"map": {
+					"apply": "dfpx3",
+					"pass": "1",
+					"billMarkNo": "上海-CLZKJH-201803-0006",
+					"startTimeStr": "2018-03-15 16:48:11",
+					"startTime": 1521103691586,
+					"title": "上海-CLZKJH-201803-0006",
+					"applyName": "东方培训（项目商务人员）",
+					"projectName": "东方测试项目部V2",
+					"projectId": "db4515fbf9e44d088f5d28888bacd90e"
+				}
+			},
+			"procDefVersion": 2,
+			"procDefName": "总控计划",
+			"taskEndDate": "2018-03-15 17:50:52",
+			"histTaskName": "董事长审批",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"procInsId": "486d7ecaed9848dd9cdc08c9bd145db3",
+			"procDefId": "gcontrolplan:1:6b33aac3a82f41bcbdd6fd7e259450cf",
+			"procDefKey": "gcontrolplan",
+			"status": "finish",
+			"vars": {
+				"map": {
+					"pass": "1",
+					"apply": "dfpx7",
+					"billMarkNo": "上海-CLZKJH-201803-0001",
+					"startTimeStr": "2018-03-15 10:37:21",
+					"startTime": 1521081441594,
+					"projectName": "东方测试项目部V2",
+					"applyName": "东方培训（目标设定中心）",
+					"title": "上海-CLZKJH-201803-0001",
+					"projectId": "db4515fbf9e44d088f5d28888bacd90e"
+				}
+			},
+			"procDefVersion": 1,
+			"procDefName": "总控计划",
+			"taskEndDate": "2018-03-15 10:39:16",
+			"histTaskName": "董事长审批",
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}]
+	}
+}

@@ -1,0 +1,105 @@
+入库单详情：
+{
+	"status": "1",
+	"message": "success",
+	"map": {
+		"checkBill": {
+			"id": "9d0647524f054a5480e461b5b0059343",
+			"createBy": {
+				"id": "009fab0b5ab14b5f9bd9289b482932b9",
+				"name": "东方培训（物资管理员）",
+				"loginFlag": "1",
+				"admin": false,
+				"roleNames": ""
+			},
+			"createDate": "2018-03-16 11:54:55",
+			"updateBy": {
+				"id": "1",
+				"name": "超级管理员",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"updateDate": "2018-03-19 10:56:47",
+			"procSuccessFlag": "04",
+			"procDestroyFlag": "05",
+			"inNo": "上海-CLYS-201803-0002",
+			"project": {
+				"id": "e90b9147623d4f9988e32d587969dbf6",
+				"projectName": "东方测试项目V3"
+			},
+			"gcontrol": {
+				"id": "fffcb5159b7e4b0c98c793771d22bcb6",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"planNo": "上海-CLZKJH-201803-0008"
+			},
+			"checkDate": "2018-03-16 11:53:57",
+			"inDate": "2018-03-16 11:53:57",
+			"supplier": {
+				"id": "817462fa85af4babaaea3575c4c2bc9f",
+				"venderName": "供应商测试"
+			},
+			"compact": {
+				"id": "a3a9ca9fc95842ccb34b54340eed5013",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"compactNo": "上海-CLCGHT-201803-0003",
+				"taxRate": 0.0
+			},
+			"checkPerson": {
+				"id": "009fab0b5ab14b5f9bd9289b482932b9",
+				"name": "东方培训（物资管理员）",
+				"loginFlag": "1",
+				"admin": false,
+				"roleNames": ""
+			},
+			"releCompactno": "测",
+			"flowStatus": "02",
+			"materialClass": "01",
+			"procInsId": "1e4d815ee2d4401380f16c0b2f810fcb",
+			"status": "02",
+			"needPlan": {
+				"id": "6001bfe9a98d4d02ba011477fef38009",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"nplanNo": "上海-CLXYJH-201803-0003"
+			},
+			"inMaterialList": [{
+				"id": "e1155620adcc47bc919414988b1d6f41",
+				"material": {
+					"id": "bf2f9b9967e946f8b9fb9f26f3b64d8b",
+					"materialName": "蜂窝复合铜板",
+					"materialType": {
+						"id": "DF11019",
+						"name": "铜板",
+						"sort": 30,
+						"hasChildren": false
+					}
+				},
+				"arrivalCount": 300.0,
+				"taxRate": 0.0,
+				"priceTax": 10000.0,
+				"priceExtax": 10000.0,
+				"amtTax": 0.0
+			}, {
+				"id": "6de841c5bfce44bcb3db2cdef6b762c4",
+				"material": {
+					"id": "176e7aaed9fd4b9c8e97c2fddc95eee9",
+					"materialName": "啊啊啊",
+					"materialType": {
+						"id": "DF11003",
+						"name": "方钢",
+						"sort": 30,
+						"hasChildren": false
+					}
+				},
+				"arrivalCount": 100.0,
+				"taxRate": 0.0,
+				"priceTax": 11000.0,
+				"priceExtax": 11000.0,
+				"amtTax": 0.0
+			}]
+		}
+	}
+}

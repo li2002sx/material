@@ -1,8 +1,14 @@
 <template>
     <!--header-->
-    <header>
-        <a href="javascript:void(0)" class="goback" @click="goback" v-show="back"></a>
+    <header class="header">
         <h3>{{title}}</h3>
+        <div class="tool">
+            <div class="add"></div>
+        </div>
+    </header>
+    <!-- <header>
+        <a href="javascript:void(0)" class="goback" @click="goback" v-show="back"></a>
+        <h3>{{title}}</h3> -->
         <!--<span class="tool">-->
             <!--<i class="filter" title="筛选" @click="filter"></i>-->
         <!--</span>-->
@@ -37,7 +43,7 @@
                 <!--</div>-->
             <!--</popup>-->
         <!--</div>-->
-    </header>
+    <!-- </header> -->
     <!--header end-->
 </template>
 
@@ -182,5 +188,5 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @import "../less/site.css";
+    /* @import "../less/site.css"; */
 </style>

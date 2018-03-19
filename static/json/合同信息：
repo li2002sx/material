@@ -1,0 +1,111 @@
+合同信息：
+{
+	"status": "1",
+	"map": {
+		"compact": {
+			"id": "8b549e7de8c54c1eb9845576171aef57",
+			"createBy": {
+				"id": "1",
+				"name": "超级管理员",
+				"loginFlag": "1",
+				"roleNames": "",
+				"admin": true
+			},
+			"createDate": "2018-03-18 14:00:10",
+			"updateBy": {
+				"id": "1",
+				"name": "超级管理员",
+				"loginFlag": "1",
+				"roleNames": "",
+				"admin": true
+			},
+			"updateDate": "2018-03-18 14:00:10",
+			"compactNo": "总部-CLCGHT-201803-0001",
+			"project": {
+				"id": "9e8323710fd14dfb99f7f4a9751bd99d",
+				"projectName": "TC测试项目TC"
+			},
+			"gcontrol": {
+				"id": "b7f6d5ff1d3f487c8180e3bb1fd3c16a",
+				"planNo": "上海-CLZKJH-201803-0004"
+			},
+			"compactName": "线程",
+			"parta": "中建东方装饰有限公司",
+			"partb": "817462fa85af4babaaea3575c4c2bc9f",
+			"materialClass": "02",
+			"contractDate": "2018-03-18 13:58:47",
+			"amtIntax": "39",
+			"operater": {
+				"id": "1",
+				"name": "超级管理员",
+				"loginFlag": "1",
+				"roleNames": "",
+				"admin": true
+			},
+			"taxRate": 0.0,
+			"relaCompactno": "1231",
+			"partbName": "供应商测试",
+			"status": "04",
+			"procInsId": "94a08941224c415da359d46c14a7bd6d"
+		}
+	}
+}
+
+
+{
+	"status": "1",
+	"map": {
+		"list": [{
+			"id": "fa1e42a3d6a9499d8a4cab9c05f2b4e2",
+			"compact": {
+				"id": "8b549e7de8c54c1eb9845576171aef57",
+				"compactNo": "总部-CLCGHT-201803-0001",
+				"taxRate": 0.0
+			},
+			"material": {
+				"id": "594a5444350048968022e526078430ce",
+				"materialName": "石膏"
+			},
+			"materialClass": "02",
+			"priceIntax": 9.0,
+			"quantity": 2.0,
+			"amtIntax": 18.0,
+			"taxRate": 0.0,
+			"priceExtax": 9.0,
+			"amtExtax": 18.0,
+			"amtTax": 0.0,
+			"costUnivalent": 200.0,
+			"leftNeednum": 2.0,
+			"leftNeedamt": 24600.0,
+			"leftCptnum": 121.0,
+			"leftCptamt": 24598.0,
+			"controlMaterialId": "2ae40af264d84025ac85858b3240ea0d"
+		}, {
+			"id": "416e231e18344cf38a9156acf599d991",
+			"compact": {
+				"id": "8b549e7de8c54c1eb9845576171aef57",
+				"compactNo": "总部-CLCGHT-201803-0001",
+				"taxRate": 0.0
+			},
+			"material": {
+				"id": "dc647caeddf24bf4b3d305873cace59d",
+				"materialName": "水泥"
+			},
+			"materialClass": "02",
+			"priceIntax": 7.0,
+			"quantity": 3.0,
+			"amtIntax": 21.0,
+			"taxRate": 0.0,
+			"priceExtax": 7.0,
+			"amtExtax": 21.0,
+			"amtTax": 0.0,
+			"costUnivalent": 350.0,
+			"leftNeednum": 3.0,
+			"leftNeedamt": 350000.0,
+			"leftCptnum": 997.0,
+			"leftCptamt": 349997.0,
+			"controlMaterialId": "5c59813bfc824e378cbb92fd88cde2ae"
+		}],
+		"totalPage": 1
+	}
+}

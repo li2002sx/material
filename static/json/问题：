@@ -1,0 +1,30 @@
+问题：
+1，我的审批没有   taskId
+2，我的申请没有   businessId  taskId
+3，项目列表还要做分公司
+4，根据项目获取不到供应商ID  project.id:e90b9147623d4f9988e32d587969dbf6
+5，获取合同列表的时候还需要传总控ID？而且返回的格式是这样的：{"status":"1","map":{"page":[]}}
+6，验收入库需要获取云筑网合同（需要一个列表）
+
+
+
+Vue.prototype.getDict = function (type) {
+  let map = new Map()
+  var param = {
+    type: type
+  }
+  let requestUrl = 'appData/app/getDictType'
+  let that = this
+  this.get(requestUrl, param, function (result) {
+    if (result.status === '1') {
+      let list = result.map.list
+      for (let item of list) {
+        map.set(item.value, item.label)
+      }
+      return map
+    } else {
+      that.toastShow('text', result.message)
+    }
+  })
+  return map
+}

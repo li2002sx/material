@@ -1,37 +1,43 @@
 // 底部导航
 @import './mixins';//mixins
 .menu{
-    .bg-color(#fff);
-    .elesize(750px;98px);
+    .bg-color(#fafafa);
+    .elesize(100%;90px);
     border-top: 1px solid #ededed;
     position: fixed;
     left: 0;
     bottom: 0;
     display: table;
-    box-align: center; 
+    box-align: center;
     box-pack: center;
     z-index: 15;
-    &:after{
-        .pos-alt(50%;21px);
-        .elesize(0;56px);
-        border-right: 1px solid #ededed;
-        content: "";
-    }
     dd{
-        width:50%;
+        width:25%;
         .tc;
         .p_r;
+        .font(18px);
+        .pt(12px);
         display: table-cell;
         vertical-align: middle;
+        color: #ccc;
+        p{
+            padding-bottom: 9px;
+        }
     }
-    .ico-home,.ico-my{
-        filter: grayscale(100%);
-	    filter: gray;
-    }
-    dd.on{
-        .ico-home,.ico-my{
-            filter: none;
-            filter: none; 
+
+    dd.on,dd:hover{
+        color: #44a8ec;
+        .ico-menu01{
+            background-image: url("../../images/icon/ico-tab01on.png");
+        }
+        .ico-menu02{
+            background-image: url("../../images/icon/ico-tab02on.png");
+        }
+        .ico-menu03{
+            background-image: url("../../images/icon/ico-tab03on.png");
+        }
+        .ico-menu04{
+            background-image: url("../../images/icon/ico-tab04on.png");
         }
     }
 }

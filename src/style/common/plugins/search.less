@@ -1,34 +1,44 @@
 @import '../mixins/icon'; //icon
 @import '../mixins'; //icon
 .searchmod{
-    .bg-color(#fff);
+    .bg-color(#f6f6f6);
     .circle(40px);
     .tc;
     .p_r;
-    height: 68px;
-    &:before{
-        .icon("../images/icon/ico-search.png"; center; center; 31px; 32px);
-        .pos-alt(50%;50%);
-        .margin(-16px 0 0 -110px);
-        content: "";
-        transition: linear .6s;
+    border: 1px solid #f6f6f6;
+    height: 62px;
+    span{
+        .pos-alt(50%;0);
+        .tc;
+        .ml(-150px);
+        width: 300px;
+        color: #999;
+        font-size: 25px;
+        line-height: 62px;
+        i{
+            top: -1px;
+            .mr(5px)
+        }
     }
     input{
-        .input-text(transparent;90%;26px;transparent;21px 0);
+        .input-text(transparent;100%;26px;transparent;18px 0);
         .font(26px;26px);
-        .tc;
         border:none;
         &::-webkit-input-placeholder {
             color:#cbcbcb;
+            line-height:normal;
         }
     }
     &.cur{
-        &:before{
-            left:0;
-            margin-left: 15px;
+        span{
+            width: auto;
+            left: 20px;
+            .ml(0);
+            em{
+                .none;
+            }
         }
         input{
-            .tl;
             .pl(60px);
         }
     }

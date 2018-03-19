@@ -1,0 +1,34 @@
+审批记录：
+{
+	"status": "1",
+	"map": {
+		"list": [{
+			"assigneeName": "超级管理员",
+			"histActiStartTime": "2018-03-16 11:04:52",
+			"histActiEndTime": "2018-03-16 11:04:52",
+			"procDefVersion": 0,
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"comment": "[同意] ",
+			"assignee": "dfpx1",
+			"assigneeName": "东方培训（物资管理员）",
+			"histActiStartTime": "2018-03-16 11:04:52",
+			"histActiEndTime": "2018-03-16 11:51:43",
+			"procDefVersion": 0,
+			"histActiActivityName": "物资管理员审批",
+			"durationTime": "46分51秒",
+			"todoTask": false,
+			"finishTask": true
+		}, {
+			"histActiStartTime": "2018-03-16 11:51:43",
+			"histActiEndTime": "2018-03-16 11:51:43",
+			"procDefVersion": 0,
+			"durationTime": "",
+			"todoTask": false,
+			"finishTask": true
+		}],
+		"totalPage": 1
+	}
+}

@@ -1,0 +1,87 @@
+<template>
+  <section>
+    <div v-title data-title="我的申请"></div>
+    <!-- <head-top title="工作台"></head-top> -->
+    <footer-buttom tab="1"></footer-buttom>
+    <!-- search -->
+    <!-- <div class="indexsearch">
+        <div class="searchmod">
+            <input type="text" />
+            <span>
+                <i class="ico-search"></i>
+                <em>搜索</em>
+            </span>
+        </div>
+    </div> -->
+    <!-- search end -->
+    <!-- list -->
+    <div class="bg">
+      <dl class="todolist">
+          <dd v-for="(item, index) in data.list">
+              <div class="title" @click="toWorkDetail(item.procInsId,item.procDefKey,item.businessId)">
+                  <i>{{index + 1}}</i>
+                  <h3>{{item.vars.map.applyName}}的{{item.procDefName}}申请单</h3>
+                  <p class="time">单据编号：{{item.vars.map.billMarkNo}}</p>
+                  <p class="time">申请时间：{{item.procStartDate}}</p>
+                  <p class="time">完成时间：{{item.procEndDate}}</p>
+                  <p class="time">状态：完成</p>
+              </div>
+              <div class="other">
+                  <span>项目名称：{{item.vars.map.projectName}}</span>
+              </div>
+          </dd>
+
+      </dl>
+    </div>
+    <!-- list end -->
+  </section>
+</template>
+
+<script>
+import { TransferDomDirective as TransferDom, Tab, TabItem } from 'vux'
+import headTop from '../../components/Header.vue'
+import footerButtom from '../../components/Footer.vue'
+// import bridge from './vue-temp/vue-editor-bridge';
+export default {
+  directives: {
+    TransferDom
+  },
+  components: {
+    headTop,
+    footerButtom,
+    Tab,
+    TabItem
+  },
+  data () {
+    return {
+      data: {}
+    }
+  },
+  created () {
+    this.getMyApplies()
+  },
+  filters: {
+  },
+  computed: {},
+  mounted () {
+  },
+  methods: {
+    getMyApplies () {
+      var param = {
+        pageNo: 1,
+        pageSize: 20
+      }
+      let requestUrl = 'appData/app/myApplyData'
+      let that = this
+      this.get(requestUrl, param, function (result) {
+        if (result.status === '1') {
+          that.data = result.map
+        } else {
+          that.toastShow('text', result.message)
+        }
+      })
+    }
+  }
+}
+</script>
+

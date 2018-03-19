@@ -1,0 +1,205 @@
+合同材料：
+{
+	"status": "1",
+	"map": {
+		"totalPage": 1,
+		"list": [{
+			"id": "f2d03652499f482cbeb68165392c196a",
+			"compact": {
+				"id": "a3a9ca9fc95842ccb34b54340eed5013",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"compactNo": "上海-CLCGHT-201803-0003",
+				"taxRate": 0.0
+			},
+			"material": {
+				"id": "176e7aaed9fd4b9c8e97c2fddc95eee9",
+				"materialName": "啊啊啊"
+			},
+			"materialClass": "01",
+			"priceIntax": 11000.0,
+			"quantity": 200.0,
+			"amtIntax": 2200000.0,
+			"taxRate": 0.0,
+			"priceExtax": 11000.0,
+			"amtExtax": 2200000.0,
+			"amtTax": 0.0,
+			"costUnivalent": 10000.0,
+			"leftNeednum": 0.0,
+			"leftNeedamt": 0.0,
+			"leftCptnum": 200.0,
+			"leftCptamt": 2000000.0,
+			"controlMaterialId": "790a0b5c82664448855102641ce31bdb"
+		}, {
+			"id": "256271c6ac724df2a065cabdb1a9ebbb",
+			"compact": {
+				"id": "a3a9ca9fc95842ccb34b54340eed5013",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"compactNo": "上海-CLCGHT-201803-0003",
+				"taxRate": 0.0
+			},
+			"material": {
+				"id": "bf2f9b9967e946f8b9fb9f26f3b64d8b",
+				"materialName": "蜂窝复合铜板"
+			},
+			"materialClass": "01",
+			"priceIntax": 10000.0,
+			"quantity": 300.0,
+			"amtIntax": 3000000.0,
+			"taxRate": 0.0,
+			"priceExtax": 10000.0,
+			"amtExtax": 3000000.0,
+			"amtTax": 0.0,
+			"costUnivalent": 10000.0,
+			"leftNeednum": 0.0,
+			"leftNeedamt": 0.0,
+			"leftCptnum": 300.0,
+			"leftCptamt": 3000000.0,
+			"controlMaterialId": "383daea9ccae431db9828e1369d7ed33"
+		}]
+	}
+}
+
+需用计划材料：
+{
+	"status": "1",
+	"map": {
+		"totalPage": 1,
+		"list": [{
+			"id": "6f2fee427b8246ceb4cc699b7f66dd06",
+			"plan": {
+				"id": "6001bfe9a98d4d02ba011477fef38009",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"nplanNo": "上海-CLXYJH-201803-0003"
+			},
+			"material": {
+				"id": "176e7aaed9fd4b9c8e97c2fddc95eee9",
+				"materialName": "啊啊啊"
+			},
+			"materialClass": "01",
+			"planCount": 200.0,
+			"controlMaterialId": "790a0b5c82664448855102641ce31bdb",
+			"costUnivalent": 10000.0,
+			"leftNeednum": 200.0,
+			"leftNeedamt": 0.0,
+			"leftInnum": 200.0,
+			"leftInamt": 0.0
+		}, {
+			"id": "fec0a0c28c06417a8dee3f5b76209c25",
+			"plan": {
+				"id": "54ec4ff14a96412da5dceefc0e65fecd",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"nplanNo": "总部-CLXYJH-201803-0001"
+			},
+			"material": {
+				"id": "37f339ac8b6a44ed9617a4312dfada97",
+				"materialName": "六角钢01",
+				"model": "xh1",
+				"standard": "gg1",
+				"unit": "吨"
+			},
+			"materialClass": "01",
+			"planCount": 3.0,
+			"controlMaterialId": "c871c83e69244d56b40409db9a6088f0",
+			"costUnivalent": 100.5,
+			"leftNeednum": 3000.0,
+			"leftNeedamt": 0.0,
+			"leftInnum": 3.0,
+			"leftInamt": 0.0
+		}, {
+			"id": "819ea98f4b4e4b0f8390c7e9569958a0",
+			"plan": {
+				"id": "a34e157064f94a008271bd65102fc31a",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"nplanNo": "上海-CLXYJH-201803-0002"
+			},
+			"material": {
+				"id": "9feb0bddfb9947b3a2f323a2c98ef8bf",
+				"materialName": "铜制品",
+				"model": "铜制品1xh",
+				"standard": "铜制品1gg",
+				"unit": "个"
+			},
+			"materialClass": "01",
+			"planCount": 200.0,
+			"controlMaterialId": "aaa119a0d01c494386b537c82057a9d8",
+			"costUnivalent": 4000.0,
+			"leftNeednum": 200.0,
+			"leftNeedamt": 0.0,
+			"leftInnum": 200.0,
+			"leftInamt": 0.0
+		}, {
+			"id": "e32eabeee1e04dcf9747a38d15067166",
+			"plan": {
+				"id": "a244c80892b14b4cb306a81a680d5830",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"nplanNo": "上海-CLXYJH-201803-0001"
+			},
+			"material": {
+				"id": "9feb0bddfb9947b3a2f323a2c98ef8bf",
+				"materialName": "铜制品",
+				"model": "铜制品1xh",
+				"standard": "铜制品1gg",
+				"unit": "个"
+			},
+			"materialClass": "01",
+			"planCount": 600.0,
+			"controlMaterialId": "aaa119a0d01c494386b537c82057a9d8",
+			"costUnivalent": 4000.0,
+			"leftNeednum": 600.0,
+			"leftNeedamt": 0.0,
+			"leftInnum": 0.0,
+			"leftInamt": 0.0
+		}, {
+			"id": "bd981a8ac6074f15952e8b85c9482973",
+			"plan": {
+				"id": "a34e157064f94a008271bd65102fc31a",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"nplanNo": "上海-CLXYJH-201803-0002"
+			},
+			"material": {
+				"id": "594a5444350048968022e526078430ce",
+				"materialName": "石膏",
+				"model": "xm",
+				"standard": "0.9",
+				"unit": "吨"
+			},
+			"materialClass": "01",
+			"planCount": 500.0,
+			"controlMaterialId": "2b63451e8d00461b86bbf23c2d7db669",
+			"costUnivalent": 3000.0,
+			"leftNeednum": 600.0,
+			"leftNeedamt": 0.0,
+			"leftInnum": 500.0,
+			"leftInamt": 0.0
+		}, {
+			"id": "adecb35ec91241f8ab7c8306c09f692c",
+			"plan": {
+				"id": "6001bfe9a98d4d02ba011477fef38009",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"nplanNo": "上海-CLXYJH-201803-0003"
+			},
+			"material": {
+				"id": "bf2f9b9967e946f8b9fb9f26f3b64d8b",
+				"materialName": "蜂窝复合铜板",
+				"model": "埃里克森",
+				"standard": "50*50"
+			},
+			"materialClass": "01",
+			"planCount": 300.0,
+			"controlMaterialId": "383daea9ccae431db9828e1369d7ed33",
+			"costUnivalent": 10000.0,
+			"leftNeednum": 300.0,
+			"leftNeedamt": 0.0,
+			"leftInnum": 300.0,
+			"leftInamt": 0.0
+		}]
+	}
+}

@@ -1,94 +1,93 @@
 <template>
   <section>
-    <div v-title data-title="共享车源"></div>
-    <footerMenu tab="0"></footerMenu>
-    <!--search  -->
-    <div class="searchbox">
-      <div class="searchmod cur" @click="toUrl('/car/search')">
-        <input type="text" placeholder="搜索车型" />
-      </div>
-    </div>
-    <!--search end  -->
-    <!--mybox  -->
-    <div class="indexbox">
-      <scroller ref="scroller" lock-x scrollbar-y use-pullup :pullup-config="pullupConfig" height="954px" @on-pullup-loading="getCarModels">
-        <div class="sharelist">
-          <dl v-for="(item, index) in carModels" @click="toUrl('/car/template/'+item.carModelId)">
-            <dd>
-              <img :src="item.picUrl" />
-            </dd>
-            <dt class="layout">
-              <h3 class="td">{{item.modelsName}}</h3>
-              <span class="td tr">{{item.specName}}</span>
-            </dt>
-          </dl>
+    <div v-title data-title="首页"></div>
+    <!-- <head-top title="首页"></head-top> -->
+    <footer-buttom tab="0"></footer-buttom>
+    <div class="bgwhite">
+        <!-- search -->
+        <div class="indexsearch">
+            <div class="searchmod cur">
+                <input type="text" />
+                <span>
+                    <i class="ico-search"></i>
+                    <em>搜索</em>
+                </span>
+            </div>
         </div>
-      </scroller>
+        <!-- search end -->
+        <!-- list -->
+        <dl class="indexnotice">
+            <dd @click="toUrl('/work/todo')">
+                <i class="ico-file">
+                </i>
+                <b class="time">11-27</b>
+                <h3>待办文件</h3>
+                <p>您有新的待办</p>
+            </dd>
+            <dd @click="toUrl('/work/apply')">
+                <i class="ico-notice">
+                    <em></em>
+                </i>
+                <b class="time">11-27</b>
+                <h3>我的申请</h3>
+                <p>我申请过文件</p>
+            </dd>
+            <dd @click="toUrl('/in')">
+                <i class="ico-file">
+                </i>
+                <b class="time">11-27</b>
+                <h3>我要验收</h3>
+                <p>材料验收入库</p>
+            </dd>
+            <dd @click="toUrl('/out')">
+                <i class="ico-file">
+                </i>
+                <b class="time">11-27</b>
+                <h3>材料出库</h3>
+                <p>按需分配使用</p>
+            </dd>
+            <dd @click="tip()">
+                <i class="ico-task">
+                </i>
+                <b class="time">11-27</b>
+                <h3>统计分析</h3>
+                <p>成本统计，付款统计</p>
+            </dd>
+        </dl>
+        <!-- list end -->
     </div>
-    <!--mybox end  -->
-
   </section>
 </template>
 
 <script>
-import { cookie, Scroller, Spinner } from 'vux'
-import footerMenu from '../components/Footer.vue'
-
+import { TransferDomDirective as TransferDom } from 'vux'
+import headTop from '../components/Header.vue'
+import footerButtom from '../components/Footer.vue'
 export default {
+  directives: {
+    TransferDom
+  },
   components: {
-    cookie,
-    footerMenu,
-    Scroller,
-    Spinner
+    headTop,
+    footerButtom
   },
   data () {
     return {
-      carModels: [],
-      pageIndex: 1,
-      pullupStatus: 'default',
-      pullupConfig: {
-        content: '上拉加载更多',
-        downContent: '松开进行加载',
-        upContent: '上拉加载更多',
-        loadingContent: '努力加载中...'
-      }
     }
   },
   created () {
-    // this.wxAuth()
-    this.getCarModels()
   },
-  computed: {
+  filters: {
   },
+  computed: {},
   mounted () {
+
   },
   methods: {
-    getCarModels (uuid) {
-      this.get('/rest/carmodel/list', { pageIndex: this.pageIndex }, function (result) {
-        if (result.status === 1) {
-          if (result.carModelList.length === 0) {
-            this.$nextTick(() => {
-              this.$refs.scroller.disablePullup()
-            })
-          } else {
-            this.pageIndex++
-            for (let item of result.carModelList) {
-              this.carModels.push(item)
-            }
-            this.$nextTick(() => {
-              this.$refs.scroller.reset()
-              this.$refs.scroller.donePullup()
-            })
-          }
-        } else {
-          this.toastShow('text', result.message)
-        }
-      }.bind(this))
+    tip () {
+      this.toastShow('text', '功能开发中，敬请期待')
     }
   }
 }
 </script>
 
-<style>
-@import "../style-router/index.css";
-</style>

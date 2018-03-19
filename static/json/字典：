@@ -1,0 +1,73 @@
+字典：
+{
+	"status": "1",
+	"map": {
+		"list": [{
+			"id": "c58d201d02e446abb226758b6494b978",
+			"createBy": {
+				"id": "1",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"createDate": "2018-01-29 13:09:25",
+			"updateBy": {
+				"id": "1",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"updateDate": "2018-01-29 13:10:15",
+			"label": "主材料",
+			"value": "01",
+			"sort": "1",
+			"dictType": {
+				"id": "4d80a814250d4a739d08c22aa9f268ae"
+			}
+		}, {
+			"id": "6eebfc0928954965934531c1482594e6",
+			"createBy": {
+				"id": "1",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"createDate": "2018-01-29 13:09:38",
+			"updateBy": {
+				"id": "1",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"updateDate": "2018-01-29 13:10:06",
+			"label": "半成品",
+			"value": "02",
+			"sort": "2",
+			"dictType": {
+				"id": "4d80a814250d4a739d08c22aa9f268ae"
+			}
+		}, {
+			"id": "c2abcdb0952a4302b668b4f44c2bafd7",
+			"createBy": {
+				"id": "1",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"createDate": "2018-01-29 13:09:58",
+			"updateBy": {
+				"id": "1",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"updateDate": "2018-01-29 13:09:58",
+			"label": "零星材料",
+			"value": "03",
+			"sort": "3",
+			"dictType": {
+				"id": "4d80a814250d4a739d08c22aa9f268ae"
+			}
+		}]
+	}
+}

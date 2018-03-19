@@ -1,0 +1,146 @@
+总控计划：
+{
+	"status": "1",
+	"map": {
+		"gcontrolPlan": {
+			"id": "1377916a441247eea17a36ff424ae79d",
+			"createBy": {
+				"id": "f23085c9b7714862b9b1e487c72df6fd",
+				"createBy": {
+					"id": "1",
+					"loginFlag": "1",
+					"admin": true,
+					"roleNames": ""
+				},
+				"createDate": "2018-03-15 09:13:22",
+				"updateBy": {
+					"id": "1",
+					"loginFlag": "1",
+					"admin": true,
+					"roleNames": ""
+				},
+				"updateDate": "2018-03-15 09:21:12",
+				"company": {
+					"id": "0101",
+					"parentIds": "0,01,0101",
+					"name": "公司总部",
+					"sort": 30,
+					"hasChildren": false,
+					"type": "2",
+					"parentId": "01"
+				},
+				"office": {
+					"id": "010114",
+					"parentIds": "0,01,0111",
+					"name": "投标中心",
+					"sort": 30,
+					"hasChildren": false,
+					"type": "2",
+					"parentId": "0101"
+				},
+				"loginName": "dfpx7",
+				"name": "东方培训（目标设定中心）",
+				"loginIp": "140.206.72.14",
+				"loginDate": "2018-03-16 11:37:16",
+				"loginFlag": "1",
+				"oldLoginIp": "140.206.72.14",
+				"oldLoginDate": "2018-03-16 11:37:16",
+				"admin": false,
+				"roleNames": "目标设定中心"
+			},
+			"createDate": "2018-03-15 09:52:27",
+			"updateBy": {
+				"id": "1",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"updateDate": "2018-03-19 11:38:06",
+			"procSuccessFlag": "04",
+			"procDestroyFlag": "05",
+			"planNo": "上海-CLZKJH-201803-0001",
+			"planType": "0",
+			"project": {
+				"id": "db4515fbf9e44d088f5d28888bacd90e",
+				"projectName": "东方测试项目部V2"
+			},
+			"planDate": "2018-03-15",
+			"materialClass": "01",
+			"office": {
+				"id": "011201",
+				"name": "上海分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"type": "2",
+				"parentId": "0"
+			},
+			"gcontrolMaterialList": [{
+				"id": "aaa119a0d01c494386b537c82057a9d8",
+				"plan": {
+					"id": "1377916a441247eea17a36ff424ae79d",
+					"procSuccessFlag": "04",
+					"procDestroyFlag": "05",
+					"planNo": "上海-CLZKJH-201803-0001",
+					"planType": "0"
+				},
+				"material": {
+					"id": "9feb0bddfb9947b3a2f323a2c98ef8bf",
+					"materialName": "铜制品",
+					"model": "铜制品1xh",
+					"standard": "铜制品1gg",
+					"unit": "个"
+				},
+				"materialClass": "01",
+				"planCount": 800.0,
+				"budgetCount": 700.0,
+				"budgetPrice": 5000.0,
+				"costUnivalent": 4000.0
+			}, {
+				"id": "2b63451e8d00461b86bbf23c2d7db669",
+				"plan": {
+					"id": "1377916a441247eea17a36ff424ae79d",
+					"procSuccessFlag": "04",
+					"procDestroyFlag": "05",
+					"planNo": "上海-CLZKJH-201803-0001",
+					"planType": "0"
+				},
+				"material": {
+					"id": "594a5444350048968022e526078430ce",
+					"materialName": "石膏",
+					"model": "xm",
+					"standard": "0.9",
+					"unit": "吨"
+				},
+				"materialClass": "01",
+				"planCount": 600.0,
+				"budgetCount": 600.0,
+				"budgetPrice": 3100.0,
+				"costUnivalent": 3000.0
+			}, {
+				"id": "5bf9b5f111a9483682183494ed5ed4d4",
+				"plan": {
+					"id": "1377916a441247eea17a36ff424ae79d",
+					"procSuccessFlag": "04",
+					"procDestroyFlag": "05",
+					"planNo": "上海-CLZKJH-201803-0001",
+					"planType": "0"
+				},
+				"material": {
+					"id": "aa27d7e95bc24b1e8717962970f7466c",
+					"materialName": "铝材板",
+					"standard": "50*50"
+				},
+				"materialClass": "01",
+				"planCount": 500.0,
+				"budgetCount": 500.0,
+				"budgetPrice": 2200.0,
+				"costUnivalent": 2000.0
+			}],
+			"versionNo": 1,
+			"createOrg": "公司总部/投标中心",
+			"createUserName": "东方培训（目标设定中心）",
+			"status": "04",
+			"procInsId": "486d7ecaed9848dd9cdc08c9bd145db3"
+		}
+	}
+}

@@ -1,75 +1,77 @@
 <template>
   <section>
     <div v-title data-title="找回密码"></div>
-    <!--register  -->
-    <div class='registerbox'>
+    <!-- form -->
+    <div class="findpwbox">
       <dl>
-        <smsSend smsType="10002" @smsSendData="getSmsSendData"></smsSend>
-        <dd>
-          <label>密码</label>
-          <input class='inputxt' type='password' placeholder='请输入密码' v-model='password' />
-        </dd>
-        <dt>
-          <button class='btnred' @click='findPass'>确认</button>
-        </dt>
+        <dd><label>旧密码</label><input type="password" class="input" placeholder="输入原密码" v-model="oldPassword" /></dd>
+        <dd><label>新密码</label><input type="password" class="input" placeholder="输入新密码" v-model="password" /></dd>
+        <dd><label>确认密码</label><input type="password" class="input" placeholder="再次输入新密码" v-model="password2" /></dd>
       </dl>
+      <p class="tiper">注：密码必须为6~12位，包括数字、字母</p>
     </div>
-    <!--register end  -->
+    <div class="mybtnbox">
+      <button class="btnblue" @click="saveData">保存</button>
+    </div>
+    <!-- form end -->
   </section>
 </template>
 
 <script>
 import { cookie } from 'vux'
-import smsSend from '../../components/SmsSend'
+import headerTop from '../../components/Header.vue'
 export default {
   components: {
     cookie,
-    smsSend
+    headerTop
   },
   data () {
     return {
-      mobile: '',
-      code: '',
-      password: ''
+      oldPassword: '',
+      password: '',
+      password2: ''
     }
   },
   computed: {},
   mounted: function () {
   },
   methods: {
-    getSmsSendData: function (data) {
-      if (data != null) {
-        this.mobile = data.mobile
-        this.code = data.code
+    saveData: function () {
+      if (this.oldPassword.length === 0) {
+        this.toastShow('text', '请输入原始密码')
+        return
       }
-    },
-    findPass: function () {
+      if (this.password.length === 0) {
+        this.toastShow('text', '请输入新密码')
+        return
+      }
+      if (this.password2.length === 0) {
+        this.toastShow('text', '请确认新密码')
+        return
+      }
+      if (this.password !== this.password2) {
+        this.toastShow('text', '2次输入的密码不一致')
+        return
+      }
       let param = {
-        mobile: this.mobile.trim(),
-        code: this.code.trim(),
-        password: this.password.trim()
+        oldPassword: this.oldPassword,
+        password: this.password
       }
-      if (param.mobile.length === 0 || !this.isMobile(param.mobile)) {
-        this.toastShow('text', '手机号码格式不正确')
-        return
-      }
-      if (param.password.length === 0) {
-        this.toastShow('text', '密码不能为空')
-        return
-      }
-      this.post('/rest/user/findpass', param, function (result) {
+      this.post('/rest/user/updatepass', param, function (result) {
         if (result.status === 1) {
-          this.toastShow('success', '设置成功')
-          this.toUrl('/index')
+          let user = result.user
+          let userInfo = {
+            userId: user.userId,
+            token: user.token
+          }
+          this.setStore(global.userInfo, JSON.stringify(userInfo))
+          this.toastShow('success', '修改成功')
+          this.loginToUrl()
         } else {
-          this.toastShow('text', result.msg)
+          this.toastShow('text', result.message)
         }
       }.bind(this))
     }
   }
 }
 </script>
-
-<style>
-@import '../../style-router/login.css';
-</style>

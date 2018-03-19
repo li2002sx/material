@@ -1,0 +1,765 @@
+项目成本设定：
+{
+	"status": "1",
+	"map": {
+		"projectAccount": {
+			"id": "299074a1b4234b59bc901af40d835169"
+		},
+		"paccountItemList": [{
+			"id": "7ae1a0ee12524b49852079a19f291a00",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "01",
+			"accountName": "直接工程费",
+			"serialNo": "一",
+			"orderNo": "1"
+		}, {
+			"id": "ec0daa0ebb894eada8ff2fb9e0c0e9a9",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0101",
+			"accountName": "劳务费",
+			"goalAmt": 5000000.0,
+			"serialNo": "1.1",
+			"orderNo": "2"
+		}, {
+			"id": "44878d0af2844280b19388c0ceb9b8f1",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0102",
+			"accountName": "主要材料费",
+			"goalAmt": 6000000.0,
+			"serialNo": "1.2",
+			"orderNo": "3"
+		}, {
+			"id": "25442d038c1f4e1abd152075593b8aea",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0103",
+			"accountName": "辅材费",
+			"goalAmt": 200000.0,
+			"serialNo": "1.3",
+			"orderNo": "4"
+		}, {
+			"id": "c6581bc039f0449688a9f0b78e454a6d",
+			"remarks": "包工包料费用",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0104",
+			"accountName": "半成品费",
+			"goalAmt": 2000000.0,
+			"serialNo": "1.4",
+			"orderNo": "5"
+		}, {
+			"id": "6d1bfdd2687748dab6baac54289b7815",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0105",
+			"accountName": "机械费",
+			"goalAmt": 500000.0,
+			"serialNo": "1.5",
+			"orderNo": "6"
+		}, {
+			"id": "4b9347fd4a6a47c39d9d38fabd445a1e",
+			"remarks": "一般指机电安装分包，包工包料费用",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0106",
+			"accountName": "专业分包费",
+			"goalAmt": 600000.0,
+			"serialNo": "1.6",
+			"orderNo": "7"
+		}, {
+			"id": "7e333b1fe24e4839bca973d3c0abf89c",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "02",
+			"accountName": "措施费",
+			"serialNo": "二",
+			"orderNo": "8"
+		}, {
+			"id": "0a04c041743a40a79d96593331568f72",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0201",
+			"accountName": "安全文明施工费",
+			"goalAmt": 300000.0,
+			"serialNo": "2.1",
+			"orderNo": "9"
+		}, {
+			"id": "d2ac24244e844203b419488aea87e2b2",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0202",
+			"accountName": "环境检测费",
+			"goalAmt": 20000.0,
+			"serialNo": "2.2",
+			"orderNo": "10"
+		}, {
+			"id": "2273b13abf214f30953ccd9ef5e863b4",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0203",
+			"accountName": "临时设施费",
+			"goalAmt": 300000.0,
+			"serialNo": "2.3",
+			"orderNo": "11"
+		}, {
+			"id": "a9d4d09e717e4825a4f04534802c22f2",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0204",
+			"accountName": "脚手架及吊篮等技术措施费",
+			"goalAmt": 20000.0,
+			"serialNo": "2.4",
+			"orderNo": "12"
+		}, {
+			"id": "def53b77db84448aa996e0eab1ad6481",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0205",
+			"accountName": "成品保护费",
+			"goalAmt": 300000.0,
+			"serialNo": "2.5",
+			"orderNo": "13"
+		}, {
+			"id": "f845feeaffe9493093a81828ee471ffe",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0206",
+			"accountName": "二次搬运费",
+			"goalAmt": 20000.0,
+			"serialNo": "2.6",
+			"orderNo": "14"
+		}, {
+			"id": "fdea8b94a9e446b598989bc699f4f492",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0207",
+			"accountName": "现场水电费",
+			"goalAmt": 300000.0,
+			"serialNo": "2.7",
+			"orderNo": "15"
+		}, {
+			"id": "804947b3329147698d7a70cb8cef6e93",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0208",
+			"accountName": "完工保洁费",
+			"goalAmt": 20000.0,
+			"serialNo": "2.8",
+			"orderNo": "16"
+		}, {
+			"id": "a52332d9f7ad4f97a27e0720c9054e25",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0209",
+			"accountName": "材料检测、材料复试费",
+			"goalAmt": 300000.0,
+			"serialNo": "2.9",
+			"orderNo": "17"
+		}, {
+			"id": "e4b5187e695f44bba8e084376ae42367",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0210",
+			"accountName": "幕墙四性试验费",
+			"goalAmt": 20000.0,
+			"serialNo": "2.1",
+			"orderNo": "18"
+		}, {
+			"id": "8828358d316643a2a2c4a7eeceaf9824",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0211",
+			"accountName": "垃圾清理费",
+			"goalAmt": 300000.0,
+			"serialNo": "2.11",
+			"orderNo": "19"
+		}, {
+			"id": "20ecfeb50f4b42019392b03b21c92198",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0212",
+			"accountName": "垃圾外运费",
+			"goalAmt": 20000.0,
+			"serialNo": "2.12",
+			"orderNo": "20"
+		}, {
+			"id": "51ef3bc6f04145c3870c64dcaf3fcdd7",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0213",
+			"accountName": "临时电",
+			"goalAmt": 300000.0,
+			"serialNo": "2.13",
+			"orderNo": "21"
+		}, {
+			"id": "414b01b58e1446c9af5e70512768dbe2",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0214",
+			"accountName": "建筑物临时保护设施",
+			"goalAmt": 20000.0,
+			"serialNo": "2.14",
+			"orderNo": "22"
+		}, {
+			"id": "632728671c9c417c83cca7b3f501195a",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0215",
+			"accountName": "夜间施工费",
+			"goalAmt": 300000.0,
+			"serialNo": "2.15",
+			"orderNo": "23"
+		}, {
+			"id": "14a257da8e9949febe631c61524acab3",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0216",
+			"accountName": "冬雨季施工费",
+			"goalAmt": 20000.0,
+			"serialNo": "2.16",
+			"orderNo": "24"
+		}, {
+			"id": "c727d1a640d74822828021a552e3cfad",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0217",
+			"accountName": "其它措施费",
+			"goalAmt": 51241.0,
+			"serialNo": "2.17",
+			"orderNo": "25"
+		}, {
+			"id": "b1a6f22735da480e90dc6e782b91f19b",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "03",
+			"accountName": "现场管理费",
+			"serialNo": "三",
+			"orderNo": "26"
+		}, {
+			"id": "d78eb29838454a64a2b44df7c2880f35",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0301",
+			"accountName": "职工薪酬",
+			"goalAmt": 20000.0,
+			"serialNo": "3.1",
+			"orderNo": "27"
+		}, {
+			"id": "ee68e0d3d4fd43c0897f504c5dffb840",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0302",
+			"accountName": "公司为职工缴纳的社保、公积金、年金",
+			"goalAmt": 300000.0,
+			"serialNo": "3.2",
+			"orderNo": "28"
+		}, {
+			"id": "50782fb29af7441d81dd3152ab57ad71",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0303",
+			"accountName": "业务招待费",
+			"goalAmt": 20000.0,
+			"serialNo": "3.3",
+			"orderNo": "29"
+		}, {
+			"id": "5997dcd2fe664e7abc61d0da244f8fad",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0304",
+			"accountName": "办公费",
+			"goalAmt": 51241.0,
+			"serialNo": "3.4",
+			"orderNo": "30"
+		}, {
+			"id": "40650c8a05794a668f43dbeb0ea9161c",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0305",
+			"accountName": "执业津贴",
+			"goalAmt": 20000.0,
+			"serialNo": "3.5",
+			"orderNo": "31"
+		}, {
+			"id": "5d70b81d61e349ac97faecb90c785553",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0306",
+			"accountName": "远征项目住宿费",
+			"goalAmt": 300000.0,
+			"serialNo": "3.6",
+			"orderNo": "32"
+		}, {
+			"id": "7a53a4a5312446129344953d807e1901",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0307",
+			"accountName": "差旅及交通补贴",
+			"goalAmt": 20000.0,
+			"serialNo": "3.7",
+			"orderNo": "33"
+		}, {
+			"id": "7507e90a77eb40edb54715f3738b5b0e",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0308",
+			"accountName": "住房补贴",
+			"goalAmt": 51241.0,
+			"serialNo": "3.8",
+			"orderNo": "34"
+		}, {
+			"id": "9d7431bf8ab94aef85feb228a61ebe26",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0309",
+			"accountName": "通讯费补贴",
+			"goalAmt": 20000.0,
+			"serialNo": "3.9",
+			"orderNo": "35"
+		}, {
+			"id": "4ebfc01fbf4849108aa984ebcd739f86",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0310",
+			"accountName": "防暑降温及采暖费",
+			"goalAmt": 300000.0,
+			"serialNo": "3.1",
+			"orderNo": "36"
+		}, {
+			"id": "d47d2ef6c0914fd5aa486ad2deb34d7f",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0311",
+			"accountName": "管理人员过节费",
+			"goalAmt": 20000.0,
+			"serialNo": "3.11",
+			"orderNo": "37"
+		}, {
+			"id": "9dc0be52abd74e7cb26a56adf03bffa1",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0312",
+			"accountName": "网络费",
+			"goalAmt": 51241.0,
+			"serialNo": "3.12",
+			"orderNo": "38"
+		}, {
+			"id": "35b9db3bf882466da12fc7d8097d7f13",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0313",
+			"accountName": "电脑补贴",
+			"goalAmt": 20000.0,
+			"serialNo": "3.13",
+			"orderNo": "39"
+		}, {
+			"id": "7851c182661d42fe9a52e7b226077868",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0314",
+			"accountName": "其他",
+			"goalAmt": 51241.0,
+			"serialNo": "3.14",
+			"orderNo": "40"
+		}, {
+			"id": "68f58de1375349b481325efed6cebec5",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "04",
+			"accountName": "其它费用",
+			"serialNo": "四",
+			"orderNo": "41"
+		}, {
+			"id": "ccbe87a03e3e427c99d10ab787317c9e",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0401",
+			"accountName": "招投标服务费",
+			"goalAmt": 20000.0,
+			"serialNo": "4.1",
+			"orderNo": "42"
+		}, {
+			"id": "e3c8aee0922c48178d8ff371c322c106",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0402",
+			"accountName": "办证费及其它规费等",
+			"goalAmt": 51241.0,
+			"serialNo": "4.2",
+			"orderNo": "43"
+		}, {
+			"id": "8fd7866225004e21ab752a47ac019bd7",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0403",
+			"accountName": "深化设计费",
+			"goalAmt": 20000.0,
+			"serialNo": "4.3",
+			"orderNo": "44"
+		}, {
+			"id": "e538161a374b440d9382579b5f1457a4",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0404",
+			"accountName": "财务费用",
+			"goalAmt": 300000.0,
+			"serialNo": "4.4",
+			"orderNo": "45"
+		}, {
+			"id": "a556ef0fea584598820945536db1ef2d",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0405",
+			"accountName": "其它成本",
+			"goalAmt": 20000.0,
+			"serialNo": "4.5",
+			"orderNo": "46"
+		}, {
+			"id": "1fa6f0c05a6542d8ab7e6eb7ac091294",
+			"remarks": "不计入项目兑现基数",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "040501",
+			"accountName": "前期投标费",
+			"goalAmt": 51241.0,
+			"countPattern": "合同金额*费率或总金额",
+			"serialNo": "4.5.1",
+			"orderNo": "47"
+		}, {
+			"id": "c9c30b9c2aac46529b14430c4b7ab087",
+			"remarks": "不计入项目兑现基数",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "040502",
+			"accountName": "营销兑现",
+			"goalAmt": 20000.0,
+			"countPattern": "合同金额（不含甲供材、甲控材、甲指分包）*1%",
+			"serialNo": "4.5.2",
+			"orderNo": "48"
+		}, {
+			"id": "de50aa18a0ff4208b304c62b5b717ddb",
+			"remarks": "不计入项目兑现基数",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "040503",
+			"accountName": "营销小组费用",
+			"goalAmt": 51241.0,
+			"countPattern": "上海地区、北京分公司合同金额*0.6%；其他区域合同金额*0.5%",
+			"serialNo": "4.5.3",
+			"orderNo": "49"
+		}, {
+			"id": "0f0ed188a24a4f778e5f655bc87ea37a",
+			"remarks": "住宅项目按1%计提，其他项目按0.5%计提",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0406",
+			"accountName": "维修金计提",
+			"goalAmt": 51241.0,
+			"countPattern": "测算基数*费率",
+			"serialNo": "4.6",
+			"orderNo": "50"
+		}, {
+			"id": "a64a97829f8c4819922d902cad70f7b5",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0407",
+			"accountName": "总包服务费",
+			"goalAmt": 20000.0,
+			"countPattern": "测算基数*费率",
+			"serialNo": "4.7",
+			"orderNo": "51"
+		}, {
+			"id": "758043f589924cf1956163c4dbe67ac8",
+			"remarks": "暂列金额计入成本测算",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "0408",
+			"accountName": "暂列金额",
+			"goalAmt": 51241.0,
+			"countPattern": "暂列金额*（1-≥20%的下浮率）",
+			"serialNo": "4.8",
+			"orderNo": "52"
+		}, {
+			"id": "42131ee66282487f8684a1d6c497c4f3",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "05",
+			"accountName": "进项税",
+			"goalAmt": 233231.0,
+			"countPattern": "（一+二+三+四）中进项税合计",
+			"serialNo": "五",
+			"orderNo": "53"
+		}, {
+			"id": "2bbf276057d0497b9eebe0934c44fd64",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "06",
+			"accountName": "销项税",
+			"goalAmt": 233231.0,
+			"countPattern": "测算基数/（1+11%）*11%",
+			"serialNo": "六",
+			"orderNo": "54"
+		}, {
+			"id": "202122a21208499c892c5552472d33d6",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "07",
+			"accountName": "目标成本合计",
+			"goalAmt": 5.8E7,
+			"countPattern": "一+二+三+四+六",
+			"serialNo": "七",
+			"orderNo": "55"
+		}, {
+			"id": "a1af680748ab4442a1187003d135f38e",
+			"remarks": "需要写明合同计价模式",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "08",
+			"accountName": "合同金额",
+			"goalAmt": 6.0E7,
+			"serialNo": "八",
+			"orderNo": "56"
+		}, {
+			"id": "55c2005bec6e4b01a1cfb60a28262ffb",
+			"remarks": "需要说明哪些合同收入未进入成本测算",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "09",
+			"accountName": "合同测算基数",
+			"goalAmt": 6.0E7,
+			"serialNo": "九",
+			"orderNo": "57"
+		}, {
+			"id": "a84eb12a56744069a988ed4bf5f81880",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "10",
+			"accountName": "标前利润额",
+			"goalAmt": 3000000.0,
+			"countPattern": "九-七",
+			"serialNo": "十",
+			"orderNo": "58"
+		}, {
+			"id": "e9977e3a05814386b54192165da7060e",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "11",
+			"accountName": "标前利润率",
+			"goalAmt": 0.5,
+			"countPattern": "十/九",
+			"serialNo": "十一",
+			"orderNo": "59"
+		}, {
+			"id": "efc112f4feee409dada6646c7ba0b4f3",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "12",
+			"accountName": "策划增减收入",
+			"goalAmt": 3000000.0,
+			"serialNo": "十二",
+			"orderNo": "60"
+		}, {
+			"id": "33d75c8548324f0f94c33ea87729abc6",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "13",
+			"accountName": "策划后总收入",
+			"goalAmt": 6.2E7,
+			"countPattern": "九+（十二）",
+			"serialNo": "十三",
+			"orderNo": "61"
+		}, {
+			"id": "44f66214eea14910bd1a81fe8606ff74",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "14",
+			"accountName": "策划增减成本",
+			"goalAmt": 2000000.0,
+			"serialNo": "十四",
+			"orderNo": "62"
+		}, {
+			"id": "9f20b83f1fe740f5b17f459fe13e8020",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "15",
+			"accountName": "策划后总成本",
+			"goalAmt": 6.0E7,
+			"countPattern": "七+（十四）",
+			"serialNo": "十五",
+			"orderNo": "63"
+		}, {
+			"id": "ea505950bd1b4f7eac2aab0a7beccf02",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "16",
+			"accountName": "净利润总额",
+			"goalAmt": 6000000.0,
+			"countPattern": "（十三）-（十五）",
+			"serialNo": "十六",
+			"orderNo": "64"
+		}, {
+			"id": "5c15dfa50bf3430d9095d2739fc5f5c3",
+			"paccountId": "4c641bd2606d4895a3e6b54b34919a1c",
+			"project": {
+				"projectName": "东方测试项目部V2"
+			},
+			"accountCode": "17",
+			"accountName": "目标上缴率",
+			"goalAmt": 5000000.0,
+			"countPattern": "（十六）/（十三）",
+			"serialNo": "十七",
+			"orderNo": "65"
+		}]
+	}
+}
+
+    <div class="materiallist" @click="showMaterial($event)">
+      <h4 class="stocktit">二.措施费</h4>
+      <div class="stockstep1 tablelist">
+            <table>
+                <tr>
+                    <th>编号</th>
+                    <th>费用名称</th>
+                    <th>费用</th>
+                    <th>模式</th>
+                </tr>
+                <tr v-for="(item, index) in itemList">
+                    <td>{{item.accountCode}}</td>
+                    <td>{{item.accountName}}</td>
+                    <td>{{item.goalAmt}}</td>
+                    <td>{{item.countPattern}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>

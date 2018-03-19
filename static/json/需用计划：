@@ -1,0 +1,115 @@
+需用计划：
+{
+	"status": "1",
+	"map": {
+		"needplan": {
+			"id": "54ec4ff14a96412da5dceefc0e65fecd",
+			"createBy": {
+				"id": "1",
+				"name": "超级管理员",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"createDate": "2018-03-15 16:35:01",
+			"updateBy": {
+				"id": "1",
+				"name": "超级管理员",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"updateDate": "2018-03-15 16:35:01",
+			"nplanNo": "总部-CLXYJH-201803-0001",
+			"project": {
+				"id": "9e8323710fd14dfb99f7f4a9751bd99d",
+				"projectName": "TC测试项目TC"
+			},
+			"gcontrol": {
+				"id": "f83f8ad347c64390acbc9f46c60d9b66",
+				"planNo": "上海-CLZKJH-201803-0003"
+			},
+			"planDate": "2018-03-15 16:34:30",
+			"matrialClass": "01",
+			"planacceptDate": "2018-03-15 16:34:30",
+			"planUseDate": "2018-03-15 16:34:30",
+			"status": "02",
+			"procInsId": "80eedc4121964d6292f0c5820b82fdee"
+		}
+	}
+}
+
+{
+	"status": "1",
+	"map": {
+		"list": [{
+			"id": "fec0a0c28c06417a8dee3f5b76209c25",
+			"plan": {
+				"id": "54ec4ff14a96412da5dceefc0e65fecd",
+				"nplanNo": "总部-CLXYJH-201803-0001"
+			},
+			"material": {
+				"id": "37f339ac8b6a44ed9617a4312dfada97",
+				"materialName": "六角钢01",
+				"model": "xh1",
+				"standard": "gg1",
+				"unit": "吨"
+			},
+			"materialClass": "01",
+			"planCount": 3.0,
+			"controlMaterialId": "c871c83e69244d56b40409db9a6088f0",
+			"costUnivalent": 100.5,
+			"leftNeednum": 3000.0,
+			"leftNeedamt": 0.0,
+			"leftInnum": 3.0,
+			"leftInamt": 0.0
+		}],
+		"totalPage": 1
+	}
+}
+
+
+{
+	"status": "1",
+	"map": {
+		"totalPage": 1,
+		"list": [{
+			"id": "6001bfe9a98d4d02ba011477fef38009",
+			"createBy": {
+				"id": "3833c389faca48ee83af7ad819e01326",
+				"name": "东方培训（施工员）",
+				"loginFlag": "1",
+				"admin": false,
+				"roleNames": ""
+			},
+			"createDate": "2018-03-16 11:53:30",
+			"updateBy": {
+				"id": "3833c389faca48ee83af7ad819e01326",
+				"name": "东方培训（施工员）",
+				"loginFlag": "1",
+				"admin": false,
+				"roleNames": ""
+			},
+			"updateDate": "2018-03-16 11:53:30",
+			"procSuccessFlag": "04",
+			"procDestroyFlag": "05",
+			"nplanNo": "上海-CLXYJH-201803-0003",
+			"project": {
+				"id": "e90b9147623d4f9988e32d587969dbf6",
+				"projectName": "东方测试项目V3"
+			},
+			"gcontrol": {
+				"id": "fffcb5159b7e4b0c98c793771d22bcb6",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"planNo": "上海-CLZKJH-201803-0008"
+			},
+			"planDate": "2018-03-16 11:52:50",
+			"matrialClass": "01",
+			"planacceptDate": "2018-03-16 11:52:50",
+			"planUseDate": "2018-03-16 11:52:50",
+			"status": "02",
+			"procInsId": "ea41479002ab4c168f3f0d3914880948"
+		}]
+	}
+}

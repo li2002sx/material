@@ -1,0 +1,371 @@
+项目列表：
+{
+	"status": "1",
+	"map": {
+		"totalPage": 9,
+		"list": [{
+			"id": "c93530bcbbee4491a3ced46dcb0ab39b",
+			"projectName": "中国人保财险华东中心（一期）工程幕墙工程",
+			"projectShortName": "中国人保财险华东中心",
+			"turnkeyOrg": "中国建筑第八工程局",
+			"constructSite": "项目地块位于徽州大道与南京路交口西南",
+			"connectName": "马丙虎",
+			"connectTel": "18605510836",
+			"org": {
+				"id": "010410",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "010410",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0104",
+				"name": "南京分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0104",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "117.292591",
+			"y": "31.755965",
+			"buildDate": "2016-05-16",
+			"projectStatus": "00"
+		}, {
+			"id": "500284f440cd45a39c7a017939aca82e",
+			"projectName": "中国正大生态养生健康产业园",
+			"projectShortName": "中国正大生态养生健康",
+			"turnkeyOrg": "中建三局一公司",
+			"constructSite": "贵州省铜仁市松桃县正大乡",
+			"connectName": "钱学谦",
+			"connectTel": "15071282881",
+			"org": {
+				"id": "010707",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "010707",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0107",
+				"name": "广州分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0107",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "109.29775",
+			"y": "27.967873",
+			"buildDate": "2016-04-26",
+			"projectStatus": "00"
+		}, {
+			"id": "b6a3dc8e1acd469e94ee54cd3482dfdf",
+			"projectName": "九龙仓E18(9-3）",
+			"projectShortName": "九龙仓E18(9-3",
+			"turnkeyOrg": "上海莉源房地产开发有限公司",
+			"constructSite": "峨山路浦东南路",
+			"connectName": "何剑",
+			"connectTel": "18628083060",
+			"org": {
+				"id": "011201",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "011201",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0112",
+				"name": "上海分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0112",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "121.525226",
+			"y": "31.219422",
+			"buildDate": "2016-05-04",
+			"projectStatus": "01",
+			"finishDate": "2017-09-10"
+		}, {
+			"id": "ab8d72519e6b4f26a4297e49267cc129",
+			"projectName": "苏州滨河世贸中心（喜年广场）西区商业公共区域精装修项目",
+			"projectShortName": "苏州滨河世贸中心（喜",
+			"turnkeyOrg": "中联世纪建设集团有限公司",
+			"constructSite": "苏州市虎丘区滨河路与狮山路交叉口",
+			"connectName": "王虎",
+			"connectTel": "18601606011",
+			"org": {
+				"id": "010410",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "010410",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0104",
+				"name": "南京分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0104",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "120.574759",
+			"y": "31.298592",
+			"buildDate": "2016-08-24",
+			"projectStatus": "01",
+			"finishDate": "2016-12-30"
+		}, {
+			"id": "24c9beaaabe24f529190b170aded863c",
+			"projectName": "青岛市地铁2号线一期工程公共区域装饰装修工程施工三标段",
+			"projectShortName": "青岛市地铁2号线一期",
+			"turnkeyOrg": "青岛地铁集团有限公司",
+			"constructSite": "青岛市崂山区麦岛站、海游路站、海川路站、海安路站",
+			"connectName": "江国乐",
+			"connectTel": "18661671770",
+			"org": {
+				"id": "010607",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "010607",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0106",
+				"name": "青岛分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0106",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "120.463245",
+			"y": "36.096248",
+			"buildDate": "2016-06-12",
+			"projectStatus": "01"
+		}, {
+			"id": "4807917ee0f54a94bc210d930c19bf2e",
+			"projectName": "合肥市轨道交通2号线工程车站公共区、车辆段和停车场装修施工项目-2标段",
+			"projectShortName": "合肥市轨道交通2号线",
+			"turnkeyOrg": "合肥城市轨道交通有限公司",
+			"constructSite": "安徽合肥",
+			"connectName": "姜财吉",
+			"connectTel": "15800430583",
+			"org": {
+				"id": "010410",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "010410",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0104",
+				"name": "南京分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0104",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "117.28",
+			"y": "31.86",
+			"buildDate": "2016-10-04",
+			"projectStatus": "00"
+		}, {
+			"id": "485f340ae61a4227abfa871a36231142",
+			"projectName": "电子器件厂房建设项目",
+			"projectShortName": "电子器件厂房建设项目",
+			"turnkeyOrg": "中建三局",
+			"constructSite": "安徽合肥保税区",
+			"connectName": "姜财吉",
+			"connectTel": "15800430583",
+			"org": {
+				"id": "010410",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "010410",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0104",
+				"name": "南京分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0104",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "117.27",
+			"y": "31.86",
+			"buildDate": "2016-06-14",
+			"projectStatus": "01",
+			"finishDate": "2017-05-20"
+		}, {
+			"id": "ded57c6a861548cfbbe31c5406d10332",
+			"projectName": "世合小镇1-1期49#楼室内装饰工程",
+			"projectShortName": "世合小镇1-1期49",
+			"turnkeyOrg": "嘉兴合颐置业发展有限责任公司",
+			"constructSite": "浙江省嘉兴市南湖区",
+			"connectName": "牟晨光",
+			"connectTel": "13901967865",
+			"org": {
+				"id": "011201",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "011201",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0112",
+				"name": "上海分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0112",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "120.802392",
+			"y": "30.744768",
+			"buildDate": "2016-08-18",
+			"projectStatus": "01",
+			"finishDate": "2017-01-10"
+		}, {
+			"id": "601f06082ac24f4fa19f43b3c3cd730a",
+			"projectName": "中建信",
+			"projectShortName": "中建信",
+			"turnkeyOrg": "三局",
+			"constructSite": "上海市莘庄",
+			"connectName": "曾伟强",
+			"connectTel": "13636337221",
+			"org": {
+				"id": "011201",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "011201",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0112",
+				"name": "上海分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0112",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "121.376888",
+			"y": "31.126857",
+			"buildDate": "2016-04-08",
+			"projectStatus": "01",
+			"finishDate": "2017-03-20"
+		}, {
+			"id": "604db94fdec24eaa9de3818fbd51af3e",
+			"projectName": "建国西路",
+			"projectShortName": "建国西路",
+			"turnkeyOrg": "上海二建",
+			"constructSite": "上海徐汇区建国西路288号",
+			"connectName": "刘风城",
+			"connectTel": "15921004971",
+			"org": {
+				"id": "011201",
+				"name": "项目部",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "011201",
+				"type": "2",
+				"parentId": "0"
+			},
+			"company": {
+				"id": "0112",
+				"name": "上海分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"code": "0112",
+				"type": "2",
+				"parentId": "0"
+			},
+			"x": "121.462018",
+			"y": "31.21054",
+			"buildDate": "2016-04-10",
+			"projectStatus": "01",
+			"finishDate": "2017-11-01"
+		}]
+	}
+}
+
+合同列表：
+{
+	"status": "1",
+	"map": {
+		"page": [{
+			"id": "a3a9ca9fc95842ccb34b54340eed5013",
+			"createBy": {
+				"id": "fc9f311aad734da89ff269d2d79c6c3c",
+				"name": "东方培训（物资采购岗）",
+				"loginFlag": "1",
+				"admin": false,
+				"roleNames": ""
+			},
+			"createDate": "2018-03-16 11:50:50",
+			"updateBy": {
+				"id": "fc9f311aad734da89ff269d2d79c6c3c",
+				"name": "东方培训（物资采购岗）",
+				"loginFlag": "1",
+				"admin": false,
+				"roleNames": ""
+			},
+			"updateDate": "2018-03-16 11:50:50",
+			"procSuccessFlag": "04",
+			"procDestroyFlag": "05",
+			"compactNo": "上海-CLCGHT-201803-0003",
+			"project": {
+				"id": "e90b9147623d4f9988e32d587969dbf6",
+				"projectName": "东方测试项目V3"
+			},
+			"gcontrol": {
+				"id": "fffcb5159b7e4b0c98c793771d22bcb6",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"planNo": "上海-CLZKJH-201803-0008"
+			},
+			"compactName": "石材采购合同V3",
+			"parta": "中建东方装饰有限公司",
+			"partb": "817462fa85af4babaaea3575c4c2bc9f",
+			"materialClass": "01",
+			"contractDate": "2018-03-16 11:49:43",
+			"amtIntax": "5200000",
+			"operater": {
+				"id": "fc9f311aad734da89ff269d2d79c6c3c",
+				"name": "东方培训（物资采购岗）",
+				"loginFlag": "1",
+				"admin": false,
+				"roleNames": ""
+			},
+			"taxRate": 0.0,
+			"relaCompactno": "测",
+			"partbName": "供应商测试",
+			"status": "04",
+			"procInsId": "bf7b868f63554e899ecf35a4b98f28cb"
+		}]
+	}
+}

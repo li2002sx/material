@@ -1,26 +1,37 @@
 // 懒加载
 const Index = r => require.ensure([], () => r(require('../frames/Index.vue')), 'Index')
-const Reg = r => require.ensure([], () => r(require('../frames/user/Reg.vue')), 'Reg')
-const RegSucc = r => require.ensure([], () => r(require('../frames/user/RegSucc.vue')), 'RegSucc')
-const FindPass = r => require.ensure([], () => r(require('../frames/user/FindPass')), 'FindPass')
-const Login = r => require.ensure([], () => r(require('../frames/user/Login')), 'Login')
-const NoLogin = r => require.ensure([], () => r(require('../frames/my/NoLogin')), 'NoLogin')
-const MyIndex = r => require.ensure([], () => r(require('../frames/my/Index')), 'MyIndex')
-const Vip = r => require.ensure([], () => r(require('../frames/my/Vip')), 'Vip')
-const VipSucc = r => require.ensure([], () => r(require('../frames/my/VipSucc')), 'VipSucc')
-const MyInfo = r => require.ensure([], () => r(require('../frames/my/Info')), 'MyInfo')
-const Search = r => require.ensure([], () => r(require('../frames/car/Search')), 'Search')
-const SearchList = r => require.ensure([], () => r(require('../frames/car/SearchList')), 'SearchList')
-const CarList = r => require.ensure([], () => r(require('../frames/my/CarList')), 'CarList')
-const CarTemplateList = r => require.ensure([], () => r(require('../frames/my/CarTemplateList')), 'CarTemplateList')
-const EditUserCar = r => require.ensure([], () => r(require('../frames/my/EditUserCar')), 'EditUserCar')
-const PhotoList = r => require.ensure([], () => r(require('../frames/my/PhotoList')), 'PhotoList')
-const CarInfo = r => require.ensure([], () => r(require('../frames/my/CarInfo')), 'CarInfo')
-const Template = r => require.ensure([], () => r(require('../frames/car/Template')), 'Template')
-const AuthNotify = r => require.ensure([], () => r(require('../frames/wx/AuthNotify.vue')), 'AuthNotify')
+
+const UserIndex = r => require.ensure([], () => r(require('../frames/user/Index.vue')), 'UserIndex')
+const Login = r => require.ensure([], () => r(require('../frames/user/Login.vue')), 'Login')
+const FindPass = r => require.ensure([], () => r(require('../frames/user/FindPass.vue')), 'FindPass')
+const Feedback = r => require.ensure([], () => r(require('../frames/user/Feedback.vue')), 'Feedback')
+const AboutUs = r => require.ensure([], () => r(require('../frames/user/AboutUs.vue')), 'AboutUs')
+
+const WorkIndex = r => require.ensure([], () => r(require('../frames/work/Index.vue')), 'WorkIndex')
+const MyApply = r => require.ensure([], () => r(require('../frames/work/MyApply.vue')), 'MyApply')
+const TodoList = r => require.ensure([], () => r(require('../frames/work/TodoList.vue')), 'TodoList')
+// const WorkDetail = r => require.ensure([], () => r(require('../frames/work/Details.vue')), 'WorkDetail')
+
+const InIndex = r => require.ensure([], () => r(require('../frames/instorage/Index.vue')), 'InIndex')
+const InAdd = r => require.ensure([], () => r(require('../frames/instorage/Add.vue')), 'InAdd')
+const InAddHalf = r => require.ensure([], () => r(require('../frames/instorage/AddHalf.vue')), 'InAddHalf')
+
+const OutIndex = r => require.ensure([], () => r(require('../frames/outstorage/Index.vue')), 'OutIndex')
+const OutAdd = r => require.ensure([], () => r(require('../frames/outstorage/Add.vue')), 'OutAdd')
+
+const NoticeIndex = r => require.ensure([], () => r(require('../frames/notice/Index.vue')), 'NoticeIndex')
+const NoticeDetail = r => require.ensure([], () => r(require('../frames/notice/Detail.vue')), 'NoticeDetail')
+
+const ControlWorkDetail = r => require.ensure([], () => r(require('../frames/work/control/Details.vue')), 'ControlWorkDetail')
+const InWorkDetail = r => require.ensure([], () => r(require('../frames/work/in/Details.vue')), 'InWorkDetail')
+const OutWorkDetail = r => require.ensure([], () => r(require('../frames/work/out/Details.vue')), 'OutWorkDetail')
+const NeedWorkDetail = r => require.ensure([], () => r(require('../frames/work/need/Details.vue')), 'NeedWorkDetail')
+const ContractWorkDetail = r => require.ensure([], () => r(require('../frames/work/contract/Details.vue')), 'ContractWorkDetail')
+const TargetWorkDetail = r => require.ensure([], () => r(require('../frames/work/target/Details.vue')), 'TargetWorkDetail')
+
 export default [{
   path: '',
-  redirect: '/index'
+  redirect: '/login'
 }, {
   path: '/index',
   component: Index
@@ -28,66 +39,63 @@ export default [{
   path: '/login',
   component: Login
 }, {
-  path: '/reg',
-  component: Reg
+  path: '/user',
+  component: UserIndex
 }, {
-  path: '/regsucc',
-  component: RegSucc
-}, {
-  path: '/findpass',
+  path: '/user/findpass',
   component: FindPass
 }, {
-  path: '/my',
-  component: MyIndex
+  path: '/user/feedback',
+  component: Feedback
 }, {
-  path: '/my/nologin',
-  component: NoLogin
+  path: '/user/aboutus',
+  component: AboutUs
 }, {
-  path: '/my/vip',
-  component: Vip
+  path: '/work',
+  component: WorkIndex
 }, {
-  path: '/my/vipsucc',
-  component: VipSucc
+  path: '/work/apply',
+  component: MyApply
 }, {
-  path: '/my/info',
-  component: MyInfo
+  path: '/work/todo',
+  component: TodoList
 }, {
-  path: '/my/car',
-  component: CarList
+  path: '/work/control/detail/:procId/:billId',
+  component: ControlWorkDetail
 }, {
-  path: '/my/car/:edit',
-  component: CarList
+  path: '/work/in/detail/:procId/:billId',
+  component: InWorkDetail
 }, {
-  path: '/my/templist',
-  component: CarTemplateList
+  path: '/work/out/detail/:procId/:billId',
+  component: OutWorkDetail
 }, {
-  path: '/my/editcar/:carModelId/:infoId',
-  component: EditUserCar
+  path: '/work/need/detail/:procId/:billId',
+  component: NeedWorkDetail
 }, {
-  path: '/my/carinfo/:carModelId/:infoId',
-  component: CarInfo
+  path: '/work/contract/detail/:procId/:billId',
+  component: ContractWorkDetail
 }, {
-  path: '/my/photo',
-  component: PhotoList
+  path: '/work/target/detail/:procId/:billId',
+  component: TargetWorkDetail
 }, {
-  path: '/my/photo/:userId',
-  component: PhotoList
+  path: '/in',
+  component: InIndex
 }, {
-  path: '/car/search',
-  component: Search
+  path: '/in/add',
+  component: InAdd
 }, {
-  path: '/car/searchlist/:modelsId/:modelsName',
-  component: SearchList
+  path: '/in/addhalf',
+  component: InAddHalf
 }, {
-  path: '/car/searchlist/:modelsId',
-  component: SearchList
+  path: '/out',
+  component: OutIndex
 }, {
-  path: '/car/template/:carModelId',
-  component: Template
+  path: '/out/add',
+  component: OutAdd
 }, {
-  path: '/car/template/:carModelId/:infoId',
-  component: Template
+  path: '/notice',
+  component: NoticeIndex
 }, {
-  path: '/wx/authnotify',
-  component: AuthNotify
+  path: '/notice/detail',
+  component: NoticeDetail
 }]

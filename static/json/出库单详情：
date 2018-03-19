@@ -1,0 +1,53 @@
+出库单详情：
+{
+	"status": "1",
+	"message": "success",
+	"map": {
+		"checkBill": {
+			"id": "3d6abef58e394040b28ffd452023f702",
+			"procSuccessFlag": "04",
+			"procDestroyFlag": "05",
+			"outNo": "总部-CLCK-201803-0003",
+			"project": {
+				"id": "e90b9147623d4f9988e32d587969dbf6",
+				"projectName": "东方测试项目V3"
+			},
+			"materialIn": {
+				"id": "f1f6aa1c50d2402eb924f500960f74e4",
+				"procSuccessFlag": "04",
+				"procDestroyFlag": "05",
+				"inNo": "总部-CLYS-201803-0002",
+				"checkDate": "2018-03-17 22:54:32"
+			},
+			"outDate": "2018-03-18 17:03:11",
+			"receivePerson": {
+				"id": "1",
+				"name": "超级管理员",
+				"loginFlag": "1",
+				"admin": true,
+				"roleNames": ""
+			},
+			"materialClass": "01",
+			"amt": 330000.0,
+			"procInsId": "4f683e5c3de04eb799688486c441ee9b",
+			"status": "02",
+			"outMaterialList": [{
+				"id": "607636e5c82346089cbacee5974ffaf9",
+				"material": {
+					"id": "176e7aaed9fd4b9c8e97c2fddc95eee9",
+					"materialName": "啊啊啊"
+				},
+				"outCount": 30.0,
+				"priceIntax": 11000.0,
+				"amtIntax": 330000.0,
+				"taxRate": 0.0,
+				"priceExtax": 11000.0,
+				"amtExtax": 330000.0,
+				"inventoryCount": 50.0,
+				"inMaterial": {
+					"id": "c3b0c6b288fb4606ad40dadb992a4904"
+				}
+			}]
+		}
+	}
+}

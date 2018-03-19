@@ -1,0 +1,78 @@
+总控计划列表：
+{
+	"status": "1",
+	"map": {
+		"totalPage": 1,
+		"list": [{
+			"id": "fffcb5159b7e4b0c98c793771d22bcb6",
+			"createBy": {
+				"id": "f23085c9b7714862b9b1e487c72df6fd",
+				"createBy": {
+					"id": "1",
+					"loginFlag": "1",
+					"admin": true,
+					"roleNames": ""
+				},
+				"createDate": "2018-03-15 09:13:22",
+				"updateBy": {
+					"id": "1",
+					"loginFlag": "1",
+					"admin": true,
+					"roleNames": ""
+				},
+				"updateDate": "2018-03-15 09:21:12",
+				"company": {
+					"id": "0101",
+					"parentIds": "0,01,0101",
+					"name": "公司总部",
+					"sort": 30,
+					"hasChildren": false,
+					"type": "2",
+					"parentId": "01"
+				},
+				"office": {
+					"id": "010114",
+					"parentIds": "0,01,0111",
+					"name": "投标中心",
+					"sort": 30,
+					"hasChildren": false,
+					"type": "2",
+					"parentId": "0101"
+				},
+				"loginName": "dfpx7",
+				"name": "东方培训（目标设定中心）",
+				"loginIp": "140.206.72.14",
+				"loginDate": "2018-03-16 11:37:16",
+				"loginFlag": "1",
+				"oldLoginIp": "140.206.72.14",
+				"oldLoginDate": "2018-03-16 11:37:16",
+				"admin": false,
+				"roleNames": "目标设定中心"
+			},
+			"createDate": "2018-03-16 11:40:02",
+			"procSuccessFlag": "04",
+			"procDestroyFlag": "05",
+			"planNo": "上海-CLZKJH-201803-0008",
+			"planType": "0",
+			"project": {
+				"id": "e90b9147623d4f9988e32d587969dbf6",
+				"projectName": "东方测试项目V3"
+			},
+			"planDate": "2018-03-16",
+			"materialClass": "01",
+			"office": {
+				"id": "011201",
+				"name": "上海分公司",
+				"sort": 30,
+				"hasChildren": false,
+				"type": "2",
+				"parentId": "0"
+			},
+			"versionNo": 1,
+			"createOrg": "公司总部/投标中心",
+			"createUserName": "东方培训（目标设定中心）",
+			"status": "04",
+			"procInsId": "808850e81914439195deb5385d158277"
+		}]
+	}
+}
