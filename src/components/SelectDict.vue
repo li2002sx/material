@@ -71,6 +71,7 @@ export default {
           break
         }
       }
+      this.$emit('selectData', this.info)
       this.showPopupPicker = false
     },
     hidePopupPicker () {

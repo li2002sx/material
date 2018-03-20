@@ -15,6 +15,7 @@ const TodoList = r => require.ensure([], () => r(require('../frames/work/TodoLis
 const InIndex = r => require.ensure([], () => r(require('../frames/instorage/Index.vue')), 'InIndex')
 const InAdd = r => require.ensure([], () => r(require('../frames/instorage/Add.vue')), 'InAdd')
 const InAddHalf = r => require.ensure([], () => r(require('../frames/instorage/AddHalf.vue')), 'InAddHalf')
+const InAddLittle = r => require.ensure([], () => r(require('../frames/instorage/AddLittle.vue')), 'InAddLittle')
 
 const OutIndex = r => require.ensure([], () => r(require('../frames/outstorage/Index.vue')), 'OutIndex')
 const OutAdd = r => require.ensure([], () => r(require('../frames/outstorage/Add.vue')), 'OutAdd')
@@ -86,6 +87,9 @@ export default [{
 }, {
   path: '/in/addhalf',
   component: InAddHalf
+}, {
+  path: '/in/addlittle',
+  component: InAddLittle
 }, {
   path: '/out',
   component: OutIndex

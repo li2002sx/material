@@ -28,7 +28,8 @@
                   <p class="time">单据编号：{{item.vars.map.billMarkNo}}</p>
                   <p class="time">申请时间：{{item.vars.map.startTimeStr}}</p>
                   <p class="time">完成时间：{{item.taskEndDate}}</p>
-                  <p class="time">状态：完成</p>
+                  <p class="status">状态：完成</p>
+                  <p class="lastdate">{{item.vars.map.startTimeStr | format}}</p>
               </div>
               <div class="other">
                   <span>项目名称：{{item.vars.map.projectName}}</span>
@@ -43,7 +44,8 @@
                   <p class="time">单据编号：{{item.vars.map.billMarkNo}}</p>
                   <p class="time">申请时间：{{item.vars.map.startTimeStr}}</p>
                   <p class="time">完成时间：{{item.taskEndDate}}</p>
-                  <p class="time">状态：完成</p>
+                  <p class="status">状态：完成</p>
+                  <p class="lastdate">{{item.vars.map.startTimeStr | format}}</p>
               </div>
               <div class="other">
                   <span>项目名称：{{item.vars.map.projectName}}</span>
@@ -56,7 +58,7 @@
 </template>
 
 <script>
-import { TransferDomDirective as TransferDom, Tab, TabItem } from 'vux'
+import { TransferDomDirective as TransferDom, Tab, TabItem, Datetime, dateFormat } from 'vux'
 import headTop from '../../components/Header.vue'
 import footerButtom from '../../components/Footer.vue'
 export default {
@@ -67,7 +69,8 @@ export default {
     headTop,
     footerButtom,
     Tab,
-    TabItem
+    TabItem,
+    Datetime
   },
   data () {
     return {
@@ -83,6 +86,9 @@ export default {
     this.getTodoFinishes()
   },
   filters: {
+    format: function (value) {
+      return dateFormat(value, 'YYYY-MM-DD')
+    }
   },
   computed: {},
   mounted () {

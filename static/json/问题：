@@ -28,3 +28,5 @@ Vue.prototype.getDict = function (type) {
   })
   return map
 }
+
+{"status":"1","map":{"amt":5000000.0}}

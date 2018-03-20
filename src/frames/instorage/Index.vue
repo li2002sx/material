@@ -5,7 +5,7 @@
         <dd v-if="index==0" @click="toUrl('/in/add')">新增主材料验收单</dd>
         <dd v-else-if="index==1" @click="toUrl('/in/addhalf')">新增半成品中间验收单</dd>
         <dd v-else-if="index==2" @click="toUrl('/in/addhalf')">新增半成品最终验收单</dd>
-        <dd v-else-if="index==3" @click="toUrl('/in/add')">新增零星材料验收单</dd>
+        <dd v-else-if="index==3" @click="toUrl('/in/addlittle')">新增零星材料验收单</dd>
     </dl>
     <tab :line-width=2 defaultColor="#333" active-color='#61a0f2' v-model="index">
       <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}

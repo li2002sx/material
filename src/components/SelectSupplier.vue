@@ -2,30 +2,30 @@
   <section>
     <dd @click="modiAttrPopupPicker('project')">
         <label>项目</label>
-        <p class="txt">{{project.name}}</p>
+        <p class="txt">{{project == undefined?'':project.name}}</p>
         <i class="ico-sel"></i>
     </dd>
-    <dd @click="modiAttrPopupPicker('control')">
+    <!-- <dd @click="modiAttrPopupPicker('control')">
         <label>总控计划</label>
         <p class="txt">{{control.name}}</p>
         <i class="ico-sel"></i>
-    </dd>
-    <dd @click="modiAttrPopupPicker('need')">
+    </dd> -->
+    <dd v-show="type!='half'" @click="modiAttrPopupPicker('need')">
         <label>需用计划</label>
         <p class="txt">{{need.name}}</p>
         <i class="ico-sel"></i>
     </dd>
-    <dd @click="modiAttrPopupPicker('supplier')">
+    <dd v-show="type!='little'" @click="modiAttrPopupPicker('supplier')">
         <label>供应商</label>
         <p class="txt">{{supplier.name}}</p>
         <i class="ico-sel"></i>
     </dd>
-    <dd @click="modiAttrPopupPicker('contract')">
+    <dd v-show="type!='little'" @click="modiAttrPopupPicker('contract')">
         <label>合同编号</label>
         <p class="txt">{{contract.name}}</p>
         <i class="ico-sel"></i>
     </dd>
-    <dd>
+    <dd v-show="type!='little'">
         <label>云筑网合同编号</label>
         <p class="txt">{{contractFull.relaCompactno}}</p>
     </dd>
@@ -38,7 +38,7 @@
 <script>
 import { TransferDom, Popup, Group, PopupPicker } from 'vux'
 export default {
-  props: [],
+  props: ['type'],
   directives: {
     TransferDom
   },
@@ -159,11 +159,9 @@ export default {
         })
       } else if (this.attr === 'supplier') {
         param = {
-          project: {
-            id: this.project.value
-          }
+          projectId: this.project.value
         }
-        if (param.project.id === undefined) {
+        if (param.projectId === undefined) {
           this.toastShow('text', '请先选择一个项目')
           return
         }
@@ -173,10 +171,10 @@ export default {
           if (result.status === '1') {
             that.popupPickerData = []
             let items = [{ name: '请选择', value: '' }]
-            items.push({ name: '供应商测试', value: '817462fa85af4babaaea3575c4c2bc9f' })
+            // items.push({ name: '供应商测试', value: '817462fa85af4babaaea3575c4c2bc9f' })
             result.map.suppliers.forEach(function (info) {
               var item = {
-                name: info.name,
+                name: info.venderName,
                 value: info.id
               }
               items.push(item)
@@ -213,8 +211,8 @@ export default {
           if (result.status === '1') {
             that.popupPickerData = []
             let items = [{ name: '请选择', value: '' }]
-            that.contractList = result.map.page
-            result.map.page.forEach(function (info) {
+            that.contractList = result.map.list
+            result.map.list.forEach(function (info) {
               var item = {
                 name: info.compactName,
                 value: info.id

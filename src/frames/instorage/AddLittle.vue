@@ -50,15 +50,15 @@
         <div v-if="step == 1">
           <dl class="stockstep1">
               <dt>单据编号（保存后自动生成）</dt>
-              <select-supplier @selectData="selectContractData"></select-supplier>
+              <select-supplier type='little' @selectData="selectContractData"></select-supplier>
               <select-date title="验收日期" @selectDate="selectInDate"></select-date>
               <select-dict title="付款方式" type="pay_mode" @selectDate="selectPayMode"></select-dict>
               <!-- <select-date title="入库日期" @selectDate="getSelectDate"></select-date> -->
-              <!-- <dd>
-                  <label>项目</label>
-                  <p class="txt"></p> -->
+              <dd>
+                  <label>增值税税率</label>
+                  <input type="text" class="input" v-model="taxRate" />
                   <!-- <i class="ico-sel"></i> -->
-              <!-- </dd> -->
+              </dd>
               <!-- <dd>
                   <label>总控计划</label>
                   <p class="txt"></p> -->
@@ -170,7 +170,6 @@ import selectDict from '../../components/SelectDict'
 // import selectDeduct from '../../components/SelectDeduct'
 // import selectWarehouse from '../../components/SelectWarehouse'
 import $ from 'jquery'
-// import bridge from './vue-temp/vue-editor-bridge';
 
 export default {
   directives: {
@@ -198,11 +197,13 @@ export default {
       needMaterial: {},
       compactMaterialFull: {},
       payMode: {},
+      taxRate: '0.0',
       remark: '',
       materialMap: new Map(),
       statusMap: new Map(),
       totalInNum: 0,
       totalInAmount: 0,
+      totalTaxInAmount: 0,
       images: []
     }
   },
@@ -285,49 +286,15 @@ export default {
       if (this.step === 2) {
         this.getContractMaterials()
         // this.getNeedMaterials()
-        this.getCanUseAmount('01')
-        this.getCanUseAmount('02')
-        this.getCanUseAmount('03')
       } else if (this.step === 3) {
         let that = this
         this.compactMaterial.list.forEach(function (info) {
           let inNum = parseInt(info.inNum) || 0
           that.totalInNum += inNum
           that.totalInAmount += info.priceExtax * inNum
+          that.totalTaxInAmount += info.priceTax * inNum
         })
       }
-    },
-    getCanUseAmount (type) {
-      var param = {
-        project: {
-          id: this.project.value
-        },
-        gcontrol: {
-          id: this.contractFull.gcontrol.id
-        }
-      }
-      let requestUrl = null
-      switch (type) {
-        case '01':
-          requestUrl = 'appData/app/getNeedPlanAmt'
-          break
-        case '02':
-          requestUrl = 'appData/app/getMainMaterialAmt'
-          break
-        case '03':
-          requestUrl = 'appData/app/getHalfMaterialAmt'
-          break
-        default:
-          break
-      }
-      let that = this
-      this.post(requestUrl, param, function (result) {
-        if (result.status === '1') {
-
-        } else {
-          that.toastShow('text', result.message)
-        }
-      })
     },
     getContractMaterials () {
       var param = {
@@ -380,7 +347,7 @@ export default {
       $(target).next('dl').slideToggle('100')
     },
     save () {
-      var inMaterialList = []
+      var halfMaterialList = []
       this.compactMaterialFull.list.forEach(function (info) {
         let item = {
           material: info.material,
@@ -392,18 +359,16 @@ export default {
           amtIntax: info.priceIntax * info.inNum,
           amtTax: (info.priceIntax - info.priceExtax) * info.inNum,
           matreialClass: '01',
-          needMaterial: {
-            id: info.need.id
+          compact: {
+            id: this.contract.value
           }
         }
-        inMaterialList.push(item)
+        halfMaterialList.push(item)
       })
 
       var param = {
+        checkType: '00',
         checkDate: this.date,
-        payMode: {
-          id: this.payMode.value
-        },
         project: {
           id: this.project.value
         },
@@ -413,21 +378,25 @@ export default {
         compact: {
           id: this.contract.value
         },
-        materialClass: '01',
+        materialClass: '02',
         gcontrol: {
           id: this.contractFull.gcontrol.id
         },
         needPlan: {
           id: this.need.value
         },
-        releCompactno: this.contractFull.relaCompactno,
+        taxRate: this.taxRate,
         remarks: this.remark,
-        amtExtax: this.totalInAmount,
-        inMaterialList: inMaterialList,
+        nowAmount: this.totalInAmount,
+        nowTaxAmount: this.totalTaxInAmount,
+        checkPerson: {
+          id: this.getFieldByUseInfo('userId')
+        },
+        halfMaterialList: halfMaterialList,
         attachPics: this.images
       }
 
-      let requestUrl = 'appData/app/newCheckInBill'
+      let requestUrl = 'appData/app/newCheckHalf'
       let that = this
       this.post(requestUrl, param, function (result) {
         if (result.status === '1') {
