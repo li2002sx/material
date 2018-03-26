@@ -21,14 +21,22 @@
     <!-- list -->
     <div class="bg">
       <dl v-show="index==0" class="todolist">
-          <dd v-for="(item, index) in todoData.list" @click="toWorkDetail(item.procInsId,item.procDefKey,item.businessId)">
+          <dd v-for="(item, index) in todoData.list" @click="toWorkDetail('approve',item.procInsId,item.procDefKey,item.taskId,item.businessId)">
               <div class="title">
                   <i>{{index + 1}}</i>
-                  <h3>{{item.vars.map.applyName}}的{{item.procDefName}}申请单</h3>
+                  <h3>{{item.vars.map.applyName}}的申请单</h3>
                   <p class="time">单据编号：{{item.vars.map.billMarkNo}}</p>
+                  <p class="time">单据类型：{{item.procDefName}}</p>
                   <p class="time">申请时间：{{item.vars.map.startTimeStr}}</p>
-                  <p class="time">完成时间：{{item.taskEndDate}}</p>
-                  <p class="status">状态：完成</p>
+                  <p class="time" v-show="item.taskEndDate != undefined">完成时间：{{item.taskEndDate}}</p>
+                  <p class="status">状态：
+                    <template v-if="item.taskEndDate != undefined">
+                      已完成
+                    </template>
+                    <template v-else>
+                      进行中
+                    </template>
+                  </p>
                   <p class="lastdate">{{item.vars.map.startTimeStr | format}}</p>
               </div>
               <div class="other">
@@ -37,14 +45,22 @@
           </dd>
       </dl>
       <dl v-show="index==1" class="todolist">
-          <dd v-for="(item, index) in finishData.list" @click="toWorkDetail(item.procInsId,item.procDefKey,item.businessId)">
+          <dd v-for="(item, index) in finishData.list" @click="toWorkDetail('detail',item.procInsId,item.procDefKey,0,item.businessId)">
               <div class="title">
                   <i>{{index + 1}}</i>
-                  <h3>{{item.vars.map.applyName}}的{{item.procDefName}}申请单</h3>
+                  <h3>{{item.vars.map.applyName}}的申请单</h3>
                   <p class="time">单据编号：{{item.vars.map.billMarkNo}}</p>
+                  <p class="time">单据类型：{{item.procDefName}}</p>
                   <p class="time">申请时间：{{item.vars.map.startTimeStr}}</p>
-                  <p class="time">完成时间：{{item.taskEndDate}}</p>
-                  <p class="status">状态：完成</p>
+                  <p class="time" v-show="item.taskEndDate != undefined">完成时间：{{item.taskEndDate}}</p>
+                  <p class="status">状态：
+                    <template v-if="item.taskEndDate != undefined">
+                      已完成
+                    </template>
+                    <template v-else>
+                      进行中
+                    </template>
+                  </p>
                   <p class="lastdate">{{item.vars.map.startTimeStr | format}}</p>
               </div>
               <div class="other">

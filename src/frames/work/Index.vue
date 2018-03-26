@@ -30,7 +30,7 @@
                 <div class="plat06"></div>
                 <p>变更签证</p>
             </dd>
-            <dd @click="toUrl('/notice')">
+            <dd @click="tip()">
                 <!-- <i class="notify">10+</i> -->
                 <div class="plat05"></div>
                 <p>成本管理</p>

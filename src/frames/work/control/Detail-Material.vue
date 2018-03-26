@@ -4,6 +4,10 @@
       <h4 class="stocktit" >{{index + 1}}.{{item.material.materialName}}</h4>
       <dl class="stockstep1 hide">
           <dd>
+              <label>材料类别</label>
+              <p class="txt">{{materialMap.get(item.materialClass)}}</p>
+          </dd>
+          <dd>
               <label>计划数量</label>
               <p class="txt">{{item.planCount}}</p>
           </dd>
@@ -44,7 +48,7 @@
 import { TransferDomDirective as TransferDom } from 'vux'
 import $ from 'jquery'
 export default {
-  props: ['materialList'],
+  props: ['materialMap', 'materialList'],
   directives: {
     TransferDom
   },

@@ -25,7 +25,7 @@
           </dd>
           <dd>
               <label>税率</label>
-              <p class="txt">{{item.taxRate}}</p>
+              <p class="txt">{{item.taxRate}}%</p>
           </dd>
           <dd>
               <label>含税单价</label>

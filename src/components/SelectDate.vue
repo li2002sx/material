@@ -10,10 +10,10 @@
 <script>
 import { numberPad, Datetime, dateFormat } from 'vux'
 export default {
-  props: ['title', 'type'],
+  props: ['title', 'type', 'date'],
   data () {
     return {
-      date: new Date()
+
     }
   },
   components: {
@@ -22,6 +22,9 @@ export default {
   },
   filters: {
     format: function (value) {
+      if (value === null) {
+        value = new Date()
+      }
       return dateFormat(value, 'YYYY-MM-DD HH:mm:ss')
     }
   },
@@ -39,7 +42,7 @@ export default {
             value: val
           }
           that.date = val
-          that.$emit('selectDate', data)
+          that.$emit('selectData', data)
         },
         onShow () {
 

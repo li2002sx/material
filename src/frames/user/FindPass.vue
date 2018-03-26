@@ -55,16 +55,10 @@ export default {
       }
       let param = {
         oldPassword: this.oldPassword,
-        password: this.password
+        newPassword: this.password
       }
-      this.post('/rest/user/updatepass', param, function (result) {
+      this.post('appData/app/changePwd', param, function (result) {
         if (result.status === 1) {
-          let user = result.user
-          let userInfo = {
-            userId: user.userId,
-            token: user.token
-          }
-          this.setStore(global.userInfo, JSON.stringify(userInfo))
           this.toastShow('success', '修改成功')
           this.loginToUrl()
         } else {

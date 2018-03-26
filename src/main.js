@@ -90,21 +90,33 @@ Vue.config.productionTip = false
 // Vue.prototype.axios = axios
 const baseURL = global.apiUrl
 const timeOut = 100000
+const withCredentials = true
 // const token = '1234567token7654321'
 
-Vue.prototype.getFieldByUseInfo = function (field) {
+Vue.prototype.getFieldByUseInfo = function () {
   let userInfo = window.localStorage.getItem(global.userInfo)
   if (userInfo !== null) {
     userInfo = JSON.parse(userInfo)
     if (userInfo !== null) {
-      return Reflect.get(userInfo, field) || ''
+      return userInfo
+      // return Reflect.get(userInfo, field) || ''
     }
   }
-  return ''
+  return {}
+}
+
+Vue.prototype.getToken = function () {
+  let userInfo = this.getFieldByUseInfo().userInfo
+  if (userInfo === undefined) {
+    return ''
+  } else {
+    return userInfo.token
+  }
 }
 
 Vue.prototype.isLogin = function () {
-  if (this.getFieldByUseInfo('token') === '') {
+  let userInfo = this.getFieldByUseInfo().userInfo
+  if (userInfo.userInfo.token !== '') {
     return false
   } else {
     return true
@@ -122,11 +134,11 @@ Vue.prototype.get = function (url, params, callback) {
     method: 'get',
     baseURL: baseURL,
     headers: {
-      'token': this.getFieldByUseInfo('token')
+      'token': this.getToken()
       // 'token': token
     },
     params: params,
-    withCredentials: true, // default
+    withCredentials: withCredentials, // default
     responseType: 'json', // default
     timeout: timeOut
   }).then(response => {
@@ -158,7 +170,7 @@ Vue.prototype.post = function (url, data, callback, showLoad) {
     method: 'post',
     baseURL: baseURL,
     headers: {
-      'token': this.getFieldByUseInfo('token'),
+      'token': this.getToken(),
       // 'token': token,
       'Content-Type': 'application/x-www-form-urlencoded'
       // 'Content-Type': 'application/json'
@@ -175,7 +187,7 @@ Vue.prototype.post = function (url, data, callback, showLoad) {
       return data
     }],
     data: data,
-    withCredentials: true, // default
+    withCredentials: withCredentials, // default
     responseType: 'json', // default
     timeout: timeOut,
     // `onUploadProgress`上传进度事件
@@ -211,7 +223,7 @@ Vue.prototype.postForm = function (url, data, callback) {
     method: 'post',
     baseURL: baseURL,
     headers: {
-      'token': this.getFieldByUseInfo('token'),
+      'token': this.getToken(),
       'Content-Type': 'multipart/form-data'
     },
     transformRequest: [function (data) {
@@ -225,7 +237,7 @@ Vue.prototype.postForm = function (url, data, callback) {
       return data
     }],
     data: data,
-    withCredentials: true, // default
+    withCredentials: withCredentials, // default
     responseType: 'json', // default
     timeout: timeOut,
     // `onUploadProgress`上传进度事件
@@ -267,12 +279,13 @@ Vue.prototype.toUrl = function (url) {
 }
 
 Vue.prototype.loginToUrl = function () {
-  var referrer = this.getStore('referrer')
-  if (referrer === null) {
-    referrer = '/index'
-  }
-  // location.href = referrer
-  this.$router.push(referrer)
+  // var referrer = this.getStore('referrer')
+  // if (referrer === null) {
+  //   referrer = '/index'
+  // }
+  // // location.href = referrer
+  // this.$router.push(referrer)
+  this.$router.push('/index')
 }
 
 Vue.directive('title', {
@@ -281,24 +294,64 @@ Vue.directive('title', {
   }
 })
 
+Vue.prototype.stringFormat = function () {
+  var args = arguments
+  if (args.length === 0) return ''
+  if (args.length === 1) return arguments[0]
+
+  var regex = /{(\d+)?}/g
+  var arg
+  var result
+  if (args[1] instanceof Array) {
+    arg = args[1]
+    result = args[0].replace(regex, function ($0, $1) {
+      return arg[parseInt($1)]
+    })
+  } else {
+    arg = args
+    result = args[0].replace(regex, function ($0, $1) {
+      return arg[parseInt($1) + 1]
+    })
+  }
+  return result
+}
+
 Vue.prototype.getDict = function (type) {
   let map = new Map()
   var param = {
     type: type
   }
-  let requestUrl = 'appData/app/getDictType'
-  let that = this
-  this.get(requestUrl, param, function (result) {
-    if (result.status === '1') {
-      let list = result.map.list
-      for (let item of list) {
-        map.set(item.value, item.label)
+  if (type === 'materialClass') {
+    map.set('01', '主材')
+    map.set('02', '半成品')
+    map.set('03', '零星材料')
+  } else if (type === 'status') {
+    map.set('01', '草稿')
+    map.set('02', '审批中')
+    map.set('03', '驳回')
+    map.set('04', '完成')
+    map.set('05', '销毁')
+  } else if (type === 'payMode') {
+    map.set('0', '后期结算')
+    map.set('1', '直接付款')
+  } else if (type === 'checkType') {
+    map.set('00', '中间验收')
+    map.set('01', '最终验收')
+  } else {
+    let requestUrl = 'appData/app/getDictType'
+    let that = this
+    this.get(requestUrl, param, function (result) {
+      if (result.status === '1') {
+        let list = result.map.list
+        for (let item of list) {
+          map.set(item.value, item.label)
+        }
+        return map
+      } else {
+        that.toastShow('text', result.message)
       }
-      return map
-    } else {
-      that.toastShow('text', result.message)
-    }
-  })
+    })
+  }
   return map
 }
 
@@ -314,31 +367,95 @@ Vue.prototype.audit = function (taskId, procId, comment, flag) {
   this.post(requestUrl, param, function (result) {
     if (result.status === '1') {
       that.toastShow('success', '提交审批成功')
+      location.reload()
     } else {
       that.toastShow('text', result.message)
     }
   })
 }
 
-Vue.prototype.toWorkDetail = function (procId, procKey, billId) {
+Vue.prototype.getCanUseAmount = function (projectId, controlId, type, callback) {
+  var param = {
+    project: {
+      id: projectId
+    },
+    gcontrol: {
+      id: controlId
+    }
+  }
+  let requestUrl = null
+  switch (type) {
+    case '01':
+      requestUrl = 'appData/app/getNeedPlanAmt'
+      break
+    case '02':
+      requestUrl = 'appData/app/getMainMaterialAmt'
+      break
+    case '03':
+      requestUrl = 'appData/app/getHalfMaterialAmt'
+      break
+    default:
+      break
+  }
+  let that = this
+  this.post(requestUrl, param, function (result) {
+    if (result.status === '1') {
+      callback(result.map.amt)
+    } else {
+      that.toastShow('text', result.message)
+    }
+  })
+}
+
+Vue.prototype.dateToString = function (date, format) {
+  var o = {
+    'M+': date.getMonth() + 1, // 月份
+    'd+': date.getDate(), // 日
+    'h+': date.getHours(), // 小时
+    'm+': date.getMinutes(), // 分
+    's+': date.getSeconds(), // 秒
+    'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
+    'S': date.getMilliseconds() // 毫秒
+  }
+  if (/(y+)/.test(format)) {
+    format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+  }
+  for (var k in o) {
+    if (new RegExp('(' + k + ')').test(format)) {
+      format = format.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+    }
+  }
+  return format
+}
+
+Vue.prototype.toWorkDetail = function (action, procId, procKey, taskId, billId) {
   switch (procKey) {
     case 'gcontrolplan':
-      this.toUrl('/work/control/detail/' + procId + '/' + billId)
+    case 'gcontrolplan_change':
+      this.toUrl('/work/control/' + action + '/' + procId + '/' + taskId + '/' + billId)
       break
     case 'in_main':
-      this.toUrl('/work/in/detail/' + procId + '/' + billId)
+    case 'in_little':
+      this.toUrl('/work/in/' + action + '/' + procId + '/' + taskId + '/' + billId)
+      break
+    case 'check_half':
+    case 'partiall_check':
+      this.toUrl('/work/inhalf/' + action + '/' + procId + '/' + taskId + '/' + billId)
+      break
+    case 'settle':
+      this.toUrl('/work/settle/' + action + '/' + procId + '/' + taskId + '/' + billId)
       break
     case 'material_out':
-      this.toUrl('/work/out/detail/' + procId + '/' + billId)
+      this.toUrl('/work/out/' + action + '/' + procId + '/' + taskId + '/' + billId)
       break
     case 'needplan':
-      this.toUrl('/work/need/detail/' + procId + '/' + billId)
+      this.toUrl('/work/need/' + action + '/' + procId + '/' + taskId + '/' + billId)
       break
     case 'compact':
-      this.toUrl('/work/contract/detail/' + procId + '/' + billId)
+      this.toUrl('/work/contract/' + action + '/' + procId + '/' + taskId + '/' + billId)
       break
     case 'goal_set':
-      this.toUrl('/work/target/detail/' + procId + '/' + billId)
+      this.toUrl('/work/target/' + action + '/' + procId + '/' + taskId + '/' + billId)
       break
     default:
       break

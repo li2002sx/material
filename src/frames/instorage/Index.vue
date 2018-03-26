@@ -3,8 +3,8 @@
     <div v-title data-title="验收单"></div>
     <dl class="stocktool">
         <dd v-if="index==0" @click="toUrl('/in/add')">新增主材料验收单</dd>
-        <dd v-else-if="index==1" @click="toUrl('/in/addhalf')">新增半成品中间验收单</dd>
-        <dd v-else-if="index==2" @click="toUrl('/in/addhalf')">新增半成品最终验收单</dd>
+        <dd v-else-if="index==1" @click="toUrl('/in/addhalf/00')">新增半成品中间验收单</dd>
+        <dd v-else-if="index==2" @click="toUrl('/in/addhalf/01')">新增半成品最终验收单</dd>
         <dd v-else-if="index==3" @click="toUrl('/in/addlittle')">新增零星材料验收单</dd>
     </dl>
     <tab :line-width=2 defaultColor="#333" active-color='#61a0f2' v-model="index">
@@ -13,81 +13,73 @@
     </tab>
     <!--list-->
     <div class="stockin">
-      <dl class="todolist" @click="toUrl('/work/detail')">
-          <dd>
+      <dl v-show="index == 0" class="todolist">
+          <dd v-for="(item, index) in mainData.list" @click="toUrl('/work/in/detail/0/0/' + item.id)">
               <div class="title">
-                  <i>1</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">验收单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">申请时间：2017-09-13 19:18:20</p>
+                  <i>{{index + 1}}</i>
+                  <h3>项目名称：{{item.project.projectName}}</h3>
+                  <p class="time">验收单编号：{{item.inNo}}</p>
+                  <p class="time">申请时间：{{item.createDate}}</p>
+                  <p class="time">验收时间：{{item.checkDate}}</p>
+                  <p class="time">付款方式：{{payModeMap.get(item.payMode)}}</p>
+                  <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
+                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
-                  <span>供应商：甲级供应商</span>
+                  <span>供应商：{{item.supplier.venderName}}</span>
               </div>
           </dd>
       </dl>
-      <dl class="todolist" @click="toUrl('/work/detail')">
-          <dd>
+      <dl v-show="index == 1" class="todolist">
+          <dd v-for="(item, index) in halfMidData.list" @click="toUrl('/work/inhalf/detail/0/0/' + item.id)">
               <div class="title">
-                  <i>2</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">验收单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">申请时间：2017-09-13 19:18:20</p>
+                  <i>{{index + 1}}</i>
+                  <h3>项目名称：{{item.project.projectName}}</h3>
+                  <p class="time">验收单编号：{{item.checkNo}}</p>
+                  <p class="time">申请时间：{{item.createDate}}</p>
+                  <p class="time">验收时间：{{item.checkDate}}</p>
+                  <!-- <p class="time">付款方式：{{payModeMap.get(item.payMode)}}</p> -->
+                  <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
+                  <p class="time">验收类型：{{checkTypeMap.get(item.checkType)}}</p>
+                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
-                  <span>供应商：甲级供应商</span>
+                  <span>供应商：{{item.supplier.venderName}}</span>
               </div>
           </dd>
       </dl>
-      <dl class="todolist" @click="toUrl('/work/detail')">
-          <dd>
+      <dl v-show="index == 2" class="todolist">
+          <dd v-for="(item, index) in halfLastData.list" @click="toUrl('/work/inhalf/detail/0/0/' + item.id)">
               <div class="title">
-                  <i>3</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">验收单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">申请时间：2017-09-13 19:18:20</p>
+                  <i>{{index + 1}}</i>
+                  <h3>项目名称：{{item.project.projectName}}</h3>
+                  <p class="time">验收单编号：{{item.checkNo}}</p>
+                  <p class="time">申请时间：{{item.createDate}}</p>
+                  <p class="time">验收时间：{{item.checkDate}}</p>
+                  <!-- <p class="time">付款方式：{{payModeMap.get(item.payMode)}}</p> -->
+                  <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
+                  <p class="time">验收类型：{{checkTypeMap.get(item.checkType)}}</p>
+                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
-                  <span>供应商：甲级供应商</span>
+                  <span>供应商：{{item.supplier.venderName}}</span>
               </div>
           </dd>
       </dl>
-      <dl class="todolist" @click="toUrl('/work/detail')">
-          <dd>
+      <dl v-show="index == 3" class="todolist">
+          <dd v-for="(item, index) in littleData.list" @click="toUrl('/work/in/detail/0/0/' + item.id)">
               <div class="title">
-                  <i>4</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">验收单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">申请时间：2017-09-13 19:18:20</p>
+                  <i>{{index + 1}}</i>
+                  <h3>项目名称：{{item.project.projectName}}</h3>
+                  <p class="time">验收单编号：{{item.inNo}}</p>
+                  <p class="time">申请时间：{{item.createDate}}</p>
+                  <p class="time">验收时间：{{item.checkDate}}</p>
+                  <p class="time">付款方式：{{payModeMap.get(item.payMode)}}</p>
+                  <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
+                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
-                  <span>供应商：甲级供应商</span>
-              </div>
-          </dd>
-      </dl>
-      <dl class="todolist" @click="toUrl('/work/detail')">
-          <dd>
-              <div class="title">
-                  <i>5</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">验收单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">申请时间：2017-09-13 19:18:20</p>
-              </div>
-              <div class="other">
-                  <span>供应商：甲级供应商</span>
-              </div>
-          </dd>
-      </dl>
-      <dl class="todolist" @click="toUrl('/work/detail')">
-          <dd>
-              <div class="title">
-                  <i>6</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">验收单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">申请时间：2017-09-13 19:18:20</p>
-              </div>
-              <div class="other">
-                  <span>供应商：甲级供应商</span>
+                  <span>供应商：{{item.supplier.venderName}}</span>
               </div>
           </dd>
       </dl>
@@ -110,10 +102,27 @@ export default {
     return {
       list2: ['主材料', '半成品(中)', '半成品(终)', '零星材料'],
       demo2: '主材料',
-      index: 0
+      index: 0,
+      materialMap: new Map(),
+      statusMap: new Map(),
+      payModeMap: new Map(),
+      checkTypeMap: new Map(),
+      materialType: '',
+      mainData: {},
+      halfMidData: {},
+      halfLastData: {},
+      littleData: {}
     }
   },
   created () {
+    this.materialMap = this.getDict('materialClass')
+    this.statusMap = this.getDict('status')
+    this.payModeMap = this.getDict('payMode')
+    this.checkTypeMap = this.getDict('checkType')
+    this.getList('01')
+    this.getList('03')
+    this.getHalfList('00')
+    this.getHalfList('01')
   },
   filters: {
   },
@@ -122,17 +131,39 @@ export default {
 
   },
   methods: {
-    audit () {
-      this.$vux.confirm.prompt('', {
-        title: '任务审批',
-        hideOnBlur: true,
-        confirmText: '同意',
-        cancelText: '驳回',
-        onConfirm (msg) {
-          alert(1)
-        },
-        onCancel (msg) {
-          alert(0)
+    getList (materialType) {
+      var param = {
+        materialClass: materialType
+      }
+      let requestUrl = 'appData/app/checkInBillList'
+      let that = this
+      this.post(requestUrl, param, function (result) {
+        if (result.status === '1') {
+          if (materialType === '01') {
+            that.mainData = result.map
+          } else if (materialType === '03') {
+            that.littleData = result.map
+          }
+        } else {
+          that.toastShow('text', result.message)
+        }
+      })
+    },
+    getHalfList (checkType) {
+      var param = {
+        checkType: checkType
+      }
+      let requestUrl = 'appData/app/checkHalfList'
+      let that = this
+      this.post(requestUrl, param, function (result) {
+        if (result.status === '1') {
+          if (checkType === '00') {
+            that.halfMidData = result.map
+          } else if (checkType === '01') {
+            that.halfLastData = result.map
+          }
+        } else {
+          that.toastShow('text', result.message)
         }
       })
     }

@@ -29,10 +29,10 @@
             <label>所属项目</label>
             <p class="txt">{{data.project.projectName}}</p>
         </dd>
-        <dd>
+        <!-- <dd>
             <label>无税金额</label>
             <p class="txt"></p>
-        </dd>
+        </dd> -->
         <!-- <dd>
             <label>剩余额度</label>
             <p class="txt"></p>
@@ -61,7 +61,7 @@ export default {
     }
   },
   created () {
-    this.getDetail()
+
   },
   filters: {
   },
@@ -70,20 +70,7 @@ export default {
 
   },
   methods: {
-    getDetail () {
-      var param = {
-        id: '17f7b97c53d6412b9c3436cf5dbf8ad8'
-      }
-      let requestUrl = 'appData/app/OutBill'
-      let that = this
-      this.get(requestUrl, param, function (result) {
-        if (result.status === '1') {
-          // that.data = result.map
-        } else {
-          that.toastShow('text', result.message)
-        }
-      })
-    }
+
   }
 }
 </script>

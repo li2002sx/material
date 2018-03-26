@@ -6,15 +6,15 @@
     <!-- list -->
     <div class="myuserbox">
         <i></i>
-        <h3>用户昵称</h3>
+        <h3>{{userInfo.user.name}}</h3>
         <table>
             <tr>
                 <td>公司：</td>
-                <td>公司总部</td>
+                <td>{{userInfo.user.company.name}}</td>
             </tr>
             <tr>
                 <td>部门：</td>
-                <td>技术部</td>
+                <td>{{userInfo.user.office.name}}</td>
             </tr>
         </table>
     </div>
@@ -41,7 +41,7 @@
             </div>
         </dd>
     </dl>
-    <div class="mybtnbox">
+    <div class="mybtnbox" @click="logout()">
         <button class="btnblue">退出登录</button>
     </div>
     <!-- list end -->
@@ -62,9 +62,16 @@ export default {
   },
   data () {
     return {
+      userInfo: {
+        user: {
+          company: {},
+          office: {}
+        }
+      }
     }
   },
   created () {
+    this.userInfo = this.getFieldByUseInfo()
   },
   filters: {
   },
@@ -73,7 +80,17 @@ export default {
 
   },
   methods: {
-
+    logout () {
+      let that = this
+      this.$vux.confirm.show({
+        title: '提示',
+        content: '确定要退出登录吗？',
+        onConfirm () {
+          that.removeStore(global.userInfo)
+          that.toUrl('/')
+        }
+      })
+    }
   }
 }
 </script>

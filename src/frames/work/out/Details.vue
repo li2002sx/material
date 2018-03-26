@@ -1,8 +1,8 @@
 <template>
   <section>
     <div v-title data-title="中建东方装饰有限公司"></div>
-    <dl class="stocktool">
-        <dd @click="audit()">审批</dd>
+    <dl class="stocktool" v-show="action == 'approve' && data.status == '02'">
+        <dd @click="auditDialog()">审批</dd>
     </dl>
     <tab :line-width=2 defaultColor="#333" active-color='#61a0f2' v-model="index">
       <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}
@@ -42,6 +42,9 @@ export default {
       list2: ['基本信息', '材料明细', '附件信息', '历史审批'],
       demo2: '基本信息',
       index: 0,
+      action: this.$route.params.action || '',
+      procId: this.$route.params.procId || '',
+      taskId: this.$route.params.taskId || '',
       billId: this.$route.params.billId || '',
       data: {
         materialIn: {},
@@ -81,17 +84,25 @@ export default {
         }
       })
     },
-    audit () {
-      this.$vux.confirm.prompt('', {
+    auditDialog () {
+      let that = this
+      this.$vux.confirm.prompt('请填写审批内容', {
         title: '任务审批',
         hideOnBlur: true,
         confirmText: '同意',
         cancelText: '驳回',
         onConfirm (msg) {
-
+          if (msg.length === 0) {
+            msg = '同意'
+          }
+          that.audit(that.taskId, that.procId, msg, 'yes')
         },
         onCancel (msg) {
-
+          if (msg.length > 0) {
+            that.audit(that.taskId, that.procId, msg, 'no')
+          } else {
+            that.toastShow('text', '驳回内容不能为空')
+          }
         }
       })
     }

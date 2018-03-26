@@ -6,77 +6,20 @@
     </dl>
     <!--list-->
     <div class="stockin">
-      <dl class="todolist" @click="toUrl('/work/detail')">
-          <dd>
+      <dl class="todolist">
+          <dd v-for="(item, index) in mainData.list" @click="toUrl('/work/out/detail/' + item.procInsId + '/0/' + item.id)">
               <div class="title">
-                  <i>1</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">出库单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">出库日期：2017-09-13 19:18:20</p>
+                  <i>{{index + 1}}</i>
+                  <h3>项目名称：{{item.project.projectName}}</h3>
+                  <p class="time">出库单编号：{{item.outNo}}</p>
+                  <p class="time">出库时间：{{item.outDate}}</p>
+                  <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
+                  <p class="time">验收单编号：{{item.materialIn.inNo}}</p>
+                  <p class="time">验收时间：{{item.materialIn.checkDate}}</p>
+                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
-                  <span>领料单位：甲级供应商</span>
-                  <span>领料人：小张</span>
-              </div>
-          </dd>
-          <dd>
-              <div class="title">
-                  <i>2</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">出库单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">出库日期：2017-09-13 19:18:20</p>
-              </div>
-              <div class="other">
-                  <span>领料单位：甲级供应商</span>
-                  <span>领料人：小张</span>
-              </div>
-          </dd>
-          <dd>
-              <div class="title">
-                  <i>3</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">出库单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">出库日期：2017-09-13 19:18:20</p>
-              </div>
-              <div class="other">
-                  <span>领料单位：甲级供应商</span>
-                  <span>领料人：小张</span>
-              </div>
-          </dd>
-          <dd>
-              <div class="title">
-                  <i>4</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">出库单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">出库日期：2017-09-13 19:18:20</p>
-              </div>
-              <div class="other">
-                  <span>领料单位：甲级供应商</span>
-                  <span>领料人：小张</span>
-              </div>
-          </dd>
-          <dd>
-              <div class="title">
-                  <i>5</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">出库单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">出库日期：2017-09-13 19:18:20</p>
-              </div>
-              <div class="other">
-                  <span>领料单位：甲级供应商</span>
-                  <span>领料人：小张</span>
-              </div>
-          </dd>
-          <dd>
-              <div class="title">
-                  <i>6</i>
-                  <h3>中国正大生态养生健康产业园</h3>
-                  <p class="time">出库单编号：010101-CLYS-201802--0005</p>
-                  <p class="time">出库日期：2017-09-13 19:18:20</p>
-              </div>
-              <div class="other">
-                  <span>领料单位：甲级供应商</span>
-                  <span>领料人：小张</span>
+                  <span>领料人：{{item.receivePerson.name}} 金额：{{item.amt}}</span>
               </div>
           </dd>
       </dl>
@@ -97,10 +40,15 @@ export default {
   },
   data () {
     return {
-
+      materialMap: new Map(),
+      statusMap: new Map(),
+      mainData: {}
     }
   },
   created () {
+    this.materialMap = this.getDict('materialClass')
+    this.statusMap = this.getDict('status')
+    this.getList()
   },
   filters: {
   },
@@ -109,17 +57,17 @@ export default {
 
   },
   methods: {
-    audit () {
-      this.$vux.confirm.prompt('', {
-        title: '任务审批',
-        hideOnBlur: true,
-        confirmText: '同意',
-        cancelText: '驳回',
-        onConfirm (msg) {
+    getList () {
+      var param = {
 
-        },
-        onCancel (msg) {
-
+      }
+      let requestUrl = 'appData/app/OutBillList'
+      let that = this
+      this.post(requestUrl, param, function (result) {
+        if (result.status === '1') {
+          that.mainData = result.map
+        } else {
+          that.toastShow('text', result.message)
         }
       })
     }

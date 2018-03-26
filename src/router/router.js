@@ -25,10 +25,12 @@ const NoticeDetail = r => require.ensure([], () => r(require('../frames/notice/D
 
 const ControlWorkDetail = r => require.ensure([], () => r(require('../frames/work/control/Details.vue')), 'ControlWorkDetail')
 const InWorkDetail = r => require.ensure([], () => r(require('../frames/work/in/Details.vue')), 'InWorkDetail')
+const InHalfWorkDetail = r => require.ensure([], () => r(require('../frames/work/inhalf/Details.vue')), 'InHalfWorkDetail')
 const OutWorkDetail = r => require.ensure([], () => r(require('../frames/work/out/Details.vue')), 'OutWorkDetail')
 const NeedWorkDetail = r => require.ensure([], () => r(require('../frames/work/need/Details.vue')), 'NeedWorkDetail')
 const ContractWorkDetail = r => require.ensure([], () => r(require('../frames/work/contract/Details.vue')), 'ContractWorkDetail')
 const TargetWorkDetail = r => require.ensure([], () => r(require('../frames/work/target/Details.vue')), 'TargetWorkDetail')
+const SettleWorkDetail = r => require.ensure([], () => r(require('../frames/work/settle/Details.vue')), 'SettleWorkDetail')
 
 export default [{
   path: '',
@@ -61,23 +63,29 @@ export default [{
   path: '/work/todo',
   component: TodoList
 }, {
-  path: '/work/control/detail/:procId/:billId',
+  path: '/work/control/:action/:procId/:taskId/:billId',
   component: ControlWorkDetail
 }, {
-  path: '/work/in/detail/:procId/:billId',
+  path: '/work/in/:action/:procId/:taskId/:billId',
   component: InWorkDetail
 }, {
-  path: '/work/out/detail/:procId/:billId',
+  path: '/work/inhalf/:action/:procId/:taskId/:billId',
+  component: InHalfWorkDetail
+}, {
+  path: '/work/out/:action/:procId/:taskId/:billId',
   component: OutWorkDetail
 }, {
-  path: '/work/need/detail/:procId/:billId',
+  path: '/work/need/:action/:procId/:taskId/:billId',
   component: NeedWorkDetail
 }, {
-  path: '/work/contract/detail/:procId/:billId',
+  path: '/work/contract/:action/:procId/:taskId/:billId',
   component: ContractWorkDetail
 }, {
-  path: '/work/target/detail/:procId/:billId',
+  path: '/work/target/:action/:procId/:taskId/:billId',
   component: TargetWorkDetail
+}, {
+  path: '/work/settle/:action/:procId/:taskId/:billId',
+  component: SettleWorkDetail
 }, {
   path: '/in',
   component: InIndex
@@ -85,7 +93,7 @@ export default [{
   path: '/in/add',
   component: InAdd
 }, {
-  path: '/in/addhalf',
+  path: '/in/addhalf/:checkType',
   component: InAddHalf
 }, {
   path: '/in/addlittle',

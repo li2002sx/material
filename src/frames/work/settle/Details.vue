@@ -1,7 +1,7 @@
 <template>
   <section>
     <div v-title data-title="中建东方装饰有限公司"></div>
-    <dl class="stocktool" v-show="data.status == '02'">
+    <dl class="stocktool" v-show="action == 'approve' && data.status == '02'">
         <dd @click="auditDialog()">审批</dd>
     </dl>
     <tab :line-width=2 defaultColor="#333" active-color='#61a0f2' v-model="index">
@@ -10,10 +10,11 @@
     </tab>
     <!--list-->
     <div class="stockin">
-        <detail-info :material-map="materialMap" :status-map="statusMap" :data="data" v-show="index==0"></detail-info>
-        <detail-material :material-map="materialMap" v-show="index==1" :data="data"></detail-material>
-        <detail-pic v-show="index==2"></detail-pic>
-        <detail-history v-show="index==3"></detail-history>
+        <detail-info :material-map="materialMap" :status-map="statusMap" :data="data.settle" v-show="index==0"></detail-info>
+        <detail-material :material-map="materialMap" :material-list="data.countInList" v-show="index==1"></detail-material>
+        <detail-material :material-map="materialMap" :material-list="data.countInList" v-show="index==2"></detail-material>
+        <detail-pic v-show="index==3"></detail-pic>
+        <detail-history v-show="index==4"></detail-history>
     </div>
     <!--list-->
   </section>
@@ -39,23 +40,32 @@ export default {
   },
   data () {
     return {
-      list2: ['基本信息', '材料明细', '附件信息', '历史审批'],
+      list2: ['基本信息', '月度验收单', '其他费用', '附件信息', '历史审批'],
       demo2: '基本信息',
       index: 0,
+      action: this.$route.params.action || '',
       procId: this.$route.params.procId || '',
       taskId: this.$route.params.taskId || '',
       billId: this.$route.params.billId || '',
       data: {
-        project: {},
-        gcontrol: {}
+        settle: {
+          project: {},
+          supplier: {},
+          compact: {},
+          gcontrol: {}
+        },
+        countInList: []
       },
       materialMap: new Map(),
+      payModeMap: new Map(),
       statusMap: new Map()
     }
   },
   created () {
     this.materialMap = this.getDict('materialClass')
+    this.payModeMap = this.getDict('payMode')
     this.statusMap = this.getDict('status')
+    this.getDetail()
   },
   filters: {
   },
@@ -68,11 +78,11 @@ export default {
       var param = {
         id: this.billId
       }
-      let requestUrl = 'appData/app/getNeedplanInfo'
+      let requestUrl = 'appData/app/getSettleInfo'
       let that = this
       this.get(requestUrl, param, function (result) {
         if (result.status === '1') {
-          that.data = result.map.needplan
+          that.data = result.map
         } else {
           that.toastShow('text', result.message)
         }

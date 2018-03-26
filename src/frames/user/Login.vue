@@ -31,13 +31,22 @@ export default {
   },
   data () {
     return {
-      isRemember: true,
-      userId: 'admin',
-      password: 'admin'
+      isRemember: false,
+      userId: '',
+      password: ''
     }
   },
   created () {
-
+    let user = this.getFieldByUseInfo()
+    if (user.loginInfo !== undefined) {
+      let loginInfo = user.loginInfo
+      this.userId = loginInfo.userId
+      this.password = loginInfo.password
+      this.isRemember = loginInfo.isRemember
+      if (this.isRemember) {
+        this.login()
+      }
+    }
   },
   computed: {},
   mounted: function () {
@@ -63,14 +72,20 @@ export default {
       let requestUrl = 'appData/app/login?userName=' + param.userId + '&password=' + param.password
       this.get(requestUrl, null, function (result) {
         if (result.status === '1') {
-          // let user = result
-          let userInfo = {
-            userId: result.map.userInfo.userId,
-            token: result.map.userInfo.token,
-            userName: result.userName
-          }
-          this.setStore(global.userInfo, JSON.stringify(userInfo))
-          this.toastShow('success', '登陆成功')
+          let user = result.map
+          let loginInfo = param
+          loginInfo.isRemember = this.isRemember
+          user.loginInfo = loginInfo
+          // let userInfo = {
+          //   userId: result.map.userInfo.userId,
+          //   token: result.map.userInfo.token,
+          //   userName: result.userName,
+          //   companyName:result.user.company.name,
+          //   officeId:result.user.office.id,
+          //   officeName:result.user.office.name
+          // }
+          this.setStore(global.userInfo, JSON.stringify(user))
+          // this.toastShow('success', '登陆成功')
           this.loginToUrl()
         } else {
           this.toastShow('text', result.message)

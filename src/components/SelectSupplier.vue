@@ -2,7 +2,7 @@
   <section>
     <dd @click="modiAttrPopupPicker('project')">
         <label>项目</label>
-        <p class="txt">{{project == undefined?'':project.name}}</p>
+        <p class="txt">{{projectName}}</p>
         <i class="ico-sel"></i>
     </dd>
     <!-- <dd @click="modiAttrPopupPicker('control')">
@@ -12,22 +12,27 @@
     </dd> -->
     <dd v-show="type!='half'" @click="modiAttrPopupPicker('need')">
         <label>需用计划</label>
-        <p class="txt">{{need.name}}</p>
+        <p class="txt">{{needName}}</p>
         <i class="ico-sel"></i>
     </dd>
-    <dd v-show="type!='little'" @click="modiAttrPopupPicker('supplier')">
+    <dd v-show="type!='instorage'" @click="modiAttrPopupPicker('supplier')">
         <label>供应商</label>
-        <p class="txt">{{supplier.name}}</p>
+        <p class="txt">{{supplierName}}</p>
         <i class="ico-sel"></i>
     </dd>
-    <dd v-show="type!='little'" @click="modiAttrPopupPicker('contract')">
+    <dd v-show="type!='little' && type!='instorage'" @click="modiAttrPopupPicker('contract')">
         <label>合同编号</label>
-        <p class="txt">{{contract.name}}</p>
+        <p class="txt">{{contractName}}</p>
         <i class="ico-sel"></i>
     </dd>
-    <dd v-show="type!='little'">
+    <dd v-show="type!='little' && type!='instorage'">
         <label>云筑网合同编号</label>
-        <p class="txt">{{contractFull.relaCompactno}}</p>
+        <p class="txt">{{relaCompactNo}}</p>
+    </dd>
+    <dd v-show="type=='instorage'" @click="modiAttrPopupPicker('instorage')">
+        <label>验收单</label>
+        <p class="txt">{{instorageName}}</p>
+        <i class="ico-sel"></i>
     </dd>
     <group v-show="showPopupPicker">
       <popup-picker :show="showPopupPicker" :show-cell="false" title="picker" :columns="2" :data="popupPickerData" @on-hide="hidePopupPicker" @on-change="changePopupPicker"></popup-picker>
@@ -38,7 +43,7 @@
 <script>
 import { TransferDom, Popup, Group, PopupPicker } from 'vux'
 export default {
-  props: ['type'],
+  props: ['type', 'projectName', 'needName', 'supplierName', 'contractName', 'relaCompactNo', 'instorageName'],
   directives: {
     TransferDom
   },
@@ -58,7 +63,10 @@ export default {
       supplier: {},
       contract: {},
       contractList: {},
-      contractFull: {}
+      contractFull: {},
+      instorageList: {},
+      instorage: {},
+      instorageFull: {}
     }
   },
   filters: {
@@ -225,6 +233,37 @@ export default {
           }
         })
         this.popupPickerData.push(arr)
+      } else if (this.attr === 'instorage') {
+        let arr = []
+        param = {
+          needPlan: {
+            id: this.need.value
+          }
+        }
+        if (param.needPlan.id === undefined) {
+          this.toastShow('text', '请先选择一个需用计划')
+          return
+        }
+        let requestUrl = 'appData/app/checkInBillList'
+        let that = this
+        this.post(requestUrl, param, function (result) {
+          if (result.status === '1') {
+            that.popupPickerData = []
+            let items = [{ name: '请选择', value: '' }]
+            that.instorageList = result.map.list
+            result.map.list.forEach(function (info) {
+              var item = {
+                name: info.inNo,
+                value: info.id
+              }
+              items.push(item)
+            })
+            that.popupPickerData.push(items)
+          } else {
+            that.toastShow('text', result.message)
+          }
+        })
+        this.popupPickerData.push(arr)
       }
       this.showPopupPicker = true
     },
@@ -233,6 +272,7 @@ export default {
         for (let item of this.popupPickerData[0]) {
           if (item.value.toString() === val[0]) {
             this.project = item
+            this.projectName = item.name
             break
           }
         }
@@ -250,6 +290,7 @@ export default {
         for (let item of this.popupPickerData[0]) {
           if (item.value.toString() === val[0]) {
             this.need = item
+            this.needName = item.name
             break
           }
         }
@@ -258,6 +299,7 @@ export default {
         for (let item of this.popupPickerData[0]) {
           if (item.value.toString() === val[0]) {
             this.supplier = item
+            this.supplierName = item.name
             break
           }
         }
@@ -266,29 +308,50 @@ export default {
         for (let item of this.popupPickerData[0]) {
           if (item.value.toString() === val[0]) {
             this.contract = item
+            this.contractName = item.name
             break
           }
         }
         for (let item of this.contractList) {
           if (item.id.toString() === val[0]) {
             this.contractFull = item
+            this.relaCompactNo = item.relaCompactno
             break
           }
         }
-        let selectData = {
-          project: this.project,
-          control: this.control,
-          need: this.need,
-          supplier: this.supplier,
-          contract: this.contract,
-          contractFull: this.contractFull
+      } else if (this.attr === 'instorage') {
+        for (let item of this.popupPickerData[0]) {
+          if (item.value.toString() === val[0]) {
+            this.instorage = item
+            this.instorageName = item.name
+            break
+          }
         }
-        this.$emit('selectData', selectData)
+        for (let item of this.instorageList) {
+          if (item.id.toString() === val[0]) {
+            this.instorageFull = item
+            break
+          }
+        }
       }
       this.showPopupPicker = false
+      this.emit()
     },
     hidePopupPicker () {
       this.showPopupPicker = false
+    },
+    emit () {
+      let selectData = {
+        project: this.project,
+        control: this.control,
+        need: this.need,
+        supplier: this.supplier,
+        contract: this.contract,
+        contractFull: this.contractFull,
+        instorage: this.instorage,
+        instorageFull: this.instorageFull
+      }
+      this.$emit('selectData', selectData)
     }
   }
 }

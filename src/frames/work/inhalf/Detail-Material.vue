@@ -1,15 +1,15 @@
 <template>
   <section>
-    <div class="materiallist" @click="showMaterial($event)" v-for="(item, index) in data.list">
-      <h4 class="stocktit">{{index + 1}}.{{item.material.materialName}}</h4>
+    <div class="materiallist" @click="showMaterial($event)" v-for="(item, index) in materialList">
+      <h4 class="stocktit"><strong class="fr">{{item.arrivalCount}}</strong>{{index + 1}}.{{item.material.materialName}}</h4>
       <dl class="stockstep1 hide">
-          <dd>
+          <!-- <dd>
               <label>材料类别</label>
-              <p class="txt">{{materialMap.get(item.materialClass)}}</p>
-          </dd>
+              <p class="txt">{{materialMap.get(item.matreialClass)}}</p>
+          </dd> -->
           <dd>
-              <label>数量</label>
-              <p class="txt">{{item.quantity}}</p>
+              <label>验收量</label>
+              <p class="txt">{{item.arrivalCount}}</p>
           </dd>
           <dd>
               <label>无税单价</label>
@@ -20,24 +20,24 @@
               <p class="txt">{{item.amtExtax}}</p>
           </dd>
           <dd>
+              <label>税率</label>
+              <p class="txt">{{item.taxRate}}%</p>
+          </dd>
+          <dd>
               <label>含税单价</label>
-              <p class="txt">{{item.priceIntax}}</p>
+              <p class="txt">{{item.priceTax}}</p>
           </dd>
           <dd>
               <label>含税金额</label>
               <p class="txt">{{item.amtIntax}}</p>
           </dd>
           <dd>
-              <label>成本单价</label>
-              <p class="txt">{{item.costUnivalent}}</p>
+              <label>税额</label>
+              <p class="txt">{{item.amtIntax - item.amtExtax}}</p>
           </dd>
           <dd>
-              <label>剩余数量</label>
-              <p class="txt">{{item.leftCptnum}}</p>
-          </dd>
-          <dd>
-              <label>剩余金额</label>
-              <p class="txt">{{item.leftCptamt}}</p>
+              <label>剩余可验收</label>
+              <p class="txt">{{item.leftAmt}}</p>
           </dd>
           <!-- <dd>
               <label>备注</label>
@@ -52,7 +52,7 @@
 import { TransferDomDirective as TransferDom } from 'vux'
 import $ from 'jquery'
 export default {
-  props: ['materialMap'],
+  props: ['materialMap', 'materialList'],
   directives: {
     TransferDom
   },
@@ -61,12 +61,11 @@ export default {
   },
   data () {
     return {
-      billId: this.$route.params.billId || '',
-      data: {}
+
     }
   },
   created () {
-    this.getMaterials()
+
   },
   filters: {
   },
@@ -78,22 +77,6 @@ export default {
     showMaterial (event) {
       let target = event.target
       $(target).closest('.materiallist').find('dl').slideToggle('100')
-    },
-    getMaterials () {
-      var param = {
-        compact: {
-          id: this.billId
-        }
-      }
-      let requestUrl = 'appData/app/getCompactMaterial'
-      let that = this
-      this.post(requestUrl, param, function (result) {
-        if (result.status === '1') {
-          that.data = result.map
-        } else {
-          that.toastShow('text', result.message)
-        }
-      })
     }
   }
 }

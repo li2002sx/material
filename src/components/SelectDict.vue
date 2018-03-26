@@ -2,7 +2,7 @@
   <section>
     <dd @click="modiAttrPopupPicker()">
         <label>{{title}}</label>
-        <p class="txt">{{info.name}}</p>
+        <p class="txt">{{infoName}}</p>
         <i class="ico-sel"></i>
     </dd>
     <group v-show="showPopupPicker">
@@ -14,7 +14,7 @@
 <script>
 import { TransferDom, Popup, Group, PopupPicker } from 'vux'
 export default {
-  props: ['title', 'type'],
+  props: ['title', 'type', 'infoName'],
   directives: {
     TransferDom
   },
@@ -68,6 +68,7 @@ export default {
       for (let item of this.popupPickerData[0]) {
         if (item.value.toString() === val[0]) {
           this.info = item
+          this.infoName = item.name
           break
         }
       }

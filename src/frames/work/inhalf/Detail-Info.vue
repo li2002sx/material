@@ -2,32 +2,48 @@
   <section>
     <dl class="stockstep1">
         <dd>
-            <label>需用计划编号</label>
-            <p class="txt">{{data.nplanNo}}</p>
+            <label>验收单编号</label>
+            <p class="txt">{{data.checkNo}}</p>
+        </dd>
+        <dd>
+            <label>验收日期</label>
+            <p class="txt">{{data.checkDate}}</p>
         </dd>
         <dd>
             <label>所属项目</label>
             <p class="txt">{{data.project.projectName}}</p>
         </dd>
         <dd>
-            <label>材料类别</label>
-            <p class="txt">{{materialMap.get(data.matrialClass)}}</p>
+            <label>供应商</label>
+            <p class="txt">{{data.supplier.venderName}}</p>
         </dd>
         <dd>
-            <label>计划指定日期</label>
-            <p class="txt">{{data.planDate}}</p>
-        </dd>
-        <dd>
-            <label>计划使用日期</label>
-            <p class="txt">{{data.planUseDate}}</p>
-        </dd>
-        <dd>
-            <label>计划验收日期</label>
-            <p class="txt">{{data.planacceptDate}}</p>
+            <label>合同编号</label>
+            <p class="txt">{{data.compact.compactNo}}</p>
         </dd>
         <dd>
             <label>总控计划</label>
             <p class="txt">{{data.gcontrol.planNo}}</p>
+        </dd>
+        <dd>
+            <label>材料类别</label>
+            <p class="txt">{{materialMap.get(data.materialClass)}}</p>
+        </dd>
+        <dd>
+            <label>本期结算不含税金额</label>
+            <p class="txt">{{data.nowAmount}}</p>
+        </dd>
+        <dd>
+            <label>增值税税率</label>
+            <p class="txt">{{data.taxRate}}%</p>
+        </dd>
+        <dd>
+            <label>本期结算含税金额</label>
+            <p class="txt">{{data.nowTaxAmount}}</p>
+        </dd>
+        <dd>
+            <label>验收人</label>
+            <p class="txt">{{data.checkPerson.name}}</p>
         </dd>
         <dd>
             <label>状态</label>
@@ -53,11 +69,11 @@ export default {
   },
   data () {
     return {
-      billId: this.$route.params.billId || ''
+
     }
   },
   created () {
-    this.getDetail()
+
   },
   filters: {
   },
@@ -66,7 +82,6 @@ export default {
 
   },
   methods: {
-
   }
 }
 </script>

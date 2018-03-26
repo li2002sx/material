@@ -21,10 +21,10 @@
             <label>出库日期</label>
             <p class="txt">{{data.outDate}}</p>
         </dd>
-        <dd>
+        <!-- <dd>
             <label>领料单位</label>
             <p class="txt">{{data.receiveOrg.name}}</p>
-        </dd>
+        </dd> -->
         <dd>
             <label>领料人</label>
             <p class="txt">{{data.receivePerson.name}}</p>

@@ -1,6 +1,7 @@
 <template>
   <section>
-    <div v-title data-title="新增验收单"></div>
+    <div v-if="checkType=='00'" v-title data-title="新增半成品中间验收单"></div>
+    <div v-else v-title data-title="新增半成品最终验收单"></div>
     <!-- menu -->
     <dl class="stocktool">
         <dd @click="giveUp()">
@@ -50,9 +51,9 @@
         <div v-if="step == 1">
           <dl class="stockstep1">
               <dt>单据编号（保存后自动生成）</dt>
-              <select-supplier type='half' @selectData="selectContractData"></select-supplier>
-              <select-date title="验收日期" @selectDate="selectInDate"></select-date>
-              <!-- <select-dict title="付款方式" type="pay_mode" @selectDate="selectPayMode"></select-dict> -->
+              <select-supplier type='half' :projectName="project.name" :needName="need.name" :supplierName="supplier.name" :contractName="contract.name" :relaCompactNo="contractFull.relaCompactno"  @selectData="selectContractData"></select-supplier>
+              <select-date title="验收日期" :date="date" @selectData="selectInDate"></select-date>
+              <!-- <select-dict title="付款方式" type="pay_mode" :infoName="payMode.name"  @selectData="selectPayMode"></select-dict> -->
               <!-- <select-date title="入库日期" @selectDate="getSelectDate"></select-date> -->
               <dd>
                   <label>增值税税率</label>
@@ -82,10 +83,22 @@
             <dl class="stockstep1 hide">
                 <dd>
                     <label>材料类别</label>
-                    <p class="txt">{{materialMap.get(item.matrialClass)}}</p>
+                    <p class="txt">{{materialMap.get(item.materialClass)}}</p>
                 </dd>
                 <dd>
-                    <label>数量</label>
+                    <label>合同剩余数量</label>
+                    <p class="txt">{{item.leftCptnum}}</p>
+                </dd>
+                <dd>
+                    <label>合同剩余金额</label>
+                    <p class="txt">{{item.leftCptamt}}</p>
+                </dd>
+                <dd>
+                    <label class="red">本次验收</label>
+                    <input type="text" class="input" :value="item.inNum" @blur="changeInNum($event,index)" placeholder="请填写本次验收数量" />
+                </dd>
+                <dd>
+                    <label>采购数量</label>
                     <p class="txt">{{item.quantity}}</p>
                 </dd>
                 <dd>
@@ -107,18 +120,6 @@
                 <dd>
                     <label>成本单价</label>
                     <p class="txt">{{item.costUnivalent}}</p>
-                </dd>
-                <dd>
-                    <label>剩余数量</label>
-                    <p class="txt">{{item.leftCptnum}}</p>
-                </dd>
-                <dd>
-                    <label>剩余金额</label>
-                    <p class="txt">{{item.leftCptamt}}</p>
-                </dd>
-                <dd>
-                    <label>本次验收</label>
-                    <input type="text" class="input" @blur="changeInNum($event,index)" placeholder="请填写本次验收数量" />
                 </dd>
                 <dd>
                     <label>备注</label>
@@ -170,6 +171,7 @@ import selectDict from '../../components/SelectDict'
 // import selectDeduct from '../../components/SelectDeduct'
 // import selectWarehouse from '../../components/SelectWarehouse'
 import $ from 'jquery'
+// import bridge from './vue-temp/vue-editor-bridge';
 
 export default {
   directives: {
@@ -197,14 +199,16 @@ export default {
       needMaterial: {},
       compactMaterialFull: {},
       payMode: {},
-      taxRate: '0.0',
       remark: '',
       materialMap: new Map(),
       statusMap: new Map(),
       totalInNum: 0,
       totalInAmount: 0,
       totalTaxInAmount: 0,
-      images: []
+      images: [],
+      materialClass: '02',
+      checkType: this.$route.params.checkType || '00',
+      taxRate: '0.0'
     }
   },
   created () {
@@ -254,18 +258,24 @@ export default {
       let targe = event.target
       let item = this.compactMaterialFull.list[index]
       let inNum = parseInt($(targe).val()) || 0
-      if (inNum > item.need.leftNeednum) {
-        this.toastShow('text', '入库最大数量不能超过剩余数量:' + item.need.leftNeednum)
+      if (inNum > item.leftCptnum) {
+        this.toastShow('text', '入库最大数量不能超过剩余数量:' + item.leftCptnum)
         return
       }
       item.inNum = inNum
       this.$set(this.compactMaterialFull.list, index, item)
+      // for (let i = 0; i < this.compactMaterialFull.list.length; i++) {
+      //   if (i === index) {
+      //     this.compactMaterialFull.list[i] = item
+      //     break
+      //   }
+      // }
     },
     stepTo (index) {
-      // if (this.project.value === undefined) {
-      //   this.toastShow('text', '请选择一个项目')
-      //   return
-      // }
+      if (this.project.value === undefined) {
+        this.toastShow('text', '请选择一个项目')
+        return
+      }
       // if (this.control.value === undefined) {
       //   this.toastShow('text', '请选择一个总控计划')
       //   return
@@ -274,69 +284,45 @@ export default {
       //   this.toastShow('text', '请选择一个需用计划')
       //   return
       // }
-      // if (this.supplier.value === undefined) {
-      //   this.toastShow('text', '请选择一个供应商')
-      //   return
-      // }
-      // if (this.contract.value === undefined) {
-      //   this.toastShow('text', '请选择一个合同')
-      //   return
-      // }
+      if (this.supplier.value === undefined) {
+        this.toastShow('text', '请选择一个供应商')
+        return
+      }
+      if (this.contract.value === undefined) {
+        this.toastShow('text', '请选择一个合同')
+        return
+      }
       this.step += index
       if (this.step === 2) {
-        this.getContractMaterials()
-        // this.getNeedMaterials()
+        if (index > 0) {
+          this.getContractMaterials()
+        }
       } else if (this.step === 3) {
-        let that = this
-        this.compactMaterial.list.forEach(function (info) {
-          let inNum = parseInt(info.inNum) || 0
-          that.totalInNum += inNum
-          that.totalInAmount += info.priceExtax * inNum
-          that.totalTaxInAmount += info.priceTax * inNum
-        })
+        if (this.compactMaterialFull.list.length === 0) {
+          this.toastShow('text', '没有可以验收的材料，请核对合同是否正确')
+        } else {
+          let that = this
+          this.compactMaterialFull.list.forEach(function (info) {
+            let inNum = parseInt(info.inNum) || 0
+            that.totalInNum += inNum
+            that.totalInAmount += info.priceExtax * inNum
+            that.totalTaxInAmount += info.priceTax * inNum
+          })
+        }
       }
     },
     getContractMaterials () {
       var param = {
         compact: {
-          // id: this.contract.value
-          id: 'a3a9ca9fc95842ccb34b54340eed5013'
+          id: this.contract.value
+          // id: 'b900ca7adcc342e78fb21da1b08df3e3'
         }
       }
       let requestUrl = 'appData/app/getCompactMaterial'
       let that = this
       this.post(requestUrl, param, function (result) {
         if (result.status === '1') {
-          that.compactMaterial = result.map
-          that.compactMaterial.list.forEach(function (info) {
-            info.need = {}
-          })
-          that.getNeedMaterials()
-        } else {
-          that.toastShow('text', result.message)
-        }
-      })
-    },
-    getNeedMaterials () {
-      var param = {
-        plan: {
-          // id: this.need.value
-          id: '6001bfe9a98d4d02ba011477fef38009'
-        }
-      }
-      let requestUrl = 'appData/app/getNeedplanMaterial'
-      let that = this
-      this.post(requestUrl, param, function (result) {
-        if (result.status === '1') {
-          // that.needMaterial = result.map
-          let map = new Map()
-          result.map.list.forEach(function (info) {
-            map.set(info.material.id, info)
-          })
-          that.compactMaterial.list.forEach(function (info) {
-            info.need = map.get(info.material.id)
-          })
-          that.compactMaterialFull = that.compactMaterial
+          that.compactMaterialFull = result.map
         } else {
           that.toastShow('text', result.message)
         }
@@ -347,7 +333,18 @@ export default {
       $(target).next('dl').slideToggle('100')
     },
     save () {
-      var halfMaterialList = []
+      if (this.totalInNum === 0) {
+        this.toastShow('text', '入库总数量不能为0')
+        return
+      }
+
+      if (this.payMode === undefined) {
+        this.toastShow('text', '请选择一个结算方式')
+        return
+      }
+      var inMaterialList = []
+      var errArr = []
+      let that = this
       this.compactMaterialFull.list.forEach(function (info) {
         let item = {
           material: info.material,
@@ -358,55 +355,65 @@ export default {
           priceTax: info.priceIntax,
           amtIntax: info.priceIntax * info.inNum,
           amtTax: (info.priceIntax - info.priceExtax) * info.inNum,
-          matreialClass: '02',
+          matreialClass: that.materialClass,
           compact: {
-            id: this.contract.value
+            id: that.contract.value
           }
         }
-        halfMaterialList.push(item)
-      })
-
-      var param = {
-        checkType: '00',
-        checkDate: this.date,
-        project: {
-          id: this.project.value
-        },
-        supplier: {
-          id: this.supplier.value
-        },
-        compact: {
-          id: this.contract.value
-        },
-        materialClass: '02',
-        gcontrol: {
-          id: this.contractFull.gcontrol.id
-        },
-        needPlan: {
-          id: this.need.value
-        },
-        taxRate: this.taxRate,
-        remarks: this.remark,
-        nowAmount: this.totalInAmount,
-        nowTaxAmount: this.totalTaxInAmount,
-        checkPerson: {
-          id: this.getFieldByUseInfo('userId')
-        },
-        halfMaterialList: halfMaterialList,
-        attachPics: this.images
-      }
-
-      let requestUrl = 'appData/app/newCheckHalf'
-      let that = this
-      this.post(requestUrl, param, function (result) {
-        if (result.status === '1') {
-
-        } else {
-          that.toastShow('text', result.message)
+        inMaterialList.push(item)
+        if (info.inNum > info.leftCptnum) {
+          errArr.push(this.stringFormat('{0}的合同剩余数为{1},你录入的值为{2}', info.material.materialName, info.leftCptnum, info.inNum))
         }
       })
+
+      if (errArr.length === 0) {
+        this.getCanUseAmount(this.project.value, this.contractFull.gcontrol.id, this.materialClass, function (result) {
+          if (result > that.totalInAmount) {
+            var param = {
+              checkType: that.checkType,
+              checkDate: that.dateToString(that.date, 'yyyy-MM-dd hh:mm:ss'),
+              project: {
+                id: that.project.value
+              },
+              supplier: {
+                id: that.supplier.value
+              },
+              compact: {
+                id: that.contract.value
+              },
+              materialClass: that.materialClass,
+              gcontrol: {
+                id: that.contractFull.gcontrol.id
+              },
+              taxRate: that.taxRate,
+              nowAmount: that.totalInAmount,
+              nowTaxAmount: that.totalTaxInAmount,
+              checkPerson: {
+                id: that.getFieldByUseInfo().userInfo.userId
+              },
+              remarks: that.remark,
+              halfMaterial: inMaterialList,
+              attachPics: [],
+              businAttachPics: that.images
+            }
+
+            let requestUrl = 'appData/app/newCheckHalf'
+            that.post(requestUrl, param, function (result) {
+              if (result.status === '1') {
+                that.toastShow('success', '提交入库成功')
+                that.toUrl('/in')
+              } else {
+                that.toastShow('text', result.message)
+              }
+            })
+          } else {
+            that.toastShow('text', that.stringFormat('实际入库金额{0}大于剩余额度{1}', that.totalInAmount, result))
+          }
+        })
+      } else {
+        this.toastShow('text', errArr.join('\n'))
+      }
     }
   }
 }
 </script>
-

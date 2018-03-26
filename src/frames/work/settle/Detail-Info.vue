@@ -2,64 +2,68 @@
   <section>
     <dl class="stockstep1">
         <dd>
-            <label>合同编号</label>
-            <p class="txt">{{data.compactNo}}</p>
+            <label>结算单编号</label>
+            <p class="txt">{{data.billNo}}</p>
+        </dd>
+        <dd>
+            <label>结算日期</label>
+            <p class="txt">{{data.settleDate}}</p>
         </dd>
         <dd>
             <label>所属项目</label>
             <p class="txt">{{data.project.projectName}}</p>
         </dd>
         <dd>
-            <label>总控计划编号</label>
+            <label>关联总控计划</label>
             <p class="txt">{{data.gcontrol.planNo}}</p>
         </dd>
         <dd>
-            <label>甲方</label>
-            <p class="txt">{{data.parta}}</p>
+            <label>供应商</label>
+            <p class="txt">{{data.supplier.venderName}}</p>
         </dd>
         <dd>
-            <label>签约日期</label>
-            <p class="txt">{{data.contractDate}}</p>
+            <label>合同编号</label>
+            <p class="txt">{{data.compact.compactNo}}</p>
         </dd>
         <dd>
             <label>材料类别</label>
             <p class="txt">{{materialMap.get(data.materialClass)}}</p>
         </dd>
         <dd>
-            <label>云筑网合同编号</label>
-            <p class="txt">{{data.relaCompactno}}</p>
-        </dd>
-        <dd>
-            <label>合同名称</label>
-            <p class="txt">{{data.compactName}}</p>
-        </dd>
-        <dd>
-            <label>备案编号</label>
+            <label>含税结算金额</label>
             <p class="txt"></p>
         </dd>
         <dd>
-            <label>合同状态</label>
+            <label>抵扣税额</label>
+            <p class="txt"></p>
+        </dd>
+        <dd>
+            <label>税率</label>
+            <p class="txt"></p>
+        </dd>
+        <dd>
+            <label>本期按合同应付款</label>
+            <p class="txt"></p>
+        </dd>
+        <dd>
+            <label>含本期累计已结算</label>
+            <p class="txt"></p>
+        </dd>
+        <dd>
+            <label>含本期累计已支付</label>
+            <p class="txt"></p>
+        </dd>
+        <dd>
+            <label>含本期累计欠款</label>
+            <p class="txt"></p>
+        </dd>
+        <dd>
+            <label>编制机构</label>
+            <p class="txt"></p>
+        </dd>
+        <dd>
+            <label>状态</label>
             <p class="txt">{{statusMap.get(data.status)}}</p>
-        </dd>
-        <dd>
-            <label>乙方</label>
-            <p class="txt">{{data.partbName}}</p>
-        </dd>
-        <dd>
-            <label>乙方纳税人类别</label>
-            <p class="txt"></p>
-        </dd>
-        <dd>
-            <label>经办人</label>
-            <p class="txt">{{data.operater.name}}</p>
-        </dd>
-        <dd>
-            <label>税率(%)</label>
-            <p class="txt">{{data.taxRate}}%</p>
-        </dd>
-        <dd>
-            <label>含税金额</label>
-            <p class="txt">{{data.amtIntax}}</p>
         </dd>
         <!-- <dd>
             <label>备注</label>
@@ -94,7 +98,6 @@ export default {
 
   },
   methods: {
-
   }
 }
 </script>
