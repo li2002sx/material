@@ -39,7 +39,13 @@ export default {
     }
   },
   created () {
-    // this.getAttachList()
+    let that = this
+    let interval = window.setInterval(function () {
+      if (that.attachList) {
+        that.getAttachList()
+        clearInterval(interval)
+      }
+    }, 500)
   },
   filters: {
     realPath (item) {
@@ -48,6 +54,7 @@ export default {
   },
   computed: {},
   mounted () {
+
   },
   methods: {
     getAttachList () {

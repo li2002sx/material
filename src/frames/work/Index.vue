@@ -10,6 +10,11 @@
     <div class="platlist">
         <!-- <h4></h4> -->
         <dl>
+            <dd @click="toUrl('/notice')">
+                <i v-show="msgCount > 0" class="notify">{{msgCount}}</i>
+                <div class="plat05"></div>
+                <p>我的通知</p>
+            </dd>
             <dd @click="toUrl('/work/todo')">
                 <div class="plat08"></div>
                 <p>我的待办</p>
@@ -29,11 +34,6 @@
             <dd @click="tip()">
                 <div class="plat06"></div>
                 <p>变更签证</p>
-            </dd>
-            <dd @click="tip()">
-                <!-- <i class="notify">10+</i> -->
-                <div class="plat05"></div>
-                <p>成本管理</p>
             </dd>
             <dd @click="tip()">
                 <div class="plat09"></div>
@@ -79,9 +79,11 @@ export default {
   },
   data () {
     return {
+      msgCount: 0
     }
   },
   created () {
+    this.getMsgCount()
   },
   filters: {
   },
@@ -90,6 +92,17 @@ export default {
 
   },
   methods: {
+    getMsgCount () {
+      let requestUrl = 'appData/app/getMessageCount'
+      let that = this
+      this.get(requestUrl, null, function (result) {
+        if (result.status === '1') {
+          that.msgCount = result.map.count
+        } else {
+          that.toastShow('text', result.message)
+        }
+      })
+    },
     tip () {
       this.toastShow('text', '功能开发中，敬请期待')
     }

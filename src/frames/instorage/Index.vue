@@ -1,11 +1,11 @@
 <template>
   <section>
     <div v-title data-title="验收单"></div>
-    <dl class="stocktool">
-        <dd v-if="index==0" @click="toUrl('/in/add')">新增主材料验收单</dd>
-        <dd v-else-if="index==1" @click="toUrl('/in/addhalf/00')">新增半成品中间验收单</dd>
-        <dd v-else-if="index==2" @click="toUrl('/in/addhalf/01')">新增半成品最终验收单</dd>
-        <dd v-else-if="index==3" @click="toUrl('/in/addlittle')">新增零星材料验收单</dd>
+    <dl class="stocktool" v-show="((index==0 || index==3) && hasRole('goods_manager') || (index==1 || index==2) && hasRole('project_construct'))">
+        <dd v-if="index==0 && hasRole('goods_manager')" @click="toUrl('/in/add')">新增主材料验收单</dd>
+        <dd v-else-if="index==1 && hasRole('project_construct')" @click="toUrl('/in/addhalf/00')">新增半成品中间验收单</dd>
+        <dd v-else-if="index==2 && hasRole('project_construct')" @click="toUrl('/in/addhalf/01')">新增半成品最终验收单</dd>
+        <dd v-else-if="index==3 && hasRole('goods_manager')" @click="toUrl('/in/addlittle')">新增零星材料验收单</dd>
     </dl>
     <tab :line-width=2 defaultColor="#333" active-color='#61a0f2' v-model="index">
       <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}
@@ -14,7 +14,7 @@
     <!--list-->
     <div class="stockin">
       <dl v-show="index == 0" class="todolist">
-          <dd v-for="(item, index) in mainData.list" @click="toUrl('/work/in/detail/0/0/' + item.id)">
+          <dd v-for="(item, index) in mainData.list" @click="toBillUrl(item)">
               <div class="title">
                   <i>{{index + 1}}</i>
                   <h3>项目名称：{{item.project.projectName}}</h3>
@@ -23,7 +23,8 @@
                   <p class="time">验收时间：{{item.checkDate}}</p>
                   <p class="time">付款方式：{{payModeMap.get(item.payMode)}}</p>
                   <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
-                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
+                  <p class="status">单据状态：{{flowStatusMap.get(item.flowStatus)}}</p>
+                  <p class="status">流程状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
                   <span>供应商：{{item.supplier.venderName}}</span>
@@ -31,7 +32,7 @@
           </dd>
       </dl>
       <dl v-show="index == 1" class="todolist">
-          <dd v-for="(item, index) in halfMidData.list" @click="toUrl('/work/inhalf/detail/0/0/' + item.id)">
+          <dd v-for="(item, index) in halfMidData.list" @click="toBillUrl(item)">
               <div class="title">
                   <i>{{index + 1}}</i>
                   <h3>项目名称：{{item.project.projectName}}</h3>
@@ -41,7 +42,8 @@
                   <!-- <p class="time">付款方式：{{payModeMap.get(item.payMode)}}</p> -->
                   <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
                   <p class="time">验收类型：{{checkTypeMap.get(item.checkType)}}</p>
-                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
+                  <p class="status">单据状态：{{flowStatusMap.get(item.flowStatus)}}</p>
+                  <p class="status">流程状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
                   <span>供应商：{{item.supplier.venderName}}</span>
@@ -49,7 +51,7 @@
           </dd>
       </dl>
       <dl v-show="index == 2" class="todolist">
-          <dd v-for="(item, index) in halfLastData.list" @click="toUrl('/work/inhalf/detail/0/0/' + item.id)">
+          <dd v-for="(item, index) in halfLastData.list" @click="toBillUrl(item)">
               <div class="title">
                   <i>{{index + 1}}</i>
                   <h3>项目名称：{{item.project.projectName}}</h3>
@@ -59,7 +61,9 @@
                   <!-- <p class="time">付款方式：{{payModeMap.get(item.payMode)}}</p> -->
                   <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
                   <p class="time">验收类型：{{checkTypeMap.get(item.checkType)}}</p>
-                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
+                  <p class="time">验收类型：{{checkTypeMap.get(item.checkType)}}</p>
+                  <p class="status">单据状态：{{flowStatusMap.get(item.flowStatus)}}</p>
+                  <p class="status">流程状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
                   <span>供应商：{{item.supplier.venderName}}</span>
@@ -67,7 +71,7 @@
           </dd>
       </dl>
       <dl v-show="index == 3" class="todolist">
-          <dd v-for="(item, index) in littleData.list" @click="toUrl('/work/in/detail/0/0/' + item.id)">
+          <dd v-for="(item, index) in littleData.list" @click="toBillUrl(item)">
               <div class="title">
                   <i>{{index + 1}}</i>
                   <h3>项目名称：{{item.project.projectName}}</h3>
@@ -76,7 +80,8 @@
                   <p class="time">验收时间：{{item.checkDate}}</p>
                   <p class="time">付款方式：{{payModeMap.get(item.payMode)}}</p>
                   <p class="time">材料类型：{{materialMap.get(item.materialClass)}}</p>
-                  <p class="status">状态：{{statusMap.get(item.status)}}</p>
+                  <p class="status">单据状态：{{flowStatusMap.get(item.flowStatus)}}</p>
+                  <p class="status">流程状态：{{statusMap.get(item.status)}}</p>
               </div>
               <div class="other">
                   <span>供应商：{{item.supplier.venderName}}</span>
@@ -105,6 +110,7 @@ export default {
       index: 0,
       materialMap: new Map(),
       statusMap: new Map(),
+      flowStatusMap: new Map(),
       payModeMap: new Map(),
       checkTypeMap: new Map(),
       materialType: '',
@@ -117,6 +123,7 @@ export default {
   created () {
     this.materialMap = this.getDict('materialClass')
     this.statusMap = this.getDict('status')
+    this.flowStatusMap = this.getDict('flowStatus')
     this.payModeMap = this.getDict('payMode')
     this.checkTypeMap = this.getDict('checkType')
     this.getList('01')
@@ -131,6 +138,29 @@ export default {
 
   },
   methods: {
+    toBillUrl (item) {
+      if (this.hasRole('goods_manager') && (item.status === '01' || item.status === '03')) {
+        let procId = item.procInsId
+        if (procId === undefined) {
+          procId = '0'
+        }
+        if (item.materialClass === '01' || item.materialClass === '03') {
+          this.toUrl('/in/add/' + procId + '/' + item.id)
+        } else if (item.materialClass === '02') {
+          if (item.checkType === '00') {
+            this.toUrl('/inhalf/00/add/' + procId + '/' + item.id)
+          } else if (item.checkType === '01') {
+            this.toUrl('/inhalf/01/add/' + procId + '/' + item.id)
+          }
+        }
+      } else {
+        if (item.materialClass === '01' || item.materialClass === '03') {
+          this.toUrl('/work/in/detail/0/0/' + item.id)
+        } else if (item.materialClass === '02') {
+          this.toUrl('/work/inhalf/detail/0/0/' + item.id)
+        }
+      }
+    },
     getList (materialType) {
       var param = {
         materialClass: materialType

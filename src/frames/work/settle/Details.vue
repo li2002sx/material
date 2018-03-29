@@ -13,7 +13,7 @@
         <detail-info :material-map="materialMap" :status-map="statusMap" :data="data.settle" v-show="index==0"></detail-info>
         <detail-material :material-map="materialMap" :material-list="data.countInList" v-show="index==1"></detail-material>
         <detail-material :material-map="materialMap" :material-list="data.countInList" v-show="index==2"></detail-material>
-        <detail-pic v-show="index==3"></detail-pic>
+        <detail-attach :attach-list="data.attachList" v-show="index==3"></detail-attach>
         <detail-history v-show="index==4"></detail-history>
     </div>
     <!--list-->
@@ -24,7 +24,7 @@
 import { TransferDomDirective as TransferDom, Tab, TabItem } from 'vux'
 import detailInfo from './Detail-Info'
 import detailMaterial from './Detail-Material'
-import detailPic from '../Detail-Pic'
+import detailAttach from '../Detail-Attach'
 import detailHistory from '../Detail-History'
 export default {
   directives: {
@@ -35,7 +35,7 @@ export default {
     TabItem,
     detailInfo,
     detailMaterial,
-    detailPic,
+    detailAttach,
     detailHistory
   },
   data () {

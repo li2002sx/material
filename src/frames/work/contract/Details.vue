@@ -14,7 +14,7 @@
         <detail-material :material-map="materialMap" v-show="index==1"></detail-material>
         <detail-clause v-show="index==2"></detail-clause>
         <detail-pay v-show="index==3"></detail-pay>
-        <detail-attach :data="data" v-show="index==4"></detail-attach>
+        <detail-attach :attach-list="data.attachList" v-show="index==4"></detail-attach>
         <detail-history v-show="index==5"></detail-history>
     </div>
     <!--list-->

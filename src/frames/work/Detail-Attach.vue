@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="materiallist" v-for="(item, index) in data.attachList">
+    <div class="materiallist" v-for="(item, index) in attachList">
       <h4 class="stocktit" @click="showAttach(item)">{{index + 1}}.{{item.fileName}}</h4>
       <dl class="stockstep1 hide">
           <!-- <dd>
@@ -16,7 +16,7 @@
 import { TransferDomDirective as TransferDom } from 'vux'
 // import $ from 'jquery'
 export default {
-  props: ['data'],
+  props: ['attachList'],
   directives: {
     TransferDom
   },
@@ -29,7 +29,7 @@ export default {
     }
   },
   created () {
-    // this.getMaterials()
+
   },
   filters: {
   },

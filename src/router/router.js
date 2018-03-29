@@ -24,6 +24,7 @@ const NoticeIndex = r => require.ensure([], () => r(require('../frames/notice/In
 const NoticeDetail = r => require.ensure([], () => r(require('../frames/notice/Detail.vue')), 'NoticeDetail')
 
 const ControlWorkDetail = r => require.ensure([], () => r(require('../frames/work/control/Details.vue')), 'ControlWorkDetail')
+const ControlChangeWorkDetail = r => require.ensure([], () => r(require('../frames/work/controlchange/Details.vue')), 'ControlChangeWorkDetail')
 const InWorkDetail = r => require.ensure([], () => r(require('../frames/work/in/Details.vue')), 'InWorkDetail')
 const InHalfWorkDetail = r => require.ensure([], () => r(require('../frames/work/inhalf/Details.vue')), 'InHalfWorkDetail')
 const OutWorkDetail = r => require.ensure([], () => r(require('../frames/work/out/Details.vue')), 'OutWorkDetail')
@@ -66,6 +67,9 @@ export default [{
   path: '/work/control/:action/:procId/:taskId/:billId',
   component: ControlWorkDetail
 }, {
+  path: '/work/controlchange/:action/:procId/:taskId/:billId',
+  component: ControlChangeWorkDetail
+}, {
   path: '/work/in/:action/:procId/:taskId/:billId',
   component: InWorkDetail
 }, {
@@ -99,10 +103,22 @@ export default [{
   path: '/in/addlittle',
   component: InAddLittle
 }, {
+  path: '/in/add/:procId/:billId',
+  component: InAdd
+}, {
+  path: '/in/addhalf/:checkType/:procId/:billId',
+  component: InAddHalf
+}, {
+  path: '/in/addlittle/:procId/:billId',
+  component: InAddLittle
+}, {
   path: '/out',
   component: OutIndex
 }, {
   path: '/out/add',
+  component: OutAdd
+}, {
+  path: '/out/add:/:procId/:billId',
   component: OutAdd
 }, {
   path: '/notice',

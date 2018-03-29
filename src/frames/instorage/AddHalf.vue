@@ -50,8 +50,12 @@
         </ul>
         <div v-if="step == 1">
           <dl class="stockstep1">
-              <dt>单据编号（保存后自动生成）</dt>
-              <select-supplier type='half' :projectName="project.name" :needName="need.name" :supplierName="supplier.name" :contractName="contract.name" :relaCompactNo="contractFull.relaCompactno"  @selectData="selectContractData"></select-supplier>
+              <dt v-if="billId.length == 0">单据编号（保存后自动生成）</dt>
+              <dd v-else>
+                  <label>单据编号</label>
+                  <p class="txt">{{billNo}}</p>
+              </dd>
+              <select-supplier type='half' :project="project" :need="need" :supplier="supplier" :contract="contract" :relaCompactNo="contractFull.relaCompactno"  @selectData="selectContractData"></select-supplier>
               <select-date title="验收日期" :date="date" @selectData="selectInDate"></select-date>
               <!-- <select-dict title="付款方式" type="pay_mode" :infoName="payMode.name"  @selectData="selectPayMode"></select-dict> -->
               <!-- <select-date title="入库日期" @selectDate="getSelectDate"></select-date> -->
@@ -85,14 +89,14 @@
                     <label>材料类别</label>
                     <p class="txt">{{materialMap.get(item.materialClass)}}</p>
                 </dd>
-                <dd>
+                <!-- <dd>
                     <label>合同剩余数量</label>
                     <p class="txt">{{item.leftCptnum}}</p>
                 </dd>
                 <dd>
                     <label>合同剩余金额</label>
                     <p class="txt">{{item.leftCptamt}}</p>
-                </dd>
+                </dd> -->
                 <dd>
                     <label class="red">本次验收</label>
                     <input type="text" class="input" :value="item.inNum" @blur="changeInNum($event,index)" placeholder="请填写本次验收数量" />
@@ -155,7 +159,7 @@
           </div>
         </div>
         <div v-else-if="step == 4">
-          <select-pic @selectData="selectPicData"></select-pic>
+          <select-pic :images="images" @selectData="selectPicData"></select-pic>
         </div>
     </div>
     <!-- list end -->
@@ -187,6 +191,9 @@ export default {
   },
   data () {
     return {
+      billId: this.$route.params.billId || '',
+      procId: this.$route.params.procId || '',
+      billNo: '',
       step: 1,
       date: new Date(),
       project: {},
@@ -208,12 +215,14 @@ export default {
       images: [],
       materialClass: '02',
       checkType: this.$route.params.checkType || '00',
-      taxRate: '0.0'
+      taxRate: '0.0',
+      inMaterialMap: new Map()
     }
   },
   created () {
     this.materialMap = this.getDict('materialClass')
     this.statusMap = this.getDict('status')
+    this.getDetail()
   },
   filters: {
   },
@@ -221,6 +230,68 @@ export default {
   mounted () {
   },
   methods: {
+    getDetail () {
+      if (this.billId.length > 0) {
+        var param = {
+          id: this.billId
+        }
+        let requestUrl = 'appData/app/checkHalfInfo'
+        let that = this
+        this.get(requestUrl, param, function (result) {
+          if (result.status === '1') {
+            let data = result.map.checkBill
+            that.billNo = data.inNo
+            that.checkDate = new Date(data.checkDate)
+            that.inDate = data.inDate
+            that.project = {
+              value: data.project.id,
+              name: data.project.projectName
+            }
+            that.control = {
+              value: data.gcontrol.id,
+              name: data.gcontrol.planNo
+            }
+            that.need = {
+              value: data.needPlan.id,
+              name: data.needPlan.nplanNo
+            }
+            that.supplier = {
+              value: data.supplier.id,
+              name: data.supplier.venderName
+            }
+            that.contract = {
+              value: data.compact.id,
+              name: data.compact.compactNo
+            }
+            that.contractFull = data.compact
+            that.contractFull.relaCompactno = data.releCompactno
+            that.payMode = {
+              value: data.payMode,
+              name: that.getDict('payMode').get(data.payMode)
+            }
+            that.remark = data.remarks
+            if (data.attachList !== undefined) {
+              for (let item of data.attachList) {
+                let imageUrl = global.picUrl + item.filePath + '/' + item.id + '.' + item.fileSuffix
+                that.getBase64(imageUrl)
+                  .then(function (base64) {
+                    that.images.push(base64)
+                  }, function (err) {
+                    console.log(err)
+                  })
+              }
+            }
+            if (data.inMaterialList !== undefined) {
+              data.inMaterialList.forEach(function (info) {
+                that.inMaterialMap.set(info.material.id, info)
+              })
+            }
+          } else {
+            that.toastShow('text', result.message)
+          }
+        })
+      }
+    },
     selectContractData: function (data) {
       if (data != null) {
         this.project = data.project
@@ -302,12 +373,18 @@ export default {
           this.toastShow('text', '没有可以验收的材料，请核对合同是否正确')
         } else {
           let that = this
+          that.totalInNum = 0
+          that.totalInAmount = 0
+          that.totalTaxInAmount = 0
           this.compactMaterialFull.list.forEach(function (info) {
             let inNum = parseInt(info.inNum) || 0
             that.totalInNum += inNum
             that.totalInAmount += info.priceExtax * inNum
             that.totalTaxInAmount += info.priceTax * inNum
           })
+          if (that.totalInNum === 0) {
+            that.toastShow('text', '您还没有验收材料')
+          }
         }
       }
     },
@@ -323,6 +400,12 @@ export default {
       this.post(requestUrl, param, function (result) {
         if (result.status === '1') {
           that.compactMaterialFull = result.map
+          that.compactMaterialFull.list.forEach(function (info) {
+            let item = that.inMaterialMap.get(info.material.id)
+            if (item !== undefined) {
+              info.inNum = item.arrivalCount
+            }
+          })
         } else {
           that.toastShow('text', result.message)
         }
@@ -367,7 +450,8 @@ export default {
       })
 
       if (errArr.length === 0) {
-        this.getCanUseAmount(this.project.value, this.contractFull.gcontrol.id, this.materialClass, function (result) {
+        this.getCanUseAmount(this.project.value, this.control.value, this.materialClass, function (result) {
+          result = 10000000
           if (result > that.totalInAmount) {
             var param = {
               checkType: that.checkType,
@@ -383,7 +467,7 @@ export default {
               },
               materialClass: that.materialClass,
               gcontrol: {
-                id: that.contractFull.gcontrol.id
+                id: that.control.id
               },
               taxRate: that.taxRate,
               nowAmount: that.totalInAmount,
@@ -395,6 +479,13 @@ export default {
               halfMaterial: inMaterialList,
               attachPics: [],
               businAttachPics: that.images
+            }
+            if (that.billId.length > 0) {
+              param.id = that.billId
+              param.inNo = that.billNo
+            }
+            if (that.procId.length > 0 && that.procId !== '0') {
+              param.procInsId = that.procId
             }
 
             let requestUrl = 'appData/app/newCheckHalf'

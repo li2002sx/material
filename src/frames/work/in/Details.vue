@@ -10,8 +10,8 @@
     </tab>
     <!--list-->
     <div class="stockin">
-        <detail-info :material-map="materialMap" :pay-mode-map="payModeMap" :data="data" v-show="index==0"></detail-info>
-        <detail-material :material-map="materialMap" :material-list="data.inMaterialList" v-show="index==1"></detail-material>
+        <detail-info :material-map="materialMap" :status-map="statusMap" :pay-mode-map="payModeMap" :data="data" v-show="index==0"></detail-info>
+        <detail-material :material-map="materialMap" :data="data" v-show="index==1"></detail-material>
         <detail-pic v-show="index==2" :attach-list="data.attachList"></detail-pic>
         <detail-history v-show="index==3"></detail-history>
     </div>
@@ -49,19 +49,25 @@ export default {
       data: {
         materialIn: {},
         project: {},
-        gcontrol: {},
+        gcontrol: {
+          planNo: ''
+        },
         supplier: {},
         compact: {},
         checkPerson: {},
-        needPlan: {},
+        needPlan: {
+          nplanNo: ''
+        },
         inMaterialList: []
       },
       materialMap: new Map(),
+      statusMap: new Map(),
       payModeMap: new Map()
     }
   },
   created () {
     this.materialMap = this.getDict('materialClass')
+    this.statusMap = this.getDict('status')
     this.payModeMap = this.getDict('payMode')
     this.getDetail()
   },
@@ -81,6 +87,16 @@ export default {
       this.get(requestUrl, param, function (result) {
         if (result.status === '1') {
           that.data = result.map.checkBill
+          if (that.data.gcontrol === undefined) {
+            that.data.gcontrol = {
+              planNo: ''
+            }
+          }
+          if (that.data.needPlan === undefined) {
+            that.data.needPlan = {
+              nplanNo: ''
+            }
+          }
         } else {
           that.toastShow('text', result.message)
         }
@@ -111,4 +127,3 @@ export default {
   }
 }
 </script>
-

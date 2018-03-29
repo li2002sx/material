@@ -17,6 +17,14 @@
         <!-- search end -->
         <!-- list -->
         <dl class="indexnotice">
+            <dd @click="toUrl('/notice')">
+                <i class="ico-notice">
+                    <em v-show="msgCount > 0"></em>
+                </i>
+                <h3>通知</h3>
+                <p v-if="msgCount > 0">您有新的公告</p>
+                <p v-else>您的通知消息</p>
+            </dd>
             <dd @click="toUrl('/work/todo')">
                 <i class="ico-file">
                   <em v-show="todoCount > 0"></em>
@@ -47,13 +55,13 @@
                 <h3>材料出库</h3>
                 <p>按需分配使用</p>
             </dd>
-            <dd @click="tip()">
+            <!-- <dd @click="tip()">
                 <i class="ico-task">
                 </i>
                 <b class="time"></b>
                 <h3>统计分析</h3>
                 <p>成本统计，付款统计</p>
-            </dd>
+            </dd> -->
         </dl>
         <!-- list end -->
     </div>
@@ -74,10 +82,12 @@ export default {
   },
   data () {
     return {
+      msgCount: 0,
       todoCount: 0
     }
   },
   created () {
+    this.getMsgCount()
     this.getTodos()
   },
   filters: {
@@ -87,6 +97,17 @@ export default {
 
   },
   methods: {
+    getMsgCount () {
+      let requestUrl = 'appData/app/getMessageCount'
+      let that = this
+      this.get(requestUrl, null, function (result) {
+        if (result.status === '1') {
+          that.msgCount = result.map.count
+        } else {
+          that.toastShow('text', result.message)
+        }
+      })
+    },
     getTodos () {
       let requestUrl = 'appData/app/todoData'
       let that = this

@@ -6,6 +6,10 @@
             <p class="txt">{{data.inNo}}</p>
         </dd>
         <dd>
+            <label>材料类别</label>
+            <p class="txt">{{materialMap.get(data.materialClass)}}</p>
+        </dd>
+        <dd>
             <label>验收日期</label>
             <p class="txt">{{data.checkDate}}</p>
         </dd>
@@ -27,7 +31,7 @@
         </dd>
         <dd>
             <label>总控计划</label>
-            <p class="txt">{{data.gcontrol.planNo}}</p>
+            <p class="txt">{{data.gcontrol==undefined?'':data.gcontrol.planNo}}</p>
         </dd>
         <dd>
             <label>材料类别</label>
@@ -39,7 +43,7 @@
         </dd>
         <dd>
             <label>需用计划</label>
-            <p class="txt">{{data.needPlan.nplanNo}}</p>
+            <p class="txt">{{data.needPlan==undefined?'':data.needPlan.nplanNo}}</p>
         </dd>
         <!-- <dd>
             <label>验收金额</label>
@@ -60,6 +64,10 @@
             <p class="txt">{{data.inNo}}</p>
         </dd>
         <dd>
+            <label>材料类别</label>
+            <p class="txt">{{materialMap.get(data.materialClass)}}</p>
+        </dd>
+        <dd>
             <label>验收日期</label>
             <p class="txt">{{data.checkDate}}</p>
         </dd>
@@ -77,7 +85,7 @@
         </dd>
         <dd>
             <label>需用计划</label>
-            <p class="txt">{{data.needPlan.nplanNo}}</p>
+            <p class="txt">{{data.needPlan==undefined?'':data.needPlan.nplanNo}}</p>
         </dd>
     </dl>
   </section>
@@ -86,7 +94,7 @@
 <script>
 import { TransferDomDirective as TransferDom } from 'vux'
 export default {
-  props: ['materialMap', 'payModeMap', 'data'],
+  props: ['materialMap', 'statusMap', 'payModeMap', 'data'],
   directives: {
     TransferDom
   },

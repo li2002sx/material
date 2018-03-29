@@ -10,9 +10,9 @@
     </tab>
     <!--list-->
     <div class="stockin">
-        <detail-info :material-map="materialMap" :data="data" v-show="index==0"></detail-info>
-        <detail-material :material-list="data.outMaterialList" v-show="index==1"></detail-material>
-        <detail-pic v-show="index==2"></detail-pic>
+        <detail-info :material-map="materialMap" :status-map="statusMap" :data="data" v-show="index==0"></detail-info>
+        <detail-material :material-map="materialMap" :material-list="data.outMaterialList" v-show="index==1"></detail-material>
+        <detail-pic v-show="index==2" :attach-list="data.attachList"></detail-pic>
         <detail-history v-show="index==3"></detail-history>
     </div>
     <!--list-->
@@ -53,11 +53,13 @@ export default {
         receivePerson: {},
         outMaterialList: []
       },
-      materialMap: new Map()
+      materialMap: new Map(),
+      statusMap: new Map()
     }
   },
   created () {
     this.materialMap = this.getDict('materialClass')
+    this.statusMap = this.getDict('status')
     this.getDetail()
   },
   filters: {

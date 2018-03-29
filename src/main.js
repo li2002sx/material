@@ -92,6 +92,28 @@ const baseURL = global.apiUrl
 const timeOut = 100000
 const withCredentials = true
 // const token = '1234567token7654321'
+const roleMap = new Map([
+  ['强制删除角色', 'force_delete'],
+  ['总部人员', 'company_worker'],
+  ['数据权限角色-查看所有项目', 'datarole_allproject'],
+  ['数据权限角色-查看分公司所有项目', 'datarole_companyproject'],
+  ['数据权限角色-查看项目组项目', 'datarole-teamproject'],
+  ['物资采购岗', 'goods_purchase'],
+  ['成本管理岗', 'cost_manager'],
+  ['物资部经理', 'goods_chief'],
+  ['商务部经理', 'business_chief'],
+  ['分公司经理', 'subcompany_chief'],
+  ['董事长', 'chairman'],
+  ['项目质量员', 'project_quality'],
+  ['业务菜单只读权限', 'menu_readonly'],
+  ['项目施工员', 'project_construct'],
+  ['项目商务人员', 'project_business'],
+  ['项目经理', 'project_manager'],
+  ['项目物资管理员', 'goods_manager'],
+  ['目标设定中心', 'goal_set'],
+  ['管理员', 'system'],
+  ['项目生产经理', 'project_productmanager']
+])
 
 Vue.prototype.getFieldByUseInfo = function () {
   let userInfo = window.localStorage.getItem(global.userInfo)
@@ -121,6 +143,21 @@ Vue.prototype.isLogin = function () {
   } else {
     return true
   }
+}
+
+Vue.prototype.hasRole = function (role) {
+  let flag = false
+  let user = this.getFieldByUseInfo().user
+  let userRoleArr = user.roleNames.split(',')
+  for (let [key, value] of roleMap.entries()) {
+    if (role === value) {
+      if (userRoleArr.includes(key)) {
+        flag = true
+        break
+      }
+    }
+  }
+  return flag
 }
 
 // axiosGet请求
@@ -159,12 +196,10 @@ Vue.prototype.get = function (url, params, callback) {
 
 // axiosPost请求
 Vue.prototype.post = function (url, data, callback, showLoad) {
-  if (showLoad === true) {
-    // 显示
-    this.$vux.loading.show({
-      text: '加载中...'
-    })
-  }
+  // 显示
+  this.$vux.loading.show({
+    text: '请稍候...'
+  })
   axios({
     url: url,
     method: 'post',
@@ -331,12 +366,25 @@ Vue.prototype.getDict = function (type) {
     map.set('03', '驳回')
     map.set('04', '完成')
     map.set('05', '销毁')
+  } else if (type === 'flowStatus') {
+    map.set('01', '编辑')
+    map.set('02', '提交')
+    map.set('03', '取消')
+    map.set('04', '审批中')
+    map.set('05', '完成')
   } else if (type === 'payMode') {
     map.set('0', '后期结算')
     map.set('1', '直接付款')
   } else if (type === 'checkType') {
     map.set('00', '中间验收')
     map.set('01', '最终验收')
+  } else if (type === 'adjustReasonClass') {
+    map.set('01', '变更签证')
+    map.set('02', '超耗')
+  } else if (type === 'adjustReasonSubClass') {
+    map.set('01', '业务指令')
+    map.set('02', '业务口头指令')
+    map.set('03', '业务变更')
   } else {
     let requestUrl = 'appData/app/getDictType'
     let that = this
@@ -367,7 +415,7 @@ Vue.prototype.audit = function (taskId, procId, comment, flag) {
   this.post(requestUrl, param, function (result) {
     if (result.status === '1') {
       that.toastShow('success', '提交审批成功')
-      location.reload()
+      that.toUrl('/work/todo')
     } else {
       that.toastShow('text', result.message)
     }
@@ -376,9 +424,6 @@ Vue.prototype.audit = function (taskId, procId, comment, flag) {
 
 Vue.prototype.getCanUseAmount = function (projectId, controlId, type, callback) {
   var param = {
-    project: {
-      id: projectId
-    },
     gcontrol: {
       id: controlId
     }
@@ -386,13 +431,13 @@ Vue.prototype.getCanUseAmount = function (projectId, controlId, type, callback) 
   let requestUrl = null
   switch (type) {
     case '01':
-      requestUrl = 'appData/app/getNeedPlanAmt'
-      break
-    case '02':
       requestUrl = 'appData/app/getMainMaterialAmt'
       break
-    case '03':
+    case '02':
       requestUrl = 'appData/app/getHalfMaterialAmt'
+      break
+    case '03':
+      requestUrl = 'appData/app/getNeedPlanAmt'
       break
     default:
       break
@@ -431,8 +476,10 @@ Vue.prototype.dateToString = function (date, format) {
 Vue.prototype.toWorkDetail = function (action, procId, procKey, taskId, billId) {
   switch (procKey) {
     case 'gcontrolplan':
-    case 'gcontrolplan_change':
       this.toUrl('/work/control/' + action + '/' + procId + '/' + taskId + '/' + billId)
+      break
+    case 'gcontrolplan_change':
+      this.toUrl('/work/controlchange/' + action + '/' + procId + '/' + taskId + '/' + billId)
       break
     case 'in_main':
     case 'in_little':
@@ -459,6 +506,31 @@ Vue.prototype.toWorkDetail = function (action, procId, procKey, taskId, billId) 
       break
     default:
       break
+  }
+}
+
+import $ from 'jquery'
+
+Vue.prototype.getBase64 = function (img) {
+  function getBase64Image (img, width, height) { // width、height调用时传入具体像素值，控制大小 ,不传则默认图像大小
+    var canvas = document.createElement('canvas')
+    canvas.width = img.width
+    canvas.height = img.height
+
+    var ctx = canvas.getContext('2d')
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    var dataURL = canvas.toDataURL()
+    return dataURL
+  }
+  var image = new Image()
+  image.crossOrigin = ''
+  image.src = img
+  var deferred = $.Deferred()
+  if (img) {
+    image.onload = function () {
+      deferred.resolve(getBase64Image(image)) // 将base64传给done上传处理
+    }
+    return deferred.promise() // 问题要让onload完成后再return sessionStorage['imgTest']
   }
 }
 

@@ -6,6 +6,10 @@
             <p class="txt">{{data.checkNo}}</p>
         </dd>
         <dd>
+            <label>材料类别</label>
+            <p class="txt">{{materialMap.get(data.materialClass)}}</p>
+        </dd>
+        <dd>
             <label>验收日期</label>
             <p class="txt">{{data.checkDate}}</p>
         </dd>
@@ -24,10 +28,6 @@
         <dd>
             <label>总控计划</label>
             <p class="txt">{{data.gcontrol.planNo}}</p>
-        </dd>
-        <dd>
-            <label>材料类别</label>
-            <p class="txt">{{materialMap.get(data.materialClass)}}</p>
         </dd>
         <dd>
             <label>本期结算不含税金额</label>

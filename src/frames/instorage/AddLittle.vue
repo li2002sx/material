@@ -49,8 +49,12 @@
         </ul>
         <div v-if="step == 1">
           <dl class="stockstep1">
-              <dt>单据编号（保存后自动生成）</dt>
-              <select-supplier type='little' :projectName="project.name" :needName="need.name" :supplierName="supplier.name" :contractName="contract.name" :relaCompactNo="contractFull.relaCompactno"  @selectData="selectContractData"></select-supplier>
+              <dt v-if="billId.length == 0">单据编号（保存后自动生成）</dt>
+              <dd v-else>
+                  <label>单据编号</label>
+                  <p class="txt">{{billNo}}</p>
+              </dd>
+              <select-supplier type='little' :project="project" :need="need" :supplier="supplier" :contract="contract" :relaCompactNo="contractFull.relaCompactno"  @selectData="selectContractData"></select-supplier>
               <select-date title="验收日期" :date="checkDate" @selectData="selectCheckDate"></select-date>
               <select-date title="实际到货日期" :date="inDate" @selectData="selectInDate"></select-date>
               <select-dict title="付款方式" type="pay_mode" :infoName="payMode.name"  @selectData="selectPayMode"></select-dict>
@@ -131,15 +135,15 @@
                       <td colspan="2">合计总数</td>
                       <td colspan="2">{{totalInNum}}</td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                       <td colspan="2">合计金额</td>
                       <td colspan="2">{{totalInAmount}}</td>
-                  </tr>
+                  </tr> -->
               </table>
           </div>
         </div>
         <div v-else-if="step == 4">
-          <select-pic @selectData="selectPicData"></select-pic>
+          <select-pic :images="images" @selectData="selectPicData"></select-pic>
         </div>
     </div>
     <!-- list end -->
@@ -171,6 +175,9 @@ export default {
   },
   data () {
     return {
+      billId: this.$route.params.billId || '',
+      procId: this.$route.params.procId || '',
+      billNo: '',
       step: 1,
       checkDate: new Date(),
       inDate: new Date(),
@@ -190,12 +197,14 @@ export default {
       totalInNum: 0,
       totalInAmount: 0,
       images: [],
-      materialClass: '03'
+      materialClass: '03',
+      inMaterialMap: new Map()
     }
   },
   created () {
     this.materialMap = this.getDict('materialClass')
     this.statusMap = this.getDict('status')
+    this.getDetail()
   },
   filters: {
   },
@@ -203,6 +212,68 @@ export default {
   mounted () {
   },
   methods: {
+    getDetail () {
+      if (this.billId.length > 0) {
+        var param = {
+          id: this.billId
+        }
+        let requestUrl = 'appData/app/checkInBill'
+        let that = this
+        this.get(requestUrl, param, function (result) {
+          if (result.status === '1') {
+            let data = result.map.checkBill
+            that.billNo = data.inNo
+            that.checkDate = new Date(data.checkDate)
+            that.inDate = new Date(data.inDate)
+            that.project = {
+              value: data.project.id,
+              name: data.project.projectName
+            }
+            that.control = {
+              value: data.gcontrol.id,
+              name: data.gcontrol.planNo
+            }
+            that.need = {
+              value: data.needPlan.id,
+              name: data.needPlan.nplanNo
+            }
+            that.supplier = {
+              value: data.supplier.id,
+              name: data.supplier.venderName
+            }
+            that.contract = {
+              value: data.compact.id,
+              name: data.compact.compactNo
+            }
+            that.contractFull = data.compact
+            that.contractFull.relaCompactno = data.releCompactno
+            that.payMode = {
+              value: data.payMode,
+              name: that.getDict('payMode').get(data.payMode)
+            }
+            that.remark = data.remarks
+            if (data.attachList !== undefined) {
+              for (let item of data.attachList) {
+                let imageUrl = global.picUrl + item.filePath + '/' + item.id + '.' + item.fileSuffix
+                that.getBase64(imageUrl)
+                  .then(function (base64) {
+                    that.images.push(base64)
+                  }, function (err) {
+                    console.log(err)
+                  })
+              }
+            }
+            if (data.inMaterialList !== undefined) {
+              data.inMaterialList.forEach(function (info) {
+                that.inMaterialMap.set(info.material.id, info)
+              })
+            }
+          } else {
+            that.toastShow('text', result.message)
+          }
+        })
+      }
+    },
     selectContractData: function (data) {
       if (data != null) {
         this.project = data.project
@@ -283,10 +354,14 @@ export default {
           this.toastShow('text', '没有可以验收的材料，请核对合同是否正确')
         } else {
           let that = this
+          that.totalInNum = 0
           this.compactMaterialFull.list.forEach(function (info) {
             let inNum = parseInt(info.inNum) || 0
             that.totalInNum += inNum
           })
+          if (that.totalInNum === 0) {
+            that.toastShow('text', '您还没有验收材料')
+          }
         }
       }
     },
@@ -302,6 +377,12 @@ export default {
       this.post(requestUrl, param, function (result) {
         if (result.status === '1') {
           that.compactMaterialFull = result.map
+          that.compactMaterialFull.list.forEach(function (info) {
+            let item = that.inMaterialMap.get(info.material.id)
+            if (item !== undefined) {
+              info.inNum = item.arrivalCount
+            }
+          })
         } else {
           that.toastShow('text', result.message)
         }
@@ -361,6 +442,14 @@ export default {
           inMaterialList: inMaterialList,
           attachPics: [],
           businAttachPics: that.images
+        }
+
+        if (that.billId.length > 0) {
+          param.id = that.billId
+          param.inNo = that.billNo
+        }
+        if (that.procId.length > 0 && that.procId !== '0') {
+          param.procInsId = that.procId
         }
 
         let requestUrl = 'appData/app/newCheckInBill'

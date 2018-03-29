@@ -12,7 +12,7 @@
     <div class="stockin">
         <detail-info :material-map="materialMap" :status-map="statusMap" :data="data" v-show="index==0"></detail-info>
         <detail-material :material-map="materialMap" v-show="index==1" :data="data"></detail-material>
-        <detail-pic v-show="index==2"></detail-pic>
+        <detail-attach :attach-list="data.attachList" v-show="index==2"></detail-attach>
         <detail-history v-show="index==3"></detail-history>
     </div>
     <!--list-->
@@ -23,7 +23,7 @@
 import { TransferDomDirective as TransferDom, Tab, TabItem } from 'vux'
 import detailInfo from './Detail-Info'
 import detailMaterial from './Detail-Material'
-import detailPic from '../Detail-Pic'
+import detailAttach from '../Detail-Attach'
 import detailHistory from '../Detail-History'
 export default {
   directives: {
@@ -34,7 +34,7 @@ export default {
     TabItem,
     detailInfo,
     detailMaterial,
-    detailPic,
+    detailAttach,
     detailHistory
   },
   data () {
@@ -56,6 +56,7 @@ export default {
   created () {
     this.materialMap = this.getDict('materialClass')
     this.statusMap = this.getDict('status')
+    this.getDetail()
   },
   filters: {
   },
@@ -73,6 +74,12 @@ export default {
       this.get(requestUrl, param, function (result) {
         if (result.status === '1') {
           that.data = result.map.needplan
+          if (that.data.gcontrol === undefined) {
+            that.data.gcontrol = {}
+          }
+          if (that.data.attachList === undefined) {
+            that.data.attachList = []
+          }
         } else {
           that.toastShow('text', result.message)
         }

@@ -15,70 +15,34 @@
             </div>
         </div> -->
         <!-- search end -->
-        <tab :line-width=2 defaultColor="#333" active-color='#61a0f2' v-model="index">
+        <!-- <tab :line-width=2 defaultColor="#333" active-color='#61a0f2' v-model="index">
           <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}
           </tab-item>
-        </tab>
+        </tab> -->
         <!-- list -->
-        <dl class="classlist" @click="toUrl('/notice/detail')">
-          <dd>
+        <dl class="classlist">
+          <dd v-for="(item, index) in data.list" @click="toWork(item)">
               <div class="format">
-                  <h3>关于启用办公自动化系统的通知</h3>
-                  <p>建筑与土木工程是基本建设的重要工程领域，是研究和创造人类生活需求的形态环境和各类工程设施的……</p>
+                  <h3>{{item.title}}</h3>
+                  <p>{{item.content}}</p>
                   <div class="editbox">
-                      <b>总经办</b> <b>2017-08-16</b>
-                  </div>
-              </div>
-          </dd>
-          <dd>
-              <div class="format">
-                  <h3>关于启用办公自动化系统的通知</h3>
-                  <p>建筑与土木工程是基本建设的重要工程领域，是研究和创造人类生活需求的形态环境和各类工程设施的……</p>
-                  <div class="editbox">
-                      <b>总经办</b> <b>2017-08-16</b>
-                  </div>
-              </div>
-          </dd>
-          <dd>
-              <div class="format">
-                  <h3>关于启用办公自动化系统的通知</h3>
-                  <p>建筑与土木工程是基本建设的重要工程领域，是研究和创造人类生活需求的形态环境和各类工程设施的……</p>
-                  <div class="editbox">
-                      <b>总经办</b> <b>2017-08-16</b>
-                  </div>
-              </div>
-          </dd>
-          <dd>
-              <div class="format">
-                  <h3>关于启用办公自动化系统的通知</h3>
-                  <p>建筑与土木工程是基本建设的重要工程领域，是研究和创造人类生活需求的形态环境和各类工程设施的……</p>
-                  <div class="editbox">
-                      <b>总经办</b> <b>2017-08-16</b>
-                  </div>
-              </div>
-          </dd>
-          <dd>
-              <div class="format">
-                  <h3>关于启用办公自动化系统的通知</h3>
-                  <p>建筑与土木工程是基本建设的重要工程领域，是研究和创造人类生活需求的形态环境和各类工程设施的……</p>
-                  <div class="editbox">
-                      <b>总经办</b> <b>2017-08-16</b>
+                      <b>{{item.currentStatus}}</b> <b>{{item.createDate}}</b>
                   </div>
               </div>
           </dd>
         </dl>
         <!-- list end -->
-        <div class="bottom-tip" v-show="hasdata">
+        <!-- <div class="bottom-tip" v-show="hasdata">
           <span class="loading-hook">加载中...</span>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import { cookie, Tab, TabItem } from 'vux'
-import BScroll from 'better-scroll'
+import { cookie, Tab, TabItem, querystring } from 'vux'
+// import BScroll from 'better-scroll'
 export default {
   components: {
     cookie,
@@ -90,91 +54,51 @@ export default {
       list2: ['未读', '已读'],
       demo2: '未读',
       index: 0,
-      cateId: parseInt(this.$route.params.cateId) || 0,
-      searchKey: this.$route.params.searchKey,
-      artis: [],
-      pageIndex: 1,
-      hasdata: false
+      data: {}
     }
   },
   created () {
-    // this.getArtis(this.cateId)
+    this.getList()
   },
   filters: {
-    subStr: function (value, num) {
-      return value.substr(0, num)
-    },
-    classStr: function (value) {
-      return 'ico-' + value
-    }
   },
   computed: {},
   mounted: function () { },
   methods: {
-    initScroll () {
+    getList () {
+      let requestUrl = 'appData/app/getMessageList'
       let that = this
-      this.$nextTick(() => {
-        that.scroll = new BScroll(this.$refs.wrapper, {
-          click: true
-        })
-        // 滑动结束
-        var bottomTip = document.querySelector('.loading-hook')
-        that.scroll.on('touchend', function (position) {
-          if (position.y < (this.maxScrollY - 0)) {
-            bottomTip.innerText = '加载中...'
-
-            // 恢复文本值
-            // bottomTip.innerText = '查看更多'
-
-            // 向列表添加数据
-            if (that.hasdata) {
-              that.getArtis(that.cateId)
-            }
-            // reloadData()
-            // 加载更多后,重新计算滚动区域高度
-            window.setTimeout(function () {
-              that.scroll.refresh()
-            }, 500)
-          }
-        })
-      })
-    },
-    getArtis (treeId) {
-      var param = {
-        treeId: treeId,
-        searchKey: this.searchKey,
-        pageIndex: this.pageIndex
-      }
-      let that = this
-      this.get('/rest/arti/list', param, function (result) {
-        if (result.status === 1) {
-          for (let item of result.artis) {
-            that.artis.push(item)
-          }
-          if (that.pageIndex === 1 && result.artis.length > 0) {
-            that.initScroll()
-          }
-          that.pageIndex++
-          if (result.artis.length < 20) {
-            that.hasdata = false
-          } else {
-            that.hasdata = true
-          }
+      this.get(requestUrl, null, function (result) {
+        if (result.status === '1') {
+          that.data = result.map
         } else {
           that.toastShow('text', result.message)
         }
       })
     },
-    detailUrl (relatedType, artiId) {
-      if (relatedType === 6) {
-        this.toUrl('/arti/video/' + artiId)
-      } else {
-        this.toUrl('/arti/detail/' + artiId)
+    toWork (item) {
+      let id = item.id
+      let url = item.url
+      let param = {
+        id: id
       }
-    },
-    loadImage () {
-      let target = event.target
-      this.drawImage(target, 226, 153)
+      let requestUrl = 'appData/app/messageDeal'
+      let that = this
+      that.get(requestUrl, param, function (result) {
+        if (result.status === '1') {
+          let param = querystring.parse(url)
+          let currentStatus = item.currentStatus.replace('审批', '')
+          let user = that.getFieldByUseInfo().user
+          let userRoleArr = user.roleNames.split(',')
+          let urlKey = 'detail'
+          if (userRoleArr.includes(currentStatus)) {
+            urlKey = 'approve'
+          }
+          that.toWorkDetail(urlKey, param.procInsId, item.procType, param.taskId, item.billId)
+        } else {
+          that.toastShow('text', result.message)
+        }
+      })
     }
   }
 }

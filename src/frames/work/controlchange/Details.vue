@@ -10,10 +10,12 @@
     </tab>
     <!--list-->
     <div class="stockin">
-        <detail-info :material-map="materialMap" :status-map="statusMap" :data="data" v-show="index==0"></detail-info>
-        <detail-material :material-map="materialMap" :material-list="data.halfMaterial" v-show="index==1"></detail-material>
-        <detail-pic v-show="index==2" :attach-list="data.attachList"></detail-pic>
-        <detail-history v-show="index==3"></detail-history>
+        <detail-info :material-map="materialMap" :status-map="statusMap" :adjust-map="adjustMap" :adjust-sub-map="adjustSubMap" :data="data" v-show="index==0"></detail-info>
+        <detail-material :material-map="materialMap" :material-list="data.gcontrolMaterialList" v-show="index==1"></detail-material>
+        <detail-material :material-map="materialMap" :material-list="data.gcontrolMaterialList" v-show="index==2"></detail-material>
+        <detail-material :material-map="materialMap" :material-list="data.gcontrolMaterialList" v-show="index==3"></detail-material>
+        <detail-attach :attach-list="data.attachList" v-show="index==4"></detail-attach>
+        <detail-history v-show="index==5"></detail-history>
     </div>
     <!--list-->
   </section>
@@ -23,7 +25,7 @@
 import { TransferDomDirective as TransferDom, Tab, TabItem } from 'vux'
 import detailInfo from './Detail-Info'
 import detailMaterial from './Detail-Material'
-import detailPic from '../Detail-Pic'
+import detailAttach from '../Detail-Attach'
 import detailHistory from '../Detail-History'
 export default {
   directives: {
@@ -34,12 +36,12 @@ export default {
     TabItem,
     detailInfo,
     detailMaterial,
-    detailPic,
+    detailAttach,
     detailHistory
   },
   data () {
     return {
-      list2: ['基本信息', '材料明细', '附件信息', '历史审批'],
+      list2: ['基本信息', '主材', '半成品', '辅材', '附件信息', '历史审批'],
       demo2: '基本信息',
       index: 0,
       action: this.$route.params.action || '',
@@ -47,22 +49,25 @@ export default {
       taskId: this.$route.params.taskId || '',
       billId: this.$route.params.billId || '',
       data: {
-        materialIn: {},
+        createBy: {
+          company: {},
+          office: {}
+        },
         project: {},
-        gcontrol: {},
-        supplier: {},
-        compact: {},
-        checkPerson: {},
-        needPlan: {},
-        inMaterialList: []
+        office: {},
+        gcontrolMaterialList: []
       },
       materialMap: new Map(),
-      statusMap: new Map()
+      statusMap: new Map(),
+      adjustMap: new Map(),
+      adjustSubMap: new Map()
     }
   },
   created () {
     this.materialMap = this.getDict('materialClass')
     this.statusMap = this.getDict('status')
+    this.adjustMap = this.getDict('adjustReasonClass')
+    this.adjustSubMap = this.getDict('adjustReasonSubClass')
     this.getDetail()
   },
   filters: {
@@ -76,11 +81,11 @@ export default {
       var param = {
         id: this.billId
       }
-      let requestUrl = 'appData/app/checkHalfInfo'
+      let requestUrl = 'appData/app/getGcontrolInfo'
       let that = this
       this.get(requestUrl, param, function (result) {
         if (result.status === '1') {
-          that.data = result.map.checkBill
+          that.data = result.map.gcontrolPlan
         } else {
           that.toastShow('text', result.message)
         }

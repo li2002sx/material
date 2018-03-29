@@ -2,7 +2,7 @@
   <section>
     <dd @click="modiAttrPopupPicker('project')">
         <label>项目</label>
-        <p class="txt">{{projectName}}</p>
+        <p class="txt">{{project==undefined?'':project.name}}</p>
         <i class="ico-sel"></i>
     </dd>
     <!-- <dd @click="modiAttrPopupPicker('control')">
@@ -10,28 +10,28 @@
         <p class="txt">{{control.name}}</p>
         <i class="ico-sel"></i>
     </dd> -->
-    <dd v-show="type!='half'" @click="modiAttrPopupPicker('need')">
-        <label>需用计划</label>
-        <p class="txt">{{needName}}</p>
-        <i class="ico-sel"></i>
-    </dd>
     <dd v-show="type!='instorage'" @click="modiAttrPopupPicker('supplier')">
         <label>供应商</label>
-        <p class="txt">{{supplierName}}</p>
+        <p class="txt">{{supplier==undefined?'': supplier.name}}</p>
         <i class="ico-sel"></i>
     </dd>
     <dd v-show="type!='little' && type!='instorage'" @click="modiAttrPopupPicker('contract')">
         <label>合同编号</label>
-        <p class="txt">{{contractName}}</p>
+        <p class="txt">{{contract==undefined?'': contract.name}}</p>
         <i class="ico-sel"></i>
     </dd>
     <dd v-show="type!='little' && type!='instorage'">
         <label>云筑网合同编号</label>
         <p class="txt">{{relaCompactNo}}</p>
     </dd>
+    <dd v-show="type!='half'" @click="modiAttrPopupPicker('need')">
+        <label>需用计划</label>
+        <p class="txt">{{need==undefined?'': need.name}}</p>
+        <i class="ico-sel"></i>
+    </dd>
     <dd v-show="type=='instorage'" @click="modiAttrPopupPicker('instorage')">
         <label>验收单</label>
-        <p class="txt">{{instorageName}}</p>
+        <p class="txt">{{instorage==undefined?'': instorage.name}}</p>
         <i class="ico-sel"></i>
     </dd>
     <group v-show="showPopupPicker">
@@ -43,7 +43,7 @@
 <script>
 import { TransferDom, Popup, Group, PopupPicker } from 'vux'
 export default {
-  props: ['type', 'projectName', 'needName', 'supplierName', 'contractName', 'relaCompactNo', 'instorageName'],
+  props: ['type', 'project', 'need', 'supplier', 'contract', 'relaCompactNo', 'instorage'],
   directives: {
     TransferDom
   },
@@ -109,7 +109,8 @@ export default {
         param = {
           project: {
             id: this.project.value
-          }
+          },
+          status: '04'
         }
         if (param.project.id === undefined) {
           this.toastShow('text', '请先选择一个项目')
@@ -138,9 +139,10 @@ export default {
           project: {
             id: this.project.value
           },
-          gcontroller: {
+          gcontrol: {
             id: this.control.value
-          }
+          },
+          status: '04'
         }
         if (param.project.id === undefined) {
           this.toastShow('text', '请先选择一个项目')
@@ -198,12 +200,13 @@ export default {
           project: {
             id: this.project.value
           },
-          gcontroller: {
+          gcontrol: {
             id: this.control.value
           },
           supplier: {
             id: this.supplier.value
-          }
+          },
+          status: '04'
         }
         if (param.project.id === undefined) {
           this.toastShow('text', '请先选择一个项目')
@@ -238,7 +241,8 @@ export default {
         param = {
           needPlan: {
             id: this.need.value
-          }
+          },
+          status: '04'
         }
         if (param.needPlan.id === undefined) {
           this.toastShow('text', '请先选择一个需用计划')
@@ -315,6 +319,10 @@ export default {
         for (let item of this.contractList) {
           if (item.id.toString() === val[0]) {
             this.contractFull = item
+            this.control = {
+              value: this.contractFull.gcontrol.id,
+              name: this.contractFull.gcontrol.planNo
+            }
             this.relaCompactNo = item.relaCompactno
             break
           }

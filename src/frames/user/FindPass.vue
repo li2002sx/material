@@ -58,9 +58,9 @@ export default {
         newPassword: this.password
       }
       this.post('appData/app/changePwd', param, function (result) {
-        if (result.status === 1) {
+        if (result.status === '1') {
           this.toastShow('success', '修改成功')
-          this.loginToUrl()
+          this.toUrl('/work')
         } else {
           this.toastShow('text', result.message)
         }

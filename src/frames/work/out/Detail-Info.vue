@@ -21,10 +21,10 @@
             <label>出库日期</label>
             <p class="txt">{{data.outDate}}</p>
         </dd>
-        <!-- <dd>
+        <dd>
             <label>领料单位</label>
             <p class="txt">{{data.receiveOrg.name}}</p>
-        </dd> -->
+        </dd>
         <dd>
             <label>领料人</label>
             <p class="txt">{{data.receivePerson.name}}</p>
@@ -32,6 +32,10 @@
         <dd>
             <label>材料类别</label>
             <p class="txt">{{materialMap.get(data.materialClass)}}</p>
+        </dd>
+        <dd>
+            <label>状态</label>
+            <p class="txt">{{statusMap.get(data.status)}}</p>
         </dd>
         <!-- <dd>
             <label>金额</label>
@@ -48,7 +52,7 @@
 <script>
 import { TransferDomDirective as TransferDom } from 'vux'
 export default {
-  props: ['materialMap', 'data'],
+  props: ['materialMap', 'statusMap', 'data'],
   directives: {
     TransferDom
   },

@@ -23,6 +23,7 @@
                   <h3>{{item.vars.map.applyName}}的申请单</h3>
                   <p class="time">单据编号：{{item.vars.map.billMarkNo}}</p>
                   <p class="time">单据类型：{{item.procDefName}}</p>
+                  <p class="time">申请人：{{item.vars.map.applyName}}</p>
                   <p class="time">申请时间：{{item.procStartDate}}</p>
                   <p class="time" v-show="item.procEndDate != undefined">完成时间：{{item.procEndDate}}</p>
                   <p class="status">状态：
@@ -82,7 +83,7 @@ export default {
     getMyApplies () {
       var param = {
         pageNo: 1,
-        pageSize: 20
+        pageSize: 100
       }
       let requestUrl = 'appData/app/myApplyData'
       let that = this

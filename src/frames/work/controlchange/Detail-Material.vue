@@ -1,39 +1,39 @@
 <template>
   <section>
     <div class="materiallist" @click="showMaterial($event)" v-for="(item, index) in materialList">
-      <h4 class="stocktit"><strong class="fr">{{item.outCount}}</strong>{{index + 1}}.{{item.material.materialName}}</h4>
+      <h4 class="stocktit" >{{index + 1}}.{{item.material.materialName}}</h4>
       <dl class="stockstep1 hide">
           <dd>
               <label>材料类别</label>
-              <p class="txt">{{materialMap.get(item.matreialClass)}}</p>
-          </dd>
-          <!-- <dd>
-              <label>存库数量</label>
-              <p class="txt">{{item.inventoryCount}}</p>
-          </dd> -->
-          <dd>
-              <label>出库数量</label>
-              <p class="txt">{{item.outCount}}</p>
+              <p class="txt">{{materialMap.get(item.materialClass)}}</p>
           </dd>
           <dd>
-              <label>无税单价</label>
-              <p class="txt">{{item.priceExtax}}</p>
+              <label>计划数量</label>
+              <p class="txt">{{item.planCount}}</p>
           </dd>
           <dd>
-              <label>无税金额</label>
-              <p class="txt">{{item.amtExtax}}</p>
+              <label>成本单价</label>
+              <p class="txt">{{item.costUnivalent}}</p>
           </dd>
           <dd>
-              <label>税率</label>
-              <p class="txt">{{item.taxRate}}%</p>
+              <label>总控金额</label>
+              <p class="txt">{{item.planCount * item.costUnivalent}}</p>
           </dd>
           <dd>
-              <label>含税单价</label>
-              <p class="txt">{{item.priceIntax}}</p>
+              <label>投标预算量</label>
+              <p class="txt">{{item.budgetCount}}</p>
           </dd>
           <dd>
-              <label>含税金额</label>
-              <p class="txt">{{item.amtIntax}}</p>
+              <label>投标预算价格</label>
+              <p class="txt">{{item.budgetPrice}}</p>
+          </dd>
+          <dd>
+              <label>预算金额</label>
+              <p class="txt">{{item.budgetCount * item.budgetPrice}}</p>
+          </dd>
+          <dd>
+              <label>是否存在调整</label>
+              <p class="txt">否</p>
           </dd>
           <!-- <dd>
               <label>备注</label>

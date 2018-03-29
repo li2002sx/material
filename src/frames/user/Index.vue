@@ -16,6 +16,10 @@
                 <td>部门：</td>
                 <td>{{userInfo.user.office.name}}</td>
             </tr>
+            <tr>
+                <td>角色：</td>
+                <td>{{userInfo.user.roleNames}}</td>
+            </tr>
         </table>
     </div>
     <!-- userbox end -->
@@ -28,12 +32,12 @@
     </dl>
 
     <dl class="mylist">
-        <dd @click="toUrl('/user/feedback')">
+        <!-- <dd @click="toUrl('/user/feedback')">
             <label class="ico-myfb"></label>
             <div class="layout">
                 <p class="after">意见反馈</p>
             </div>
-        </dd>
+        </dd> -->
         <dd @click="toUrl('/user/aboutus')">
             <label class="ico-myfb"></label>
             <div class="layout">

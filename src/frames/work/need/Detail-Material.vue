@@ -5,31 +5,39 @@
       <dl class="stockstep1 hide">
           <dd>
               <label>材料类别</label>
-              <p class="txt">{{materialMap.get(item.matrialClass)}}</p>
+              <p class="txt">{{materialMap.get(item.materialClass)}}</p>
           </dd>
           <dd>
               <label>本期计划数量</label>
               <p class="txt">{{item.planCount}}</p>
           </dd>
           <dd>
-              <label>剩余额度</label>
+              <label>剩余需用数量</label>
               <p class="txt">{{item.leftNeednum}}</p>
           </dd>
           <dd>
-              <label>成本单价</label>
-              <p class="txt">{{item.costUnivalent}}</p>
+              <label>剩余入库数量</label>
+              <p class="txt">{{item.leftInnum}}</p>
           </dd>
           <dd>
-              <label>型号</label>
-              <p class="txt">{{item.material.model}}</p>
+              <label>含税单价</label>
+              <p class="txt">{{item.priceIntax}}</p>
           </dd>
           <dd>
-              <label>规格</label>
-              <p class="txt">{{item.material.standard}}</p>
+              <label>含税金额</label>
+              <p class="txt">{{item.amtIntax}}</p>
           </dd>
           <dd>
-              <label>单位</label>
-              <p class="txt">{{item.material.unit}}</p>
+              <label>税率</label>
+              <p class="txt">{{item.taxRate}}%</p>
+          </dd>
+          <dd>
+              <label>不含税单价</label>
+              <p class="txt">{{item.priceExtax}}</p>
+          </dd>
+          <dd>
+              <label>不含税金额</label>
+              <p class="txt">{{item.amtExtax}}</p>
           </dd>
           <!-- <dd>
               <label>备注</label>

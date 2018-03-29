@@ -19,17 +19,17 @@
 <script>
 import Exif from 'exif-js'
 export default {
-  props: ['smsType'],
+  props: ['images'],
   components: {
 
   },
   data () {
     return {
-      images: []
+
     }
   },
   created () {
-
+    // this.images = []
   },
   mounted: function () {
 
@@ -68,6 +68,9 @@ export default {
           } else {
             img.onload = function () {
               let data = that.compress(img, Orientation)
+              if (that.images === undefined) {
+                that.images = []
+              }
               that.images.push(data)
               that.$emit('selectData', that.images)
             }

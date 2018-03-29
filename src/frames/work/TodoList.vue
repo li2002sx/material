@@ -27,8 +27,10 @@
                   <h3>{{item.vars.map.applyName}}的申请单</h3>
                   <p class="time">单据编号：{{item.vars.map.billMarkNo}}</p>
                   <p class="time">单据类型：{{item.procDefName}}</p>
+                  <p class="time">申请人：{{item.vars.map.applyName}}</p>
                   <p class="time">申请时间：{{item.vars.map.startTimeStr}}</p>
                   <p class="time" v-show="item.taskEndDate != undefined">完成时间：{{item.taskEndDate}}</p>
+                  <p class="time">当前环节：{{item.taskName}}</p>
                   <p class="status">状态：
                     <template v-if="item.taskEndDate != undefined">
                       已完成
@@ -51,8 +53,10 @@
                   <h3>{{item.vars.map.applyName}}的申请单</h3>
                   <p class="time">单据编号：{{item.vars.map.billMarkNo}}</p>
                   <p class="time">单据类型：{{item.procDefName}}</p>
+                  <p class="time">申请人：{{item.vars.map.applyName}}</p>
                   <p class="time">申请时间：{{item.vars.map.startTimeStr}}</p>
                   <p class="time" v-show="item.taskEndDate != undefined">完成时间：{{item.taskEndDate}}</p>
+                  <!-- <p class="time">当前环节：{{item.taskName}}</p> -->
                   <p class="status">状态：
                     <template v-if="item.taskEndDate != undefined">
                       已完成
@@ -112,9 +116,13 @@ export default {
   },
   methods: {
     getTodos () {
+      var param = {
+        pageNo: 1,
+        pageSize: 100
+      }
       let requestUrl = 'appData/app/todoData'
       let that = this
-      this.get(requestUrl, null, function (result) {
+      this.get(requestUrl, param, function (result) {
         if (result.status === '1') {
           that.todoData = result.map
         } else {
@@ -123,9 +131,13 @@ export default {
       })
     },
     getTodoFinishes () {
+      var param = {
+        pageNo: 1,
+        pageSize: 100
+      }
       let requestUrl = 'appData/app/historicData'
       let that = this
-      this.get(requestUrl, null, function (result) {
+      this.get(requestUrl, param, function (result) {
         if (result.status === '1') {
           that.finishData = result.map
         } else {

@@ -50,15 +50,18 @@
         <div v-if="step == 1">
           <dl class="stockstep1">
               <dt>单据编号（保存后自动生成）</dt>
-              <select-supplier type='instorage' :projectName="project.name" :needName="need.name" :supplierName="supplier.name" :contractName="contract.name" :relaCompactNo="contractFull.relaCompactno" :instorageName="instorage.name"  @selectData="selectContractData"></select-supplier>
+              <select-supplier type='instorage' :project="project" :need="need" :supplier="supplier" :contract="contract" :relaCompactNo="contractFull.relaCompactno"  :instorage="instorage" @selectData="selectContractData"></select-supplier>
               <select-date title="出库日期" :date="date" @selectData="selectInDate"></select-date>
               <!-- <select-dict title="付款方式" type="pay_mode" :infoName="payMode.name"  @selectData="selectPayMode"></select-dict> -->
               <!-- <select-date title="入库日期" @selectDate="getSelectDate"></select-date> -->
-              <!-- <dd>
-                  <label>项目</label>
-                  <p class="txt"></p> -->
-                  <!-- <i class="ico-sel"></i> -->
-              <!-- </dd> -->
+              <dd>
+                  <label>领料单位</label>
+                  <p class="txt">{{user.office.name}}</p>
+              </dd>
+              <dd>
+                  <label>领料人</label>
+                  <p class="txt">{{user.name}}</p>
+              </dd>
               <!-- <dd>
                   <label>总控计划</label>
                   <p class="txt"></p> -->
@@ -158,7 +161,7 @@
           </div>
         </div>
         <div v-else-if="step == 4">
-          <select-pic @selectData="selectPicData"></select-pic>
+          <select-pic :images="images" @selectData="selectPicData"></select-pic>
         </div>
     </div>
     <!-- list end -->
@@ -190,6 +193,9 @@ export default {
   },
   data () {
     return {
+      billId: this.$route.params.billId || '',
+      procId: this.$route.params.procId || '',
+      billNo: '',
       step: 1,
       date: new Date(),
       project: {},
@@ -211,13 +217,17 @@ export default {
       totalInAmount: 0,
       totalAmtTax: 0,
       images: [],
-      materialClass: '01'
+      materialClass: '01',
+      user: {},
+      inMaterialMap: new Map()
     }
   },
   created () {
     this.materialMap = this.getDict('materialClass')
     this.statusMap = this.getDict('status')
+    this.user = this.getFieldByUseInfo().user
     this.getCompany()
+    this.getDetail()
   },
   filters: {
   },
@@ -225,6 +235,68 @@ export default {
   mounted () {
   },
   methods: {
+    getDetail () {
+      if (this.billId.length > 0) {
+        var param = {
+          id: this.billId
+        }
+        let requestUrl = 'appData/app/OutBill'
+        let that = this
+        this.get(requestUrl, param, function (result) {
+          if (result.status === '1') {
+            let data = result.map.checkBill
+            that.billNo = data.inNo
+            that.checkDate = new Date(data.checkDate)
+            that.inDate = new Date(data.inDate)
+            that.project = {
+              value: data.project.id,
+              name: data.project.projectName
+            }
+            that.control = {
+              value: data.gcontrol.id,
+              name: data.gcontrol.planNo
+            }
+            that.need = {
+              value: data.needPlan.id,
+              name: data.needPlan.nplanNo
+            }
+            that.supplier = {
+              value: data.supplier.id,
+              name: data.supplier.venderName
+            }
+            that.contract = {
+              value: data.compact.id,
+              name: data.compact.compactNo
+            }
+            that.contractFull = data.compact
+            that.contractFull.relaCompactno = data.releCompactno
+            that.payMode = {
+              value: data.payMode,
+              name: that.getDict('payMode').get(data.payMode)
+            }
+            that.remark = data.remarks
+            if (data.attachList !== undefined) {
+              for (let item of data.attachList) {
+                let imageUrl = global.picUrl + item.filePath + '/' + item.id + '.' + item.fileSuffix
+                that.getBase64(imageUrl)
+                  .then(function (base64) {
+                    that.images.push(base64)
+                  }, function (err) {
+                    console.log(err)
+                  })
+              }
+            }
+            if (data.inMaterialList !== undefined) {
+              data.inMaterialList.forEach(function (info) {
+                that.inMaterialMap.set(info.material.id, info)
+              })
+            }
+          } else {
+            that.toastShow('text', result.message)
+          }
+        })
+      }
+    },
     getCompany () {
       let requestUrl = 'appData/app/getTreeData'
       let that = this
@@ -275,7 +347,7 @@ export default {
       let item = this.compactMaterialFull.list[index]
       let inNum = parseInt($(targe).val()) || 0
       if (inNum > item.remainNum) {
-        this.toastShow('text', '入库最大数量不能超过剩余数量:' + item.need.leftNeednum)
+        this.toastShow('text', '出库最大数量不能超过剩余数量:' + item.remainNum)
         return
       }
       item.inNum = inNum
@@ -318,12 +390,18 @@ export default {
           this.toastShow('text', '没有可以验收的材料，请核对合同是否正确')
         } else {
           let that = this
+          that.totalInNum = 0
+          that.totalInAmount = 0
+          that.totalAmtTax = 0
           this.compactMaterialFull.list.forEach(function (info) {
             let inNum = parseInt(info.inNum) || 0
             that.totalInNum += inNum
             that.totalInAmount += info.priceExtax * inNum
             that.totalAmtTax += (info.priceTax - info.priceExtax) * inNum
           })
+          if (that.totalInNum === 0) {
+            that.toastShow('text', '您还没有出库材料')
+          }
         }
       }
     },
@@ -339,6 +417,12 @@ export default {
       this.post(requestUrl, param, function (result) {
         if (result.status === '1') {
           that.compactMaterialFull = result.map
+          that.compactMaterialFull.list.forEach(function (info) {
+            let item = that.inMaterialMap.get(info.material.id)
+            if (item !== undefined) {
+              info.inNum = item.arrivalCount
+            }
+          })
         } else {
           that.toastShow('text', result.message)
         }
@@ -350,7 +434,7 @@ export default {
     },
     save () {
       if (this.totalInNum === 0) {
-        this.toastShow('text', '入库总数量不能为0')
+        this.toastShow('text', '出库库总数量不能为0')
         return
       }
 
@@ -408,11 +492,18 @@ export default {
           businAttachPics: that.images
         }
 
+        if (that.billId.length > 0) {
+          param.id = that.billId
+        }
+        if (that.procId.length > 0 && that.procId !== '0') {
+          param.procInsId = that.procId
+        }
+
         let requestUrl = 'appData/app/newOutBill'
         that.post(requestUrl, param, function (result) {
           if (result.status === '1') {
             that.toastShow('success', '提交出库成功')
-            // that.toUrl('/out')
+            that.toUrl('/out')
           } else {
             that.toastShow('text', result.message)
           }

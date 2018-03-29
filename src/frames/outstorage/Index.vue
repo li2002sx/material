@@ -1,13 +1,13 @@
 <template>
   <section>
     <div v-title data-title="出库单"></div>
-    <dl class="stocktool">
+    <dl class="stocktool" v-show="hasRole('project_construct')">
         <dd @click="toUrl('/out/add')">新增出库单</dd>
     </dl>
     <!--list-->
     <div class="stockin">
       <dl class="todolist">
-          <dd v-for="(item, index) in mainData.list" @click="toUrl('/work/out/detail/' + item.procInsId + '/0/' + item.id)">
+          <dd v-for="(item, index) in mainData.list" @click="toBillUrl(item)">
               <div class="title">
                   <i>{{index + 1}}</i>
                   <h3>项目名称：{{item.project.projectName}}</h3>
@@ -57,6 +57,17 @@ export default {
 
   },
   methods: {
+    toBillUrl (item) {
+      let procId = item.procInsId
+      if (procId === undefined) {
+        procId = '0'
+      }
+      if (this.hasRole('project_construct') && (item.status === '01' || item.status === '03')) {
+        this.toUrl('/work/out/add/' + procId + '/' + item.id)
+      } else {
+        this.toUrl('/work/out/detail/' + procId + '/0/' + item.id)
+      }
+    },
     getList () {
       var param = {
 
@@ -66,6 +77,9 @@ export default {
       this.post(requestUrl, param, function (result) {
         if (result.status === '1') {
           that.mainData = result.map
+          if (that.mainData.list.length === 0) {
+            that.toastShow('text', '暂无出库单')
+          }
         } else {
           that.toastShow('text', result.message)
         }
